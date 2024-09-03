@@ -608,8 +608,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/unbound/settings/setHostOverride/a8dc64e2-5818-45f0-8a83-51b05ae8a42a made changes</description>
-    <time>1725346480.8026</time>
+    <description>/api/caddy/ReverseProxy/addSubdomain/ made changes</description>
+    <time>1725346533.0282</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2454,6 +2454,16 @@ https://www.cloudflare.com/ips-v6</content>
           <basicauth/>
           <description>dl1 qbittorrent</description>
           <DynDns>1</DynDns>
+          <AcmePassthrough/>
+        </subdomain>
+        <subdomain uuid="88ff7ac7-7f77-4d6b-a064-b980f4e84181">
+          <enabled>1</enabled>
+          <reverse>b646cc64-46cc-4e85-8701-af6b023557bb</reverse>
+          <FromDomain>adguard.miffythewonderdog.com</FromDomain>
+          <accesslist/>
+          <basicauth/>
+          <description>adguard</description>
+          <DynDns>0</DynDns>
           <AcmePassthrough/>
         </subdomain>
         <handle uuid="d462496c-dad9-462c-a7d3-1ae04ee8d2df">
