@@ -610,8 +610,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/ReverseProxy/setReverseProxy/13570772-e7a0-4b49-bca3-9b2a67def2aa made changes</description>
-    <time>1725363150.1022</time>
+    <description>/api/unbound/settings/setHostOverride/2f4d9214-6758-4bc0-acd4-406f3b8e5e4f made changes</description>
+    <time>1725363234.189</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1340,7 +1340,7 @@ https://www.cloudflare.com/ips-v6</content>
           <mxprio/>
           <mx/>
           <server>172.20.10.100</server>
-          <description>navidrome (via npm)</description>
+          <description>navidrome (via caddy)</description>
         </host>
       </hosts>
       <aliases/>
