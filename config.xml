@@ -612,8 +612,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/ReverseProxy/setReverseProxy/13570772-e7a0-4b49-bca3-9b2a67def2aa made changes</description>
-    <time>1725363950.9184</time>
+    <description>/api/acmeclient/certificates/add/ made changes</description>
+    <time>1725364019.5035</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1596,6 +1596,27 @@ https://www.cloudflare.com/ips-v6</content>
           <lastUpdate>1725343179</lastUpdate>
           <statusCode>200</statusCode>
           <statusLastUpdate>1725343179</statusLastUpdate>
+        </certificate>
+        <certificate uuid="4dae473e-ed83-40a9-b9e9-70f3fd2e55f7">
+          <id>66d6f7337a5783.57462760</id>
+          <enabled>1</enabled>
+          <name>shelf.miffythewonderdog.com</name>
+          <description>audiobookshelf</description>
+          <altNames/>
+          <account>abd14d87-dd80-491c-9bb4-0f7e168e39c5</account>
+          <validationMethod>663efe0c-4afd-4066-9f71-540a3784386e</validationMethod>
+          <keyLength>key_4096</keyLength>
+          <ocsp>0</ocsp>
+          <restartActions/>
+          <autoRenewal>1</autoRenewal>
+          <renewInterval>60</renewInterval>
+          <aliasmode>none</aliasmode>
+          <domainalias/>
+          <challengealias/>
+          <certRefId/>
+          <lastUpdate/>
+          <statusCode>100</statusCode>
+          <statusLastUpdate/>
         </certificate>
       </certificates>
       <validations>
