@@ -382,7 +382,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <tagged/>
       <poolopts/>
       <associated-rule-id>nat_66ca9b315c6729.40405442</associated-rule-id>
-      <disabled>1</disabled>
       <target>172.20.10.102</target>
       <local-port>webports</local-port>
       <source>
@@ -394,7 +393,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.54</username>
-        <time>1725344240.5666</time>
+        <time>1725345526.2718</time>
         <description>/firewall_nat_edit.php made changes</description>
       </updated>
       <created>
@@ -454,7 +453,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <time>1724554033.3785</time>
         <description>/firewall_nat_edit.php made changes</description>
       </created>
-      <disabled>1</disabled>
     </rule>
     <rule uuid="3eb67b63-a20e-4781-b3ca-7be1733af7ef">
       <associated-rule-id>nat_66caa0a65a83e5.96565571</associated-rule-id>
@@ -631,8 +629,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/haproxy/settings/set made changes</description>
-    <time>1725345492.8104</time>
+    <time>1725345526.3511</time>
+    <description>/firewall_nat_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
