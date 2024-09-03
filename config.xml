@@ -608,8 +608,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/caddy/ReverseProxy/addReverseProxy/ made changes</description>
-    <time>1725346337.0837</time>
+    <description>/api/caddy/ReverseProxy/setReverseProxy/b646cc64-46cc-4e85-8701-af6b023557bb made changes</description>
+    <time>1725346386.3129</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2448,11 +2448,11 @@ https://www.cloudflare.com/ips-v6</content>
         </reverse>
         <reverse uuid="b646cc64-46cc-4e85-8701-af6b023557bb">
           <enabled>1</enabled>
-          <FromDomain>miffythewonderdog.com</FromDomain>
+          <FromDomain>*.miffythewonderdog.com</FromDomain>
           <FromPort/>
           <accesslist/>
           <basicauth/>
-          <description/>
+          <description>base</description>
           <DnsChallenge>0</DnsChallenge>
           <CustomCertificate/>
           <AccessLog>0</AccessLog>
