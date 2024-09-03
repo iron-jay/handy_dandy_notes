@@ -602,9 +602,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/scripts/OPNsense/AcmeClient/lecert.php made changes</description>
-    <time>1725343837.4287</time>
+    <username>zz_Jay@172.20.10.54</username>
+    <description>/api/haproxy/settings/addFrontend/ made changes</description>
+    <time>1725343997.7727</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1944,7 +1944,73 @@ https://www.cloudflare.com/ips-v6</content>
           <maxSecondaryEntries>10</maxSecondaryEntries>
         </cache>
       </general>
-      <frontends/>
+      <frontends>
+        <frontend uuid="f7f88a23-1e2b-436d-a907-ff4299e42700">
+          <id>66d6a8fdbbe3c7.13645787</id>
+          <enabled>1</enabled>
+          <name>miffythewonderdog</name>
+          <description/>
+          <bind>125.253.104.23:443</bind>
+          <bindOptions/>
+          <mode>http</mode>
+          <defaultBackend/>
+          <ssl_enabled>1</ssl_enabled>
+          <ssl_certificates>66d6a85d64255</ssl_certificates>
+          <ssl_default_certificate>66d6a85d64255</ssl_default_certificate>
+          <ssl_customOptions/>
+          <ssl_advancedEnabled>0</ssl_advancedEnabled>
+          <ssl_bindOptions>prefer-client-ciphers</ssl_bindOptions>
+          <ssl_minVersion>TLSv1.2</ssl_minVersion>
+          <ssl_maxVersion/>
+          <ssl_cipherList>ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256</ssl_cipherList>
+          <ssl_cipherSuites>TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256</ssl_cipherSuites>
+          <ssl_hstsEnabled>1</ssl_hstsEnabled>
+          <ssl_hstsIncludeSubDomains>0</ssl_hstsIncludeSubDomains>
+          <ssl_hstsPreload>0</ssl_hstsPreload>
+          <ssl_hstsMaxAge>15768000</ssl_hstsMaxAge>
+          <ssl_clientAuthEnabled>0</ssl_clientAuthEnabled>
+          <ssl_clientAuthVerify>required</ssl_clientAuthVerify>
+          <ssl_clientAuthCAs/>
+          <ssl_clientAuthCRLs/>
+          <basicAuthEnabled>0</basicAuthEnabled>
+          <basicAuthUsers/>
+          <basicAuthGroups/>
+          <tuning_maxConnections/>
+          <tuning_timeoutClient/>
+          <tuning_timeoutHttpReq/>
+          <tuning_timeoutHttpKeepAlive/>
+          <linkedCpuAffinityRules/>
+          <tuning_shards/>
+          <logging_dontLogNull>0</logging_dontLogNull>
+          <logging_dontLogNormal>0</logging_dontLogNormal>
+          <logging_logSeparateErrors>0</logging_logSeparateErrors>
+          <logging_detailedLog>0</logging_detailedLog>
+          <logging_socketStats>0</logging_socketStats>
+          <stickiness_pattern/>
+          <stickiness_dataTypes/>
+          <stickiness_expire>30m</stickiness_expire>
+          <stickiness_size>50k</stickiness_size>
+          <stickiness_counter>1</stickiness_counter>
+          <stickiness_counter_key>src</stickiness_counter_key>
+          <stickiness_length/>
+          <stickiness_connRatePeriod>10s</stickiness_connRatePeriod>
+          <stickiness_sessRatePeriod>10s</stickiness_sessRatePeriod>
+          <stickiness_httpReqRatePeriod>10s</stickiness_httpReqRatePeriod>
+          <stickiness_httpErrRatePeriod>10s</stickiness_httpErrRatePeriod>
+          <stickiness_bytesInRatePeriod>1m</stickiness_bytesInRatePeriod>
+          <stickiness_bytesOutRatePeriod>1m</stickiness_bytesOutRatePeriod>
+          <http2Enabled>1</http2Enabled>
+          <http2Enabled_nontls>0</http2Enabled_nontls>
+          <advertised_protocols>h2,http11</advertised_protocols>
+          <forwardFor>0</forwardFor>
+          <prometheus_enabled>0</prometheus_enabled>
+          <prometheus_path>/metrics</prometheus_path>
+          <connectionBehaviour>http-keep-alive</connectionBehaviour>
+          <customOptions/>
+          <linkedActions>ed264821-ee22-48ff-9d6e-854d0c4ed601</linkedActions>
+          <linkedErrorfiles/>
+        </frontend>
+      </frontends>
       <backends>
         <backend uuid="21d14fd1-9ef9-4200-a807-a1ac32de8daa">
           <id>66d6a75ac5fed3.08940885</id>
