@@ -631,8 +631,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/haproxy/settings/setAction/ed264821-ee22-48ff-9d6e-854d0c4ed601 made changes</description>
-    <time>1725345433.1933</time>
+    <description>/api/haproxy/settings/setAcl/3ad4e64b-4481-4f81-9fdb-53dcec8c0c1e made changes</description>
+    <time>1725345469.1682</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2139,12 +2139,12 @@ https://www.cloudflare.com/ips-v6</content>
           <id>66d6a783623a56.37608028</id>
           <name>tunes</name>
           <description/>
-          <expression>hdr_beg</expression>
+          <expression>hdr</expression>
           <negate>0</negate>
           <caseSensitive>0</caseSensitive>
           <hdr_beg>tunes.miffythewonderdog.com</hdr_beg>
           <hdr_end/>
-          <hdr/>
+          <hdr>tunes.miffythewonderdog.com</hdr>
           <hdr_reg/>
           <hdr_sub/>
           <path_beg/>
