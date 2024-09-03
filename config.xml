@@ -632,7 +632,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>zz_Jay@172.20.10.54</username>
     <description>/api/haproxy/settings/setFrontend/f7f88a23-1e2b-436d-a907-ff4299e42700 made changes</description>
-    <time>1725344962.8505</time>
+    <time>1725345158.2988</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1978,12 +1978,12 @@ https://www.cloudflare.com/ips-v6</content>
           <enabled>1</enabled>
           <name>miffythewonderdog</name>
           <description/>
-          <bind>tunes.miffythewonderdog.com:443</bind>
+          <bind>125.253.104.23:443</bind>
           <bindOptions/>
           <mode>http</mode>
           <defaultBackend/>
           <ssl_enabled>1</ssl_enabled>
-          <ssl_certificates>66d6a85d64255</ssl_certificates>
+          <ssl_certificates/>
           <ssl_default_certificate>66d6a85d64255</ssl_default_certificate>
           <ssl_customOptions/>
           <ssl_advancedEnabled>0</ssl_advancedEnabled>
