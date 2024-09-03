@@ -608,8 +608,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/caddy/ReverseProxy/addHandle/ made changes</description>
-    <time>1725346565.2968</time>
+    <description>/api/caddy/ReverseProxy/addSubdomain/ made changes</description>
+    <time>1725346586.8141</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2463,6 +2463,16 @@ https://www.cloudflare.com/ips-v6</content>
           <accesslist/>
           <basicauth/>
           <description>adguard</description>
+          <DynDns>0</DynDns>
+          <AcmePassthrough/>
+        </subdomain>
+        <subdomain uuid="3619d10a-f6fe-4b34-b322-00e431cc684b">
+          <enabled>1</enabled>
+          <reverse>b646cc64-46cc-4e85-8701-af6b023557bb</reverse>
+          <FromDomain>opnsense.miffythewonderdog.com</FromDomain>
+          <accesslist/>
+          <basicauth/>
+          <description>opnsense</description>
           <DynDns>0</DynDns>
           <AcmePassthrough/>
         </subdomain>
