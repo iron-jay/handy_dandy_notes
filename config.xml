@@ -631,8 +631,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/haproxy/settings/set made changes</description>
-    <time>1725344350.5391</time>
+    <description>/api/haproxy/settings/setFrontend/f7f88a23-1e2b-436d-a907-ff4299e42700 made changes</description>
+    <time>1725344547.1406</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
