@@ -629,8 +629,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <time>1725344081.0503</time>
-    <description>/firewall_rules_edit.php made changes</description>
+    <description>/api/haproxy/settings/set made changes</description>
+    <time>1725344116.1611</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1885,7 +1885,7 @@ https://www.cloudflare.com/ips-v6</content>
     </AcmeClient>
     <HAProxy version="4.1.0">
       <general>
-        <enabled>0</enabled>
+        <enabled>1</enabled>
         <gracefulStop>0</gracefulStop>
         <hardStopAfter>60s</hardStopAfter>
         <closeSpreadTime/>
