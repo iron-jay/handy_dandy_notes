@@ -224,6 +224,7 @@
       <email>jay@miffythewonderdog.com</email>
       <shell>/bin/sh</shell>
       <uid>2000</uid>
+      <dashboard>eyJvcHRpb25zIjp7fSwid2lkZ2V0cyI6W3siaWQiOiJzeXN0ZW1pbmZvcm1hdGlvbiIsIm1pblciOjIsIngiOjAsInkiOjAsImgiOjUzNCwid2lkZ2V0Ijp7fSwidyI6Mn0seyJpZCI6Im1lbW9yeSIsIm1pblciOjEsIngiOjIsInkiOjAsImgiOjEyOSwid2lkZ2V0Ijp7fSwidyI6bnVsbH0seyJpZCI6ImRpc2siLCJtaW5XIjoxLCJ4IjozLCJ5IjowLCJoIjoxMjksIndpZGdldCI6e30sInciOm51bGx9LHsiaWQiOiJpbnRlcmZhY2VzdGF0aXN0aWNzIiwibWluVyI6MiwieCI6NCwieSI6MCwidyI6NCwiaCI6MzU3LCJ3aWRnZXQiOnt9fSx7ImlkIjoiY3B1IiwibWluVyI6MiwieCI6OCwieSI6MCwiaCI6MTg2LCJ3aWRnZXQiOnsiZ3JhcGhzIjpbInRvdGFsIl19LCJ3IjoyfSx7ImlkIjoiZ2F0ZXdheXMiLCJtaW5XIjoyLCJ4IjoxMCwieSI6MCwic2l6ZVRvQ29udGVudCI6NjUwLCJoIjoxNzQsIndpZGdldCI6eyJnYXRld2F5cyI6WyJXQU5fR1ciXX0sInciOjJ9LHsiaWQiOiJ0cmFmZmljIiwibWluVyI6MiwieCI6MiwieSI6MTI5LCJoIjo0NTEsIndpZGdldCI6eyJpbnRlcmZhY2VzIjpbIkxBTiIsIldBTiJdfSwidyI6Mn0seyJpZCI6ImNhZGR5Y2VydGlmaWNhdGUiLCJtaW5XIjoyLCJzaXplVG9Db250ZW50Ijo2NTAsIngiOjEwLCJ5IjoxNzQsImgiOjE0Nywid2lkZ2V0Ijp7fSwidyI6Mn0seyJpZCI6ImFubm91bmNlbWVudHMiLCJtaW5XIjoyLCJ4Ijo4LCJ5IjoxODYsInNpemVUb0NvbnRlbnQiOjM1MCwiaCI6MzUwLCJ3aWRnZXQiOnt9LCJ3IjoyfSx7ImlkIjoiY2FkZHlkb21haW4iLCJtaW5XIjoyLCJzaXplVG9Db250ZW50Ijo2NTAsIngiOjEwLCJ5IjozMjEsImgiOjM4Nywid2lkZ2V0Ijp7fSwidyI6Mn0seyJpZCI6ImZpcmV3YWxsIiwibWluVyI6MiwieCI6NCwieSI6MzU3LCJ3Ijo0LCJoIjozNTcsIndpZGdldCI6e319LHsiaWQiOiJzZXJ2aWNlcyIsIm1pblciOjIsInNpemVUb0NvbnRlbnQiOjY1MCwieCI6MCwieSI6NTM0LCJoIjo2MzMsIndpZGdldCI6e30sInciOjJ9LHsiaWQiOiJ0aGVybWFsc2Vuc29ycyIsIm1pblciOjIsIngiOjgsInkiOjUzNiwiaCI6MTIxLCJ3aWRnZXQiOnt9LCJ3IjoyfSx7ImlkIjoiZGRjbGllbnQiLCJtaW5XIjoyLCJzaXplVG9Db250ZW50Ijo2NTAsIngiOjEwLCJ5Ijo3MDgsImgiOjE1MCwid2lkZ2V0Ijp7fSwidyI6Mn1dfQ==</dashboard>
     </user>
     <nextuid>2001</nextuid>
     <nextgid>2000</nextgid>
@@ -607,9 +608,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>zz_Jay@172.20.10.54</username>
-    <description>/api/unbound/settings/setHostOverride/460cdb8d-4e03-4c4d-8c39-0bbb32441abb made changes</description>
-    <time>1725347030.8774</time>
+    <username>zz_Jay@172.20.10.100</username>
+    <description>/api/core/dashboard/saveWidgets made changes</description>
+    <time>1725363030.3294</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
