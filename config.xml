@@ -603,8 +603,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <time>1725341844.4335</time>
-    <description>/system_advanced_admin.php made changes</description>
+    <description>/api/acmeclient/accounts/add/ made changes</description>
+    <time>1725342824.9491</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1550,7 +1550,22 @@ https://www.cloudflare.com/ips-v6</content>
         <logLevel>normal</logLevel>
         <showIntro>1</showIntro>
       </settings>
-      <accounts/>
+      <accounts>
+        <account uuid="abd14d87-dd80-491c-9bb4-0f7e168e39c5">
+          <id>66d6a468e735d9.86577315</id>
+          <enabled>1</enabled>
+          <name>jay.truscott@outlook.com</name>
+          <description/>
+          <email>jay.truscott@outlook.com</email>
+          <ca>letsencrypt</ca>
+          <custom_ca/>
+          <eab_kid/>
+          <eab_hmac/>
+          <key/>
+          <statusCode>100</statusCode>
+          <statusLastUpdate/>
+        </account>
+      </accounts>
       <certificates/>
       <validations/>
       <actions/>
