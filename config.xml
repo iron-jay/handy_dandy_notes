@@ -603,8 +603,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/haproxy/settings/addAction/ made changes</description>
-    <time>1725343645.7374</time>
+    <description>/api/acmeclient/certificates/add/ made changes</description>
+    <time>1725343791.9784</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1587,6 +1587,27 @@ https://www.cloudflare.com/ips-v6</content>
           <lastUpdate>1725343179</lastUpdate>
           <statusCode>200</statusCode>
           <statusLastUpdate>1725343179</statusLastUpdate>
+        </certificate>
+        <certificate uuid="ea57502f-2f9a-4063-a857-880a44208c7c">
+          <id>66d6a82fee4b78.86844052</id>
+          <enabled>1</enabled>
+          <name>*.miffythewonderdog.com</name>
+          <description>wildcard</description>
+          <altNames/>
+          <account>abd14d87-dd80-491c-9bb4-0f7e168e39c5</account>
+          <validationMethod>663efe0c-4afd-4066-9f71-540a3784386e</validationMethod>
+          <keyLength>key_4096</keyLength>
+          <ocsp>0</ocsp>
+          <restartActions/>
+          <autoRenewal>1</autoRenewal>
+          <renewInterval>60</renewInterval>
+          <aliasmode>none</aliasmode>
+          <domainalias/>
+          <challengealias/>
+          <certRefId/>
+          <lastUpdate/>
+          <statusCode>100</statusCode>
+          <statusLastUpdate/>
         </certificate>
       </certificates>
       <validations>
