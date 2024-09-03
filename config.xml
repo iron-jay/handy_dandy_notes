@@ -629,8 +629,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/haproxy/settings/setBackend/21d14fd1-9ef9-4200-a807-a1ac32de8daa made changes</description>
-    <time>1725344170.8378</time>
+    <description>/api/unbound/settings/setHostOverride/2f4d9214-6758-4bc0-acd4-406f3b8e5e4f made changes</description>
+    <time>1725344214.8356</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1358,8 +1358,8 @@ https://www.cloudflare.com/ips-v6</content>
           <rr>A</rr>
           <mxprio/>
           <mx/>
-          <server>172.20.10.102</server>
-          <description>navidrome (via npm)</description>
+          <server>172.20.10.100</server>
+          <description>navidrome (via haproxy)</description>
         </host>
       </hosts>
       <aliases/>
