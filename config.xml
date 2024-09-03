@@ -231,7 +231,7 @@
     <timezone>Australia/Sydney</timezone>
     <timeservers>0.opnsense.pool.ntp.org 1.opnsense.pool.ntp.org 2.opnsense.pool.ntp.org 3.opnsense.pool.ntp.org</timeservers>
     <webgui>
-      <protocol>https</protocol>
+      <protocol>http</protocol>
       <ssl-certref>66ca6ff05d8ad</ssl-certref>
       <port>81</port>
       <ssl-ciphers/>
@@ -304,6 +304,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <GDriveBackupCount>20</GDriveBackupCount>
       <GDrivePassword>kD/z29x_5*y5Zz</GDrivePassword>
     </remotebackup>
+    <sudo_allow_wheel>1</sudo_allow_wheel>
   </system>
   <interfaces>
     <wan>
@@ -611,8 +612,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>zz_Jay@172.20.10.100</username>
-    <time>1725364381.725</time>
+    <username>zz_Jay@172.20.10.65</username>
+    <time>1725364699.0732</time>
     <description>/system_advanced_admin.php made changes</description>
   </revision>
   <OPNsense>
