@@ -613,8 +613,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/ReverseProxy/setReverseProxy/b646cc64-46cc-4e85-8701-af6b023557bb made changes</description>
-    <time>1725406477.7997</time>
+    <description>/api/caddy/ReverseProxy/addAccessList/ made changes</description>
+    <time>1725406573.7864</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2690,6 +2690,14 @@ https://www.cloudflare.com/ips-v6</content>
           <accesslistName>local</accesslistName>
           <clientIps>172.20.10.0/24</clientIps>
           <accesslistInvert>0</accesslistInvert>
+          <HttpResponseCode/>
+          <HttpResponseMessage/>
+          <description/>
+        </accesslist>
+        <accesslist uuid="ec2a50f3-32ca-47ed-8de9-5c36329b84ac">
+          <accesslistName>deny phone</accesslistName>
+          <clientIps>172.20.10.58</clientIps>
+          <accesslistInvert>1</accesslistInvert>
           <HttpResponseCode/>
           <HttpResponseMessage/>
           <description/>
