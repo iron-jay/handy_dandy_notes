@@ -603,8 +603,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/haproxy/settings/addAcl/ made changes</description>
-    <time>1725343619.4044</time>
+    <description>/api/haproxy/settings/addAction/ made changes</description>
+    <time>1725343645.7374</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2098,7 +2098,66 @@ https://www.cloudflare.com/ips-v6</content>
           <allowedGroups/>
         </acl>
       </acls>
-      <actions/>
+      <actions>
+        <action uuid="ed264821-ee22-48ff-9d6e-854d0c4ed601">
+          <name>tunes</name>
+          <description/>
+          <testType>if</testType>
+          <linkedAcls>3ad4e64b-4481-4f81-9fdb-53dcec8c0c1e</linkedAcls>
+          <operator>and</operator>
+          <type>use_backend</type>
+          <use_backend>21d14fd1-9ef9-4200-a807-a1ac32de8daa</use_backend>
+          <use_server/>
+          <fcgi_pass_header/>
+          <fcgi_set_param/>
+          <http_request_auth/>
+          <http_request_redirect/>
+          <http_request_lua/>
+          <http_request_use_service/>
+          <http_request_add_header_name/>
+          <http_request_add_header_content/>
+          <http_request_set_header_name/>
+          <http_request_set_header_content/>
+          <http_request_del_header_name/>
+          <http_request_replace_header_name/>
+          <http_request_replace_header_regex/>
+          <http_request_replace_value_name/>
+          <http_request_replace_value_regex/>
+          <http_request_set_path/>
+          <http_request_set_var_scope>txn</http_request_set_var_scope>
+          <http_request_set_var_name/>
+          <http_request_set_var_expr/>
+          <http_response_lua/>
+          <http_response_add_header_name/>
+          <http_response_add_header_content/>
+          <http_response_set_header_name/>
+          <http_response_set_header_content/>
+          <http_response_del_header_name/>
+          <http_response_replace_header_name/>
+          <http_response_replace_header_regex/>
+          <http_response_replace_value_name/>
+          <http_response_replace_value_regex/>
+          <http_response_set_status_code/>
+          <http_response_set_status_reason/>
+          <http_response_set_var_scope>txn</http_response_set_var_scope>
+          <http_response_set_var_name/>
+          <http_response_set_var_expr/>
+          <monitor_fail_uri/>
+          <tcp_request_content_lua/>
+          <tcp_request_content_use_service/>
+          <tcp_request_inspect_delay/>
+          <tcp_response_content_lua/>
+          <tcp_response_inspect_delay/>
+          <custom/>
+          <useBackend/>
+          <useServer/>
+          <actionName/>
+          <actionFind/>
+          <actionValue/>
+          <map_use_backend_file/>
+          <map_use_backend_default/>
+        </action>
+      </actions>
       <luas/>
       <fcgis/>
       <errorfiles/>
