@@ -612,8 +612,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1725363487.6126</time>
-    <description>/firewall_rules_edit.php made changes</description>
+    <description>/api/caddy/ReverseProxy/addAccessList/ made changes</description>
+    <time>1725363599.7701</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2643,6 +2643,14 @@ https://www.cloudflare.com/ips-v6</content>
           <HttpTlsServerName/>
           <description>sonarr</description>
         </handle>
+        <accesslist uuid="c262155d-cc96-4ed3-a60d-43ba6362f198">
+          <accesslistName>local</accesslistName>
+          <clientIps>172.20.10.0/24</clientIps>
+          <accesslistInvert>0</accesslistInvert>
+          <HttpResponseCode/>
+          <HttpResponseMessage/>
+          <description/>
+        </accesslist>
       </reverseproxy>
     </caddy>
   </Pischem>
