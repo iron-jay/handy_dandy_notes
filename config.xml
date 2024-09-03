@@ -603,8 +603,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/haproxy/settings/addServer/ made changes</description>
-    <time>1725343545.9804</time>
+    <description>/api/haproxy/settings/addBackend/ made changes</description>
+    <time>1725343578.8133</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1924,7 +1924,68 @@ https://www.cloudflare.com/ips-v6</content>
         </cache>
       </general>
       <frontends/>
-      <backends/>
+      <backends>
+        <backend uuid="21d14fd1-9ef9-4200-a807-a1ac32de8daa">
+          <id>66d6a75ac5fed3.08940885</id>
+          <enabled>1</enabled>
+          <name>tunes</name>
+          <description/>
+          <mode>http</mode>
+          <algorithm>source</algorithm>
+          <random_draws>2</random_draws>
+          <proxyProtocol/>
+          <linkedServers>d3fc85e1-2786-444b-aeb6-6f7553c6bf98</linkedServers>
+          <linkedFcgi/>
+          <linkedResolver/>
+          <resolverOpts/>
+          <resolvePrefer/>
+          <source/>
+          <healthCheckEnabled>1</healthCheckEnabled>
+          <healthCheck/>
+          <healthCheckLogStatus>0</healthCheckLogStatus>
+          <checkInterval/>
+          <checkDownInterval/>
+          <healthCheckFall/>
+          <healthCheckRise/>
+          <linkedMailer/>
+          <http2Enabled>1</http2Enabled>
+          <http2Enabled_nontls>0</http2Enabled_nontls>
+          <ba_advertised_protocols>h2,http11</ba_advertised_protocols>
+          <forwardFor>0</forwardFor>
+          <forwardedHeader>0</forwardedHeader>
+          <forwardedHeaderParameters/>
+          <persistence>sticktable</persistence>
+          <persistence_cookiemode>piggyback</persistence_cookiemode>
+          <persistence_cookiename>SRVCOOKIE</persistence_cookiename>
+          <persistence_stripquotes>1</persistence_stripquotes>
+          <stickiness_pattern>sourceipv4</stickiness_pattern>
+          <stickiness_dataTypes/>
+          <stickiness_expire>30m</stickiness_expire>
+          <stickiness_size>50k</stickiness_size>
+          <stickiness_cookiename/>
+          <stickiness_cookielength/>
+          <stickiness_connRatePeriod>10s</stickiness_connRatePeriod>
+          <stickiness_sessRatePeriod>10s</stickiness_sessRatePeriod>
+          <stickiness_httpReqRatePeriod>10s</stickiness_httpReqRatePeriod>
+          <stickiness_httpErrRatePeriod>10s</stickiness_httpErrRatePeriod>
+          <stickiness_bytesInRatePeriod>1m</stickiness_bytesInRatePeriod>
+          <stickiness_bytesOutRatePeriod>1m</stickiness_bytesOutRatePeriod>
+          <basicAuthEnabled>0</basicAuthEnabled>
+          <basicAuthUsers/>
+          <basicAuthGroups/>
+          <tuning_timeoutConnect/>
+          <tuning_timeoutCheck/>
+          <tuning_timeoutServer/>
+          <tuning_retries/>
+          <customOptions/>
+          <tuning_defaultserver/>
+          <tuning_noport>0</tuning_noport>
+          <tuning_httpreuse>safe</tuning_httpreuse>
+          <tuning_caching>0</tuning_caching>
+          <linkedActions/>
+          <linkedErrorfiles/>
+        </backend>
+      </backends>
       <servers>
         <server uuid="d3fc85e1-2786-444b-aeb6-6f7553c6bf98">
           <id>66d6a739eee505.46816741</id>
