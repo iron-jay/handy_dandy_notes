@@ -614,7 +614,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/opnsense/scripts/OPNsense/AcmeClient/lecert.php made changes</description>
-    <time>1725406437.9409</time>
+    <time>1725406437.9559</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1616,8 +1616,8 @@ https://www.cloudflare.com/ips-v6</content>
           <challengealias/>
           <certRefId>66d79ce5e4916</certRefId>
           <lastUpdate>1725406437</lastUpdate>
-          <statusCode>400</statusCode>
-          <statusLastUpdate>1725364191</statusLastUpdate>
+          <statusCode>200</statusCode>
+          <statusLastUpdate>1725406437</statusLastUpdate>
         </certificate>
         <certificate uuid="64c27a07-c938-43e1-b661-db12c434c045">
           <id>66d6f750ef8df0.67123923</id>
