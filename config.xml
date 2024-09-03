@@ -611,9 +611,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/ReverseProxy/setReverseProxy/13570772-e7a0-4b49-bca3-9b2a67def2aa made changes</description>
-    <time>1725363684.9923</time>
+    <username>(system)</username>
+    <description>/usr/local/opnsense/scripts/OPNsense/AcmeClient/lecert.php made changes</description>
+    <time>1725363927.2931</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1615,8 +1615,8 @@ https://www.cloudflare.com/ips-v6</content>
           <challengealias/>
           <certRefId>66d6a85d64255</certRefId>
           <lastUpdate>1725343837</lastUpdate>
-          <statusCode>200</statusCode>
-          <statusLastUpdate>1725343837</statusLastUpdate>
+          <statusCode>100</statusCode>
+          <statusLastUpdate>1725363927</statusLastUpdate>
         </certificate>
       </certificates>
       <validations>
