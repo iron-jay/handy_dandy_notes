@@ -608,8 +608,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/caddy/ReverseProxy/setHandle/d5189f25-132f-44e3-bbc6-1ab6c55400e9 made changes</description>
-    <time>1725346732.9508</time>
+    <description>/api/caddy/ReverseProxy/setHandle/79339a37-4d72-4c1d-ba46-9e1ffdeb7f01 made changes</description>
+    <time>1725346738.2944</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2609,7 +2609,7 @@ https://www.cloudflare.com/ips-v6</content>
           <HttpTlsInsecureSkipVerify>0</HttpTlsInsecureSkipVerify>
           <HttpTlsTrustedCaCerts/>
           <HttpTlsServerName/>
-          <description/>
+          <description>prowlarr</description>
         </handle>
         <handle uuid="d5189f25-132f-44e3-bbc6-1ab6c55400e9">
           <enabled>1</enabled>
