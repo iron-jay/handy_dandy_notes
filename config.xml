@@ -611,9 +611,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/scripts/OPNsense/AcmeClient/lecert.php made changes</description>
-    <time>1725364191.8212</time>
+    <username>zz_Jay@172.20.10.100</username>
+    <description>/api/caddy/general/set made changes</description>
+    <time>1725364301.8403</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2398,7 +2398,7 @@ https://www.cloudflare.com/ips-v6</content>
         <HttpPort/>
         <HttpsPort/>
         <TlsEmail>jay.truscott@outlook.com</TlsEmail>
-        <TlsAutoHttps>off</TlsAutoHttps>
+        <TlsAutoHttps>ignore_loaded_certs</TlsAutoHttps>
         <TlsDnsProvider>cloudflare</TlsDnsProvider>
         <TlsDnsApiKey>_34fFX5FXIpw1QsAm_5Cr0eVAwf6kUvNSiru4iKJ</TlsDnsApiKey>
         <TlsDnsSecretApiKey/>
