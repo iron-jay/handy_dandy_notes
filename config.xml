@@ -608,8 +608,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/caddy/ReverseProxy/addHandle/ made changes</description>
-    <time>1725345954.1766</time>
+    <description>/api/caddy/general/set made changes</description>
+    <time>1725346091.8301</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2369,38 +2369,38 @@ https://www.cloudflare.com/ips-v6</content>
     <caddy version="0.0.0">
       <general>
         <enabled>0</enabled>
-        <EnableLayer4/>
+        <EnableLayer4>0</EnableLayer4>
         <HttpPort/>
         <HttpsPort/>
-        <TlsEmail/>
-        <TlsAutoHttps/>
-        <TlsDnsProvider/>
-        <TlsDnsApiKey/>
+        <TlsEmail>jay.truscott@outlook.com</TlsEmail>
+        <TlsAutoHttps>off</TlsAutoHttps>
+        <TlsDnsProvider>cloudflare</TlsDnsProvider>
+        <TlsDnsApiKey>_34fFX5FXIpw1QsAm_5Cr0eVAwf6kUvNSiru4iKJ</TlsDnsApiKey>
         <TlsDnsSecretApiKey/>
         <TlsDnsOptionalField1/>
         <TlsDnsOptionalField2/>
         <TlsDnsOptionalField3/>
         <TlsDnsOptionalField4/>
-        <TlsDnsPropagationTimeout/>
+        <TlsDnsPropagationTimeout>0</TlsDnsPropagationTimeout>
         <TlsDnsPropagationResolvers/>
         <accesslist/>
-        <abort/>
-        <DisableSuperuser/>
+        <abort>0</abort>
+        <DisableSuperuser>0</DisableSuperuser>
         <GracePeriod>10</GracePeriod>
-        <LogCredentials/>
-        <LogAccessPlain/>
+        <LogCredentials>0</LogCredentials>
+        <LogAccessPlain>0</LogAccessPlain>
         <LogAccessPlainKeep>10</LogAccessPlainKeep>
         <LogLevel/>
         <DynDnsSimpleHttp/>
         <DynDnsInterface/>
         <DynDnsInterval/>
-        <DynDnsIpVersions/>
+        <DynDnsIpVersions>ipv4</DynDnsIpVersions>
         <DynDnsTtl/>
-        <DynDnsUpdateOnly/>
+        <DynDnsUpdateOnly>0</DynDnsUpdateOnly>
         <AuthProvider/>
         <AuthToDomain/>
         <AuthToPort/>
-        <AuthToTls/>
+        <AuthToTls>0</AuthToTls>
         <AuthToUri/>
       </general>
       <reverseproxy>
