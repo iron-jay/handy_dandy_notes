@@ -602,9 +602,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/scripts/OPNsense/AcmeClient/lecert.php made changes</description>
-    <time>1725343179.466</time>
+    <username>zz_Jay@172.20.10.54</username>
+    <description>/api/haproxy/settings/addServer/ made changes</description>
+    <time>1725343545.9804</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1925,7 +1925,38 @@ https://www.cloudflare.com/ips-v6</content>
       </general>
       <frontends/>
       <backends/>
-      <servers/>
+      <servers>
+        <server uuid="d3fc85e1-2786-444b-aeb6-6f7553c6bf98">
+          <id>66d6a739eee505.46816741</id>
+          <enabled>1</enabled>
+          <name>navidrome</name>
+          <description/>
+          <address>172.20.10.13</address>
+          <port>4533</port>
+          <checkport/>
+          <mode>active</mode>
+          <multiplexer_protocol>unspecified</multiplexer_protocol>
+          <type>static</type>
+          <serviceName/>
+          <number/>
+          <linkedResolver/>
+          <resolverOpts/>
+          <resolvePrefer/>
+          <ssl>0</ssl>
+          <sslSNI/>
+          <sslVerify>0</sslVerify>
+          <sslCA/>
+          <sslCRL/>
+          <sslClientCertificate/>
+          <maxConnections/>
+          <weight/>
+          <checkInterval/>
+          <checkDownInterval/>
+          <source/>
+          <advanced/>
+          <unix_socket/>
+        </server>
+      </servers>
       <healthchecks/>
       <acls/>
       <actions/>
