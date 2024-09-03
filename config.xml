@@ -603,8 +603,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/acmeclient/validations/add/ made changes</description>
-    <time>1725343057.4095</time>
+    <description>/api/acmeclient/certificates/add/ made changes</description>
+    <time>1725343125.3785</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1566,7 +1566,29 @@ https://www.cloudflare.com/ips-v6</content>
           <statusLastUpdate/>
         </account>
       </accounts>
-      <certificates/>
+      <certificates>
+        <certificate uuid="dedac041-ed02-4365-8cf8-1619a561bf82">
+          <id>66d6a5955bd602.78115106</id>
+          <enabled>1</enabled>
+          <name>tunes.miffythewonderdog.com</name>
+          <description>tunes</description>
+          <altNames/>
+          <account>abd14d87-dd80-491c-9bb4-0f7e168e39c5</account>
+          <validationMethod>663efe0c-4afd-4066-9f71-540a3784386e</validationMethod>
+          <keyLength>key_4096</keyLength>
+          <ocsp>0</ocsp>
+          <restartActions/>
+          <autoRenewal>1</autoRenewal>
+          <renewInterval>60</renewInterval>
+          <aliasmode>none</aliasmode>
+          <domainalias/>
+          <challengealias/>
+          <certRefId/>
+          <lastUpdate/>
+          <statusCode>100</statusCode>
+          <statusLastUpdate/>
+        </certificate>
+      </certificates>
       <validations>
         <validation uuid="663efe0c-4afd-4066-9f71-540a3784386e">
           <id>66d6a551636360.70923999</id>
