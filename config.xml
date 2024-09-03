@@ -607,9 +607,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/scripts/firmware/register.php made changes</description>
-    <time>1725345835.3416</time>
+    <username>zz_Jay@172.20.10.54</username>
+    <description>/api/caddy/ReverseProxy/addReverseProxy/ made changes</description>
+    <time>1725345919.7777</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2365,4 +2365,60 @@ https://www.cloudflare.com/ips-v6</content>
     <password/>
     <syncitems/>
   </hasync>
+  <Pischem>
+    <caddy version="0.0.0">
+      <general>
+        <enabled>0</enabled>
+        <EnableLayer4/>
+        <HttpPort/>
+        <HttpsPort/>
+        <TlsEmail/>
+        <TlsAutoHttps/>
+        <TlsDnsProvider/>
+        <TlsDnsApiKey/>
+        <TlsDnsSecretApiKey/>
+        <TlsDnsOptionalField1/>
+        <TlsDnsOptionalField2/>
+        <TlsDnsOptionalField3/>
+        <TlsDnsOptionalField4/>
+        <TlsDnsPropagationTimeout/>
+        <TlsDnsPropagationResolvers/>
+        <accesslist/>
+        <abort/>
+        <DisableSuperuser/>
+        <GracePeriod>10</GracePeriod>
+        <LogCredentials/>
+        <LogAccessPlain/>
+        <LogAccessPlainKeep>10</LogAccessPlainKeep>
+        <LogLevel/>
+        <DynDnsSimpleHttp/>
+        <DynDnsInterface/>
+        <DynDnsInterval/>
+        <DynDnsIpVersions/>
+        <DynDnsTtl/>
+        <DynDnsUpdateOnly/>
+        <AuthProvider/>
+        <AuthToDomain/>
+        <AuthToPort/>
+        <AuthToTls/>
+        <AuthToUri/>
+      </general>
+      <reverseproxy>
+        <reverse uuid="13570772-e7a0-4b49-bca3-9b2a67def2aa">
+          <enabled>1</enabled>
+          <FromDomain>tunes.miffythewonderdog.com</FromDomain>
+          <FromPort/>
+          <accesslist/>
+          <basicauth/>
+          <description>tunes</description>
+          <DnsChallenge>0</DnsChallenge>
+          <CustomCertificate/>
+          <AccessLog>0</AccessLog>
+          <DynDns>1</DynDns>
+          <AcmePassthrough/>
+          <DisableTls>0</DisableTls>
+        </reverse>
+      </reverseproxy>
+    </caddy>
+  </Pischem>
 </opnsense>
