@@ -231,7 +231,7 @@
     <timezone>Australia/Sydney</timezone>
     <timeservers>0.opnsense.pool.ntp.org 1.opnsense.pool.ntp.org 2.opnsense.pool.ntp.org 3.opnsense.pool.ntp.org</timeservers>
     <webgui>
-      <protocol>http</protocol>
+      <protocol>https</protocol>
       <ssl-certref>66ca6ff05d8ad</ssl-certref>
       <port>81</port>
       <ssl-ciphers/>
@@ -612,8 +612,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/general/set made changes</description>
-    <time>1725364301.8403</time>
+    <time>1725364381.725</time>
+    <description>/system_advanced_admin.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
