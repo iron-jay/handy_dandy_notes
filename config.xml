@@ -609,7 +609,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>zz_Jay@172.20.10.54</username>
     <description>/api/caddy/general/set made changes</description>
-    <time>1725346091.8301</time>
+    <time>1725346096.8762</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2368,7 +2368,7 @@ https://www.cloudflare.com/ips-v6</content>
   <Pischem>
     <caddy version="0.0.0">
       <general>
-        <enabled>0</enabled>
+        <enabled>1</enabled>
         <EnableLayer4>0</EnableLayer4>
         <HttpPort/>
         <HttpsPort/>
