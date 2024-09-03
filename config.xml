@@ -612,9 +612,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/scripts/OPNsense/AcmeClient/lecert.php made changes</description>
-    <time>1725406365.1722</time>
+    <username>zz_Jay@172.20.10.100</username>
+    <description>/api/acmeclient/certificates/add/ made changes</description>
+    <time>1725406436.8472</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1639,6 +1639,27 @@ https://www.cloudflare.com/ips-v6</content>
           <lastUpdate>1725406365</lastUpdate>
           <statusCode>200</statusCode>
           <statusLastUpdate>1725406365</statusLastUpdate>
+        </certificate>
+        <certificate uuid="79bfe075-2cb2-417f-8c1b-2d0b08b436db">
+          <id>66d79ce4ce29c4.99145920</id>
+          <enabled>1</enabled>
+          <name>*.miffythewonderdog.com</name>
+          <description>base</description>
+          <altNames/>
+          <account>abd14d87-dd80-491c-9bb4-0f7e168e39c5</account>
+          <validationMethod>663efe0c-4afd-4066-9f71-540a3784386e</validationMethod>
+          <keyLength>key_4096</keyLength>
+          <ocsp>0</ocsp>
+          <restartActions/>
+          <autoRenewal>1</autoRenewal>
+          <renewInterval>60</renewInterval>
+          <aliasmode>none</aliasmode>
+          <domainalias/>
+          <challengealias/>
+          <certRefId/>
+          <lastUpdate/>
+          <statusCode>100</statusCode>
+          <statusLastUpdate/>
         </certificate>
       </certificates>
       <validations>
