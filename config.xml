@@ -608,8 +608,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/caddy/ReverseProxy/addSubdomain/ made changes</description>
-    <time>1725346628.8994</time>
+    <description>/api/caddy/ReverseProxy/addHandle/ made changes</description>
+    <time>1725346663.1603</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2569,6 +2569,27 @@ https://www.cloudflare.com/ips-v6</content>
           <HttpTlsTrustedCaCerts/>
           <HttpTlsServerName/>
           <description>opnsense</description>
+        </handle>
+        <handle uuid="79339a37-4d72-4c1d-ba46-9e1ffdeb7f01">
+          <enabled>1</enabled>
+          <reverse>b646cc64-46cc-4e85-8701-af6b023557bb</reverse>
+          <subdomain>5361d9ff-c8ee-4c80-930b-db3a8ce600d9</subdomain>
+          <HandleType>handle</HandleType>
+          <HandlePath/>
+          <header/>
+          <ToDomain>172.20.10.104</ToDomain>
+          <ToPort>9696</ToPort>
+          <ToPath/>
+          <PassiveHealthFailDuration/>
+          <ForwardAuth>0</ForwardAuth>
+          <HttpTls>0</HttpTls>
+          <HttpVersion/>
+          <HttpKeepalive/>
+          <HttpNtlm>0</HttpNtlm>
+          <HttpTlsInsecureSkipVerify>0</HttpTlsInsecureSkipVerify>
+          <HttpTlsTrustedCaCerts/>
+          <HttpTlsServerName/>
+          <description/>
         </handle>
       </reverseproxy>
     </caddy>
