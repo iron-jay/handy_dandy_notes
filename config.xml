@@ -237,6 +237,7 @@
       <ssl-ciphers/>
       <interfaces/>
       <compression/>
+      <disablehttpredirect>1</disablehttpredirect>
     </webgui>
     <disablenatreflection>yes</disablenatreflection>
     <usevirtualterminal>1</usevirtualterminal>
@@ -609,8 +610,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/core/dashboard/saveWidgets made changes</description>
-    <time>1725363030.3294</time>
+    <time>1725363061.695</time>
+    <description>/system_advanced_admin.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
