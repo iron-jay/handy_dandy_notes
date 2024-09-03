@@ -608,8 +608,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.54</username>
-    <description>/api/unbound/settings/setHostOverride/6d9bf9e4-ff3e-4e5d-9e7a-010eac0cad6e made changes</description>
-    <time>1725346844.2768</time>
+    <description>/api/unbound/settings/setHostOverride/e40f0cb0-07f5-4313-a6ba-5fb876890288 made changes</description>
+    <time>1725346853.9924</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1287,7 +1287,7 @@ https://www.cloudflare.com/ips-v6</content>
           <rr>A</rr>
           <mxprio/>
           <mx/>
-          <server>172.20.10.102</server>
+          <server>172.20.10.100</server>
           <description>prowlarr (via caddy)</description>
         </host>
         <host uuid="a8dc64e2-5818-45f0-8a83-51b05ae8a42a">
