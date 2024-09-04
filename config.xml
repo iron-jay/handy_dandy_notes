@@ -424,11 +424,11 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <port>webports</port>
       </source>
       <destination>
-        <any>1</any>
+        <network>wanip</network>
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1725418696.2151</time>
+        <time>1725418727.1486</time>
         <description>/firewall_nat_edit.php made changes</description>
       </updated>
       <created>
@@ -616,8 +616,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1725418698.1982</time>
-    <description>/firewall_nat.php made changes</description>
+    <time>1725418727.2298</time>
+    <description>/firewall_nat_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
