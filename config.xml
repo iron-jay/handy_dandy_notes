@@ -641,8 +641,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/ReverseProxy/addReverseProxy/ made changes</description>
-    <time>1725419128.9397</time>
+    <description>/api/caddy/ReverseProxy/addHandle/ made changes</description>
+    <time>1725419147.8231</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2777,6 +2777,27 @@ https://www.cloudflare.com/ips-v6</content>
           <header/>
           <ToDomain>172.20.10.103</ToDomain>
           <ToPort>13378</ToPort>
+          <ToPath/>
+          <PassiveHealthFailDuration/>
+          <ForwardAuth>0</ForwardAuth>
+          <HttpTls>0</HttpTls>
+          <HttpVersion/>
+          <HttpKeepalive/>
+          <HttpNtlm>0</HttpNtlm>
+          <HttpTlsInsecureSkipVerify>0</HttpTlsInsecureSkipVerify>
+          <HttpTlsTrustedCaCerts/>
+          <HttpTlsServerName/>
+          <description/>
+        </handle>
+        <handle uuid="ea6074a3-156a-4b40-8cad-bb592e7b0128">
+          <enabled>1</enabled>
+          <reverse>1c4b5762-77e0-4652-b868-c424cee29a7e</reverse>
+          <subdomain/>
+          <HandleType>handle</HandleType>
+          <HandlePath/>
+          <header/>
+          <ToDomain>172.20.10.103</ToDomain>
+          <ToPort>8096</ToPort>
           <ToPath/>
           <PassiveHealthFailDuration/>
           <ForwardAuth>0</ForwardAuth>
