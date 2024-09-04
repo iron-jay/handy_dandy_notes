@@ -434,6 +434,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <time>1724555430.3708</time>
         <description>/firewall_nat_edit.php made changes</description>
       </created>
+      <disabled>1</disabled>
     </rule>
   </nat>
   <filter>
@@ -614,8 +615,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/ReverseProxy/delAccessList/ec2a50f3-32ca-47ed-8de9-5c36329b84ac made changes</description>
-    <time>1725406857.8098</time>
+    <time>1725417264.664</time>
+    <description>Firewall: NAT: Port Forward, toggle NAT rule</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
