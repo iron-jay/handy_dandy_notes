@@ -642,8 +642,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/ReverseProxy/addReverseProxy/ made changes</description>
-    <time>1725419006.606</time>
+    <description>/api/caddy/ReverseProxy/addHandle/ made changes</description>
+    <time>1725419042.2799</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2754,6 +2754,27 @@ https://www.cloudflare.com/ips-v6</content>
           <HttpTlsTrustedCaCerts/>
           <HttpTlsServerName/>
           <description>sonarr</description>
+        </handle>
+        <handle uuid="80e5bcf2-06c2-4dab-a239-850f1e99ac1d">
+          <enabled>1</enabled>
+          <reverse>d63c1fc5-7fec-4fa4-89d7-8c9762a6242e</reverse>
+          <subdomain/>
+          <HandleType>handle</HandleType>
+          <HandlePath/>
+          <header/>
+          <ToDomain>172.20.10.103</ToDomain>
+          <ToPort>13378</ToPort>
+          <ToPath/>
+          <PassiveHealthFailDuration/>
+          <ForwardAuth>0</ForwardAuth>
+          <HttpTls>0</HttpTls>
+          <HttpVersion/>
+          <HttpKeepalive/>
+          <HttpNtlm>0</HttpNtlm>
+          <HttpTlsInsecureSkipVerify>0</HttpTlsInsecureSkipVerify>
+          <HttpTlsTrustedCaCerts/>
+          <HttpTlsServerName/>
+          <description/>
         </handle>
         <accesslist uuid="c262155d-cc96-4ed3-a60d-43ba6362f198">
           <accesslistName>local</accesslistName>
