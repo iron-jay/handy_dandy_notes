@@ -466,7 +466,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <ipprotocol>inet</ipprotocol>
       <statetype>keep state</statetype>
       <direction>in</direction>
-      <log>1</log>
       <quick>1</quick>
       <protocol>tcp</protocol>
       <source>
@@ -642,8 +641,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/unbound/settings/setHostOverride/a7c3305d-af73-4872-b270-592fbf73a94f made changes</description>
-    <time>1725419075.6243</time>
+    <time>1725419093.5178</time>
+    <description>/firewall_rules.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
