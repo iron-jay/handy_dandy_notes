@@ -641,8 +641,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/ReverseProxy/addHandle/ made changes</description>
-    <time>1725419147.8231</time>
+    <description>/api/unbound/settings/setHostOverride/98c260e3-2b80-4cf8-9c04-4e9dcd1323b4 made changes</description>
+    <time>1725419165.8433</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1300,8 +1300,8 @@ https://www.cloudflare.com/ips-v6</content>
           <rr>A</rr>
           <mxprio/>
           <mx/>
-          <server>172.20.10.102</server>
-          <description>jellyfin (via npm)</description>
+          <server>172.20.10.100</server>
+          <description>jellyfin (via caddy)</description>
         </host>
         <host uuid="a3a8833c-2936-40f1-b3c9-1ec655b9019e">
           <enabled>1</enabled>
