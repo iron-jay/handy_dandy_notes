@@ -500,12 +500,12 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <not>1</not>
       </source>
       <destination>
-        <address>172.20.10.105/24</address>
+        <address>172.20.10.105</address>
         <port>52764</port>
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1725418952.6385</time>
+        <time>1725418961.7461</time>
         <description>/firewall_rules_edit.php made changes</description>
       </updated>
       <created>
@@ -642,7 +642,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1725418952.7187</time>
+    <time>1725418961.8277</time>
     <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
