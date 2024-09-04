@@ -487,6 +487,31 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <description>/firewall_rules_edit.php made changes</description>
       </created>
     </rule>
+    <rule uuid="4d1ac20c-b4df-4c9f-b511-ae2e420316a6">
+      <type>pass</type>
+      <interface>wan</interface>
+      <ipprotocol>inet</ipprotocol>
+      <statetype>keep state</statetype>
+      <direction>in</direction>
+      <quick>1</quick>
+      <source>
+        <address>Cloudflare</address>
+        <not>1</not>
+      </source>
+      <destination>
+        <network>lan</network>
+      </destination>
+      <updated>
+        <username>zz_Jay@172.20.10.100</username>
+        <time>1725418854.8222</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </updated>
+      <created>
+        <username>zz_Jay@172.20.10.100</username>
+        <time>1725418854.8222</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </created>
+    </rule>
     <rule uuid="c54221fe-e3d2-485e-8b0d-a22815f1f3f0">
       <type>pass</type>
       <ipprotocol>inet</ipprotocol>
@@ -615,8 +640,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1725418757.0069</time>
-    <description>/firewall_nat.php made changes</description>
+    <time>1725418854.9029</time>
+    <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
