@@ -420,13 +420,14 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <local-port>52764</local-port>
       <source>
         <any>1</any>
+        <port>40000-65000</port>
       </source>
       <destination>
         <any>1</any>
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1725418592.0654</time>
+        <time>1725418650.3907</time>
         <description>/firewall_nat_edit.php made changes</description>
       </updated>
       <created>
@@ -614,8 +615,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1725418593.7811</time>
-    <description>/firewall_nat.php made changes</description>
+    <time>1725418650.4719</time>
+    <description>/firewall_nat_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
