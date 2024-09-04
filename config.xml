@@ -494,6 +494,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <statetype>keep state</statetype>
       <direction>in</direction>
       <quick>1</quick>
+      <protocol>tcp</protocol>
       <source>
         <address>Cloudflare</address>
         <not>1</not>
@@ -503,7 +504,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1725418854.8222</time>
+        <time>1725418865.8451</time>
         <description>/firewall_rules_edit.php made changes</description>
       </updated>
       <created>
@@ -640,7 +641,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1725418854.9029</time>
+    <time>1725418865.9259</time>
     <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
