@@ -641,8 +641,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/ReverseProxy/setSubdomain/cecefa5e-0e3f-467a-8811-15bd80fb785c made changes</description>
-    <time>1727047528.5627</time>
+    <description>/api/dyndns/accounts/set_item/1137fa60-edd0-4bfc-a0ec-1ac0e07551c2 made changes</description>
+    <time>1727507911.6177</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1402,7 +1402,7 @@ https://www.cloudflare.com/ips-v6</content>
           <checkip_timeout>10</checkip_timeout>
           <force_ssl>1</force_ssl>
           <ttl>300</ttl>
-          <interface/>
+          <interface>wan</interface>
           <description/>
         </account>
       </accounts>
