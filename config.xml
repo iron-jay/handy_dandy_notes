@@ -641,8 +641,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/dyndns/accounts/set_item/1137fa60-edd0-4bfc-a0ec-1ac0e07551c2 made changes</description>
-    <time>1727507911.6177</time>
+    <description>/api/dyndns/settings/set made changes</description>
+    <time>1727507913.3811</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
