@@ -295,6 +295,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     </backup>
     <language>en_US</language>
     <dnsserver>172.20.10.100</dnsserver>
+    <dnsserver>1.1.1.1</dnsserver>
     <serialspeed>115200</serialspeed>
     <primaryconsole>video</primaryconsole>
     <remotebackup>
@@ -305,6 +306,15 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <GDrivePassword>kD/z29x_5*y5Zz</GDrivePassword>
     </remotebackup>
     <sudo_allow_wheel>1</sudo_allow_wheel>
+    <dnsallowoverride_exclude/>
+    <dns1gw>none</dns1gw>
+    <dns2gw>none</dns2gw>
+    <dns3gw>none</dns3gw>
+    <dns4gw>none</dns4gw>
+    <dns5gw>none</dns5gw>
+    <dns6gw>none</dns6gw>
+    <dns7gw>none</dns7gw>
+    <dns8gw>none</dns8gw>
   </system>
   <interfaces>
     <wan>
@@ -641,8 +651,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/dyndns/settings/set made changes</description>
-    <time>1727507913.3811</time>
+    <description>/api/unbound/settings/set made changes</description>
+    <time>1729818537.8155</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1409,8 +1419,8 @@ https://www.cloudflare.com/ips-v6</content>
     </DynDNS>
     <adguardhome>
       <general version="0.0.1">
-        <enabled>1</enabled>
-        <primarydns>1</primarydns>
+        <enabled>0</enabled>
+        <primarydns>0</primarydns>
       </general>
     </adguardhome>
     <Nginx version="1.33">
