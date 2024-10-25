@@ -651,8 +651,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/unbound/settings/set made changes</description>
-    <time>1729818537.8155</time>
+    <description>/api/adguardhome/general/set made changes</description>
+    <time>1729818544.5221</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1419,8 +1419,8 @@ https://www.cloudflare.com/ips-v6</content>
     </DynDNS>
     <adguardhome>
       <general version="0.0.1">
-        <enabled>0</enabled>
-        <primarydns>0</primarydns>
+        <enabled>1</enabled>
+        <primarydns>1</primarydns>
       </general>
     </adguardhome>
     <Nginx version="1.33">
