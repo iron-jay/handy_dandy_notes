@@ -299,7 +299,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <serialspeed>115200</serialspeed>
     <primaryconsole>video</primaryconsole>
     <remotebackup>
-      <GDriveEnabled>on</GDriveEnabled>
       <GDriveEmail>jay.truscott@outlook.com</GDriveEmail>
       <GDriveFolderID>1uuWQ01OJxjTik08KU-wBESELmrF2lPyu</GDriveFolderID>
       <GDriveBackupCount>20</GDriveBackupCount>
@@ -651,8 +650,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/adguardhome/general/set made changes</description>
-    <time>1729818544.5221</time>
+    <description>/diag_backup.php made changes</description>
+    <time>1729994117.2638</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
