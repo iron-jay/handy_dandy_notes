@@ -494,6 +494,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <time>1725344080.9703</time>
         <description>/firewall_rules_edit.php made changes</description>
       </created>
+      <log>1</log>
     </rule>
     <rule uuid="8e91cf40-3a0d-4855-ae45-2fcd900f2065">
       <type>pass</type>
@@ -650,8 +651,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/diag_backup.php made changes</description>
-    <time>1729994117.2638</time>
+    <time>1730084999.4471</time>
+    <description>/firewall_rules.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
