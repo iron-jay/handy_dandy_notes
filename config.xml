@@ -652,7 +652,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/opnsense/mvc/script/run_migrations.php made changes</description>
-    <time>1731211831.6155</time>
+    <time>1731211850.0355</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1005,7 +1005,7 @@ https://www.cloudflare.com/ips-v6</content>
       <rules/>
     </TrafficShaper>
     <Kea>
-      <dhcp4 version="1.0.0">
+      <dhcp4 version="1.0.1">
         <general>
           <enabled>1</enabled>
           <interfaces>lan</interfaces>
@@ -1015,6 +1015,7 @@ https://www.cloudflare.com/ips-v6</content>
         <ha>
           <enabled>0</enabled>
           <this_server_name/>
+          <max_unacked_clients>2</max_unacked_clients>
         </ha>
         <subnets>
           <subnet4 uuid="4c78871d-c5fa-447e-8650-f5c7fe64861b">
@@ -1056,7 +1057,7 @@ https://www.cloudflare.com/ips-v6</content>
       </general>
       <destinations/>
     </Syslog>
-    <IDS version="1.0.9">
+    <IDS version="1.1.0">
       <rules/>
       <policies/>
       <userDefinedRules/>
@@ -1082,6 +1083,19 @@ https://www.cloudflare.com/ips-v6</content>
         <syslog_eve>0</syslog_eve>
         <LogPayload>0</LogPayload>
         <verbosity/>
+        <eveLog>
+          <http>
+            <enable>0</enable>
+            <extended>0</extended>
+            <dumpAllHeaders/>
+          </http>
+          <tls>
+            <enable>0</enable>
+            <extended>0</extended>
+            <sessionResumption>0</sessionResumption>
+            <custom/>
+          </tls>
+        </eveLog>
       </general>
     </IDS>
     <Netflow version="1.0.1">
@@ -2357,6 +2371,21 @@ https://www.cloudflare.com/ips-v6</content>
         </cronjobs>
       </maintenance>
     </HAProxy>
+    <trust>
+      <general version="1.0.1">
+        <store_intermediate_certs>0</store_intermediate_certs>
+        <install_crls>0</install_crls>
+        <fetch_crls>0</fetch_crls>
+        <enable_legacy_sect>1</enable_legacy_sect>
+        <enable_config_constraints>0</enable_config_constraints>
+        <CipherString/>
+        <Ciphersuites/>
+        <SignatureAlgorithms/>
+        <groups/>
+        <MinProtocol/>
+        <MinProtocol_DTLS/>
+      </general>
+    </trust>
   </OPNsense>
   <ifgroups version="1.0.0"/>
   <openvpn/>
@@ -2474,11 +2503,10 @@ https://www.cloudflare.com/ips-v6</content>
     <prv>LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlKS0FJQkFBS0NBZ0VBeW53bzlKMkc0OThGRm1wZmxKZzBPOTkvOG10Z1NMb0NWZkVuOUpSMlAxYTc3Mmt1ClkwdHZWRkNRZm9IZkdTdnlVdEM5Q1ZsaFBQaVhzWHBFenFpYjlwckVrYWFSM0dOMTVSQUxlYWNRSzRabVkrY0gKem1sa2grblN4SStwWVBUQ2hNb0t2elBzV2FVWGZJOEpqV1VvSWpWNm5QblhWN1VBbkRvZHJMNWpnalhNQ1BlSAozM2VGNzV3VDVsaFI0R3VSQXBIQWd2VWFMeVI1V3JDQ1NTaVFrREFVNVpXRFlmWmFWSnMyR2pZblRGSWRPSzZpCkR0ZG1UL0NnQnRwbkpldWpoTFh5NnVuTTc5NG9LNmRkYkoyWXlwbDNBbzFvTWZnVDdxMTRVZldTb0F1YngvYlgKVkh0OGIzcmRwOStHc2drcksveTNQL2tsNHIzTjg3S1RUT3JJcVhSeTFhWW5FeWd5NE1lL0g4b2pCYkVNbjI0UwpXNHdFMFJ1YkdGYXRDVVJhQ1VaM1daR05mZzZHN21mWUJQQjdjWlBTaXowMVhBZ1pnRVI2QjY4NnRNM1BXbTRCCmpFSGtBMzRiNCsxYm90M0wvUEVibjRLYnc2ZXdxYnZLZko1ay8vNm9kOVJXZUhmRURhQXZwYXd4dWlGOTlpcGgKNERRNGNyVVkycEJrN01LdHo2VERJVGtvbndoc09xeVhGSWZIbVJKUFlHTjJyL2tZQ3I0YXdHTTZpT1A3Vk1VMwplQnU4bGhXT3ZvdEtXL2p0ZnJyZVFmUldJd21uSSs2bXZDTVlVcEpWVlpkRXdNSFRobHlkVWtoQlJ0YnM5UmpwCjVuZGlVK3ZlckJYU0svdkhEcXFRQUJCQmJlN01UYUtveEx2aTdDT1FnNEttZGY4UVdGaEk0ODY3NlRNQ0F3RUEKQVFLQ0FnQUtob01mczBhVHFnQkJacnpBL2ZUWjhSckRvN2FvNFNUU2lkZ2dqeG5pM2Yxd3ZqTnltaHU5NWZnMAo0QlJoRlgyaHRkUGNLVURCQ1ZCS0lmclpkNlRqQm52dmlyTDQ3dTQ2MkUzRk01eXRxMU8vYkV2bHIya0ZHTll3ClBWV0d3cHYyVlZIc3NYMzRucEk1MzlSaUwrdlpRUHZRTG9ncEJlVHp1Z2JZcXdicUxTV0Y3d0RjMEpzSDFrR24Kd2lTTkJqUUNBYTc2RElkdU51b1BtUlVVcjNnNTVQRWw4TkxMY081aFZiWWd3SHJrUnRkQU9JcmxDQUdWTk0vTApJYzNaQ0JOcG9leldsUTFNMUxqT0MxQnpuejM4VVVxQkgvWUp0VkpFdWdQcGI0NEJKZnlIOVdDUGdwVDRvaU94CnVpb2hMMFNnVm0zMVdxa1FNMkZvYUsyclQ1bDB6UlB1VXJkcFdlNEZMRmd0ZFVXbE5LdDZFK3hiSkEzMTh4WnIKZHZjbFNIMk02V2p2OVowQndFRzNLZW16VEVSV3dLR1NPdm84QVYybWFGY1J5TC9vbjNpclk5d043UmtkQUZocgpPZUJwWU13eFFxOSt0ajdLMlcvMUJWdFFjbGtXUUNCcUVYbi9zN2VTUjF5VjVydlMzb3UrM2ZXaXlNaC9JY2UxCkQ0RlhaSW9LN1FsRGMyb2hxNzR6cG1XNHZMYnZVYnVyQVZkNEJRTVF0N1I3UHpvRi9zVEhSYXZvMi9zS2kxTVgKb0RVZnBXOXVxQzR6Q3Exc2xvOG5XMW1vK2x6OW92Z1RZQkxHSFg1aFYwMWYvZko2WHdxNVo4T29HT2xRSWllWQpybUlhV0lqaEFGVS93TU9WMVl0cmJ5dmVPaVdFNGhiK3hvekduTis5MWtydTUwSGJDUUtDQVFFQTU0UzN6a0NuCklPRDNua1BKcmh5aWtMUFhSNjZZQXJsc3ZZb3hXRXRKZXlxZ1owN0RhWnZLaTlUN1dTNXAzY2cyMlRLRUFTSngKL2wwZllNUkRCL25yZW5MSTQ5VjNKNm9iUzMyalRoazZKcUF6RXJ3WUx1Mm4wSHNpVWdIQkxQZ0plemVXS2dnZQpJUVFKdlAyaERweFQreTYwL09LZGs2M0ZCN096RFVKeUNETUw5WG4wUm1lclVOZjE4L1BkVmhaVWRadUtTbDRoCnMwaGlNVHV2d1lrMlBtYWNBSVRVVVVURE9LUWdBczRwS0wrbVZFZWFLaHVRN1U0RS9lQWUxRDdmTEhxVUQyS3cKZ0gzVXJuUHZHdG9UcVhNRk5OM01vRmx3c00vY1ZQQ0dXVmRjRFNoUXA3YlRZSVlmUnJrcUdCc1dySFRqdkZNMwo5azJkWkVSTUh1VmZhd0tDQVFFQTMrVi9TL1A1SmxXNlhSNUtWSkowSGFDNUd4QUo3cXlFbStZRE5rNERIVEE4CmNOc0NFY2RTVDlhN1hVcGZVNjhESTJKcFViSXdBYWszM2pZSWVveWFjM2JzMVJ5cnlmSFplczg0UUUxUzJ0WnIKRk1KN0trdi9uUk5jK2lyRWVJL2VUdEdlREs2bGlVdVhmS0dZLzFxdC84SXdnb3dUcnBTV3pBOHRQTWhtNmZSRApYQUtDWEdOSW1MSTZ6VkhqMVBiZmpQWFpaMXJlRmpVUTFTbHl1QmlPaTlwWldCc0xudk54enBGLzh0K0ptam5SCkVNWm16RUtpOGRlbWlvK1pFMVlLL0VmcTA4NlNURUQ1UkFnZTVlT094WXJMMmdTa1RuUzl5YkMzN3dXMUdNUlUKL1ZGUXRWWjVuZlA4NmVqQU9CMkxEaFB5WVIxWHhvZkhBdldPWEtsM1dRS0NBUUVBZ3h0VVgzZWJiWElZcDhacAptckRhbXFsTlcybVM2ZEFKdFZoaDAwZG5TRmwrVnFKeTVRWjFjRFJmVmtTRGJUWHBZWnhLeHIyejRrRG4rUXVMCmppUElaeUpEZzBvcVhRcm14QnhVODNBenp4WGZkbGVRTmxzZE1tSFlzS29QdENDT2RmbW5qd3ZqeS95V2F6RVMKR00wTWZlMFlUekVoM1RTRnBIUHVESzg1RmsyYUV4eEo2ZWpoU2puU0xhRkhFVzQ1ekJRVi8wRkpRbGJXVEYwcApqYWJmVWYwWGtPK25zSklKSDdWSjcyekNRREl2eGdCNlhDZ2FMVmlHV1NLbk1yaWI5M3MvQjJ0eTJvRG5oUmRnCkswdWQ0TktpK3lvenJBYWFXM2FLcG90Qythc1FGTjlrdFdWQ1ZLSC9halNIa3ZrY0lQTmMyQlFrVjlYaU1KckEKcEtwdUd3S0NBUUF4amRETDFiYTZKbFUyRU9Nd3JxMW1kVkVpelR6MWgxZGVUZDArSXF3THhNWkwwQjA0SkI1eQpyenNPM2N3VmNISElYaHFqUzBYV3lFWW1OMTFQQ2xtUTNxeHlTb00zRWdFcGJqMnI5YkUxNENrWkVpWkNhVW1zCjBVRk4yVE5jMzdLN1RTZW05T3lNWTUrbXBQbUE0dWdKNkVmbVRPeDZRa2JSNlRZQTh2WGNLQVRVazNXWXp4eWQKTnkxT2ppWlgxMEFKS2N5eFZHbzlEZ2VvdGlDKzRDaUVpWkltcnUyMmcza1gyQm95ZmdrdGlraGNaeDBQYmx3MApISit1b1RPbkZPOGZnU2RYTTZ3cmxtSFZEZHNRMUhtZi9TVTdIclhpNjNHcDl5UHVraHZQM0h4WENLMU5SVk5yCmd6bmg1M0xMdUxZektuVUZ5NEhHM2Z4TkNsNDA0Z2taQW9JQkFDdE1FbU9VQzcxbFlReHFOZDJHRFZwd2pIZHkKNXRPUysvVTJ3cXdPR0REZmh5VU5sYjNWRzFyYXZ3TW9IMkU3VWZiVm5ueEJOM2crRWJJUStRUDQ4bUN1L29mVgp6bm0rN0doMnVDUlordWN6dW9uQzZIWklrU0FHaHJYV3dnbjF5RmZiYmtoNUUwTnY5WjMycStmVUV6UGFicUE2Ckt2c3lSZWIrU0ZNM3NYZWt6YU9KWU9TVy9RcllmWVNSVEdTb3VFUk9Id05wNDhWUkYvdjQ3Q1pHc2EyUlJ3UlQKR1BmWWl4SHlJM0tkQXBLa0RRaDA0S0RLUmNJVUdaQ2x3a1g5YXArK1k2K3paMU5PZVhHeEVScEdJcEVVbUNLWgpRNDhhb2RtdXpsNHVtNnZoUitLYlI5WCtsc3FzVHVTRytMWHBaVU5XRkFlN3pHdjQxMDFUSUxuSEhybz0KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0K</prv>
   </cert>
   <syslog/>
-  <hasync version="1.0.0">
+  <hasync version="1.0.1">
     <disablepreempt>0</disablepreempt>
     <disconnectppps>0</disconnectppps>
-    <pfsyncenabled>0</pfsyncenabled>
-    <pfsyncinterface>lan</pfsyncinterface>
+    <pfsyncinterface/>
     <pfsyncpeerip/>
     <pfsyncversion>1400</pfsyncversion>
     <synchronizetoip/>
