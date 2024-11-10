@@ -650,9 +650,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>zz_Jay@172.20.10.100</username>
-    <time>1730084999.4471</time>
-    <description>/firewall_rules.php made changes</description>
+    <username>(system)</username>
+    <description>/usr/local/opnsense/mvc/script/run_migrations.php made changes</description>
+    <time>1731211831.6155</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2487,7 +2487,7 @@ https://www.cloudflare.com/ips-v6</content>
     <syncitems/>
   </hasync>
   <Pischem>
-    <caddy version="1.3.0">
+    <caddy version="1.3.3">
       <general>
         <enabled>1</enabled>
         <EnableLayer4>0</EnableLayer4>
@@ -2505,9 +2505,9 @@ https://www.cloudflare.com/ips-v6</content>
         <TlsDnsPropagationTimeout>0</TlsDnsPropagationTimeout>
         <TlsDnsPropagationResolvers/>
         <accesslist/>
-        <abort>0</abort>
         <DisableSuperuser>0</DisableSuperuser>
         <GracePeriod>10</GracePeriod>
+        <HttpVersion>h1,h2,h3</HttpVersion>
         <LogCredentials>0</LogCredentials>
         <LogAccessPlain>0</LogAccessPlain>
         <LogAccessPlainKeep>10</LogAccessPlainKeep>
@@ -2647,7 +2647,9 @@ https://www.cloudflare.com/ips-v6</content>
           <subdomain/>
           <HandleType>handle</HandleType>
           <HandlePath/>
+          <accesslist/>
           <header/>
+          <HandleDirective>reverse_proxy</HandleDirective>
           <ToDomain>172.20.10.103</ToDomain>
           <ToPort>4533</ToPort>
           <ToPath/>
@@ -2668,7 +2670,9 @@ https://www.cloudflare.com/ips-v6</content>
           <subdomain>cecefa5e-0e3f-467a-8811-15bd80fb785c</subdomain>
           <HandleType>handle</HandleType>
           <HandlePath/>
+          <accesslist/>
           <header/>
+          <HandleDirective>reverse_proxy</HandleDirective>
           <ToDomain>172.20.10.104</ToDomain>
           <ToPort>8080</ToPort>
           <ToPath/>
@@ -2689,7 +2693,9 @@ https://www.cloudflare.com/ips-v6</content>
           <subdomain>88ff7ac7-7f77-4d6b-a064-b980f4e84181</subdomain>
           <HandleType>handle</HandleType>
           <HandlePath/>
+          <accesslist/>
           <header/>
+          <HandleDirective>reverse_proxy</HandleDirective>
           <ToDomain>172.20.10.100</ToDomain>
           <ToPort>82</ToPort>
           <ToPath/>
@@ -2710,7 +2716,9 @@ https://www.cloudflare.com/ips-v6</content>
           <subdomain>3619d10a-f6fe-4b34-b322-00e431cc684b</subdomain>
           <HandleType>handle</HandleType>
           <HandlePath/>
+          <accesslist/>
           <header/>
+          <HandleDirective>reverse_proxy</HandleDirective>
           <ToDomain>172.20.10.100</ToDomain>
           <ToPort>81</ToPort>
           <ToPath/>
@@ -2731,7 +2739,9 @@ https://www.cloudflare.com/ips-v6</content>
           <subdomain>5361d9ff-c8ee-4c80-930b-db3a8ce600d9</subdomain>
           <HandleType>handle</HandleType>
           <HandlePath/>
+          <accesslist/>
           <header/>
+          <HandleDirective>reverse_proxy</HandleDirective>
           <ToDomain>172.20.10.104</ToDomain>
           <ToPort>9696</ToPort>
           <ToPath/>
@@ -2752,7 +2762,9 @@ https://www.cloudflare.com/ips-v6</content>
           <subdomain>cb63e629-226c-4d8f-8470-1e380c244d11</subdomain>
           <HandleType>handle</HandleType>
           <HandlePath/>
+          <accesslist/>
           <header/>
+          <HandleDirective>reverse_proxy</HandleDirective>
           <ToDomain>172.20.10.104</ToDomain>
           <ToPort>7878</ToPort>
           <ToPath/>
@@ -2773,7 +2785,9 @@ https://www.cloudflare.com/ips-v6</content>
           <subdomain>cb30516b-5b4b-4dc2-95dc-f14caebc149e</subdomain>
           <HandleType>handle</HandleType>
           <HandlePath/>
+          <accesslist/>
           <header/>
+          <HandleDirective>reverse_proxy</HandleDirective>
           <ToDomain>172.20.10.104</ToDomain>
           <ToPort>8989</ToPort>
           <ToPath/>
@@ -2794,7 +2808,9 @@ https://www.cloudflare.com/ips-v6</content>
           <subdomain/>
           <HandleType>handle</HandleType>
           <HandlePath/>
+          <accesslist/>
           <header/>
+          <HandleDirective>reverse_proxy</HandleDirective>
           <ToDomain>172.20.10.103</ToDomain>
           <ToPort>13378</ToPort>
           <ToPath/>
@@ -2815,7 +2831,9 @@ https://www.cloudflare.com/ips-v6</content>
           <subdomain/>
           <HandleType>handle</HandleType>
           <HandlePath/>
+          <accesslist/>
           <header/>
+          <HandleDirective>reverse_proxy</HandleDirective>
           <ToDomain>172.20.10.103</ToDomain>
           <ToPort>8096</ToPort>
           <ToPath/>
