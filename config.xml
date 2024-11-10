@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <opnsense>
-  <theme>opnsense</theme>
+  <theme>solarized</theme>
   <sysctl>
     <item>
       <descr>Increase UFS read-ahead speeds to match the state of hard drives and NCQ.</descr>
@@ -650,9 +650,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/mvc/script/run_migrations.php made changes</description>
-    <time>1731211850.0355</time>
+    <username>zz_Jay@172.20.10.100</username>
+    <time>1731212114.9252</time>
+    <description>/system_general.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
