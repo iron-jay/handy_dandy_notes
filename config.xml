@@ -474,6 +474,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <ipprotocol>inet</ipprotocol>
       <statetype>keep state</statetype>
       <direction>in</direction>
+      <log>1</log>
       <quick>1</quick>
       <protocol>tcp</protocol>
       <source>
@@ -485,7 +486,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1725417309.8977</time>
+        <time>1731958942.9511</time>
         <description>/firewall_rules_edit.php made changes</description>
       </updated>
       <created>
@@ -493,7 +494,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <time>1725344080.9703</time>
         <description>/firewall_rules_edit.php made changes</description>
       </created>
-      <log>1</log>
     </rule>
     <rule uuid="8e91cf40-3a0d-4855-ae45-2fcd900f2065">
       <type>pass</type>
@@ -650,8 +650,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1731212232.7251</time>
-    <description>/system_general.php made changes</description>
+    <time>1731958943.0321</time>
+    <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
