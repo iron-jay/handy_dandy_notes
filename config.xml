@@ -445,31 +445,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <disabled>1</disabled>
       <log>1</log>
     </rule>
-    <rule uuid="2650313b-a0b1-4aea-a45b-4e52c1c53417">
-      <type>pass</type>
-      <interface>wan</interface>
-      <ipprotocol>inet46</ipprotocol>
-      <statetype>keep state</statetype>
-      <direction>in</direction>
-      <log>1</log>
-      <quick>1</quick>
-      <source>
-        <any>1</any>
-      </source>
-      <destination>
-        <network>(self)</network>
-      </destination>
-      <updated>
-        <username>zz_Jay@172.20.10.57</username>
-        <time>1732327925.2214</time>
-        <description>/firewall_rules_edit.php made changes</description>
-      </updated>
-      <created>
-        <username>zz_Jay@172.20.10.100</username>
-        <time>1732326365.5456</time>
-        <description>/firewall_rules_edit.php made changes</description>
-      </created>
-    </rule>
     <rule uuid="c54221fe-e3d2-485e-8b0d-a22815f1f3f0">
       <type>pass</type>
       <ipprotocol>inet</ipprotocol>
@@ -622,8 +597,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <description>/api/unbound/settings/setHostOverride/a7c3305d-af73-4872-b270-592fbf73a94f made changes</description>
-    <time>1732330832.8944</time>
+    <time>1732330847.5474</time>
+    <description>/firewall_rules.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
