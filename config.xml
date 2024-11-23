@@ -625,8 +625,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <time>1732327627.9948</time>
-    <description>/firewall_rules.php made changes</description>
+    <description>/api/caddy/general/set made changes</description>
+    <time>1732327801.3072</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2491,7 +2491,7 @@ https://www.cloudflare.com/ips-v6/</content>
   <Pischem>
     <caddy version="1.3.3">
       <general>
-        <enabled>0</enabled>
+        <enabled>1</enabled>
         <EnableLayer4>0</EnableLayer4>
         <HttpPort/>
         <HttpsPort/>
