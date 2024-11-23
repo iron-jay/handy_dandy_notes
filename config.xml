@@ -453,12 +453,12 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <any>1</any>
       </source>
       <destination>
-        <address>172.20.10.105</address>
+        <network>wanip</network>
         <port>52764</port>
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1732325388.1857</time>
+        <time>1732325479.9661</time>
         <description>/firewall_rules_edit.php made changes</description>
       </updated>
       <created>
@@ -595,8 +595,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1732325433.0352</time>
-    <description>/firewall_nat.php made changes</description>
+    <time>1732325480.0459</time>
+    <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
