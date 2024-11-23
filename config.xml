@@ -448,7 +448,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <rule uuid="2650313b-a0b1-4aea-a45b-4e52c1c53417">
       <type>pass</type>
       <interface>wan</interface>
-      <ipprotocol>inet</ipprotocol>
+      <ipprotocol>inet46</ipprotocol>
       <statetype>keep state</statetype>
       <direction>in</direction>
       <log>1</log>
@@ -461,7 +461,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.57</username>
-        <time>1732327911.0614</time>
+        <time>1732327925.2214</time>
         <description>/firewall_rules_edit.php made changes</description>
       </updated>
       <created>
@@ -622,7 +622,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <time>1732327911.1429</time>
+    <time>1732327925.3033</time>
     <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
