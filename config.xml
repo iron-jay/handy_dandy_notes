@@ -272,7 +272,7 @@
     <firmware version="1.0.1">
       <mirror/>
       <flavour/>
-      <plugins>os-acme-client,os-adguardhome-maxit,os-ddclient,os-dmidecode,os-git-backup,os-sunnyvalley,os-theme-rebellion,os-theme-solarized-community,os-wol</plugins>
+      <plugins>os-adguardhome-maxit,os-ddclient,os-dmidecode,os-git-backup,os-sunnyvalley,os-theme-rebellion,os-theme-solarized-community,os-wol</plugins>
       <type/>
       <subscription/>
       <reboot/>
@@ -649,7 +649,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/opnsense/scripts/firmware/register.php made changes</description>
-    <time>1732333357.9784</time>
+    <time>1732333367.2261</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
