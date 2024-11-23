@@ -392,37 +392,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <tag/>
       <tagged/>
       <poolopts/>
-      <associated-rule-id>nat_66ca9b315c6729.40405442</associated-rule-id>
-      <disabled>1</disabled>
-      <target>172.20.10.102</target>
-      <local-port>webports</local-port>
-      <source>
-        <address>Cloudflare</address>
-      </source>
-      <destination>
-        <network>wanip</network>
-        <port>webports</port>
-      </destination>
-      <updated>
-        <username>zz_Jay@172.20.10.100</username>
-        <time>1725363329.4332</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </updated>
-      <created>
-        <username>zz_Jay@172.20.10.65</username>
-        <time>1724554033.3786</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </created>
-    </rule>
-    <rule>
-      <protocol>tcp</protocol>
-      <interface>wan</interface>
-      <category/>
-      <ipprotocol>inet</ipprotocol>
-      <descr/>
-      <tag/>
-      <tagged/>
-      <poolopts/>
       <associated-rule-id/>
       <target>172.20.10.105</target>
       <local-port>52764</local-port>
@@ -447,28 +416,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     </rule>
   </nat>
   <filter>
-    <rule uuid="1ca2c354-0606-4d7c-84fe-e04b92ce4516">
-      <associated-rule-id>nat_66ca9b315c6729.40405442</associated-rule-id>
-      <source>
-        <address>Cloudflare</address>
-      </source>
-      <interface>wan</interface>
-      <statetype>keep state</statetype>
-      <protocol>tcp</protocol>
-      <ipprotocol>inet</ipprotocol>
-      <destination>
-        <address>172.20.10.102</address>
-        <port>webports</port>
-      </destination>
-      <descr/>
-      <category/>
-      <created>
-        <username>zz_Jay@172.20.10.65</username>
-        <time>1724554033.3785</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </created>
-      <disabled>1</disabled>
-    </rule>
     <rule uuid="bdb72bb2-6599-4f04-a888-d3c3cbc2dfea">
       <type>pass</type>
       <interface>wan</interface>
@@ -651,7 +598,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1732325294.5593</time>
+    <time>1732325328.0966</time>
     <description>/firewall_nat.php made changes</description>
   </revision>
   <OPNsense>
