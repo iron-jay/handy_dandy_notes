@@ -452,7 +452,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <protocol>tcp</protocol>
       <source>
         <any>1</any>
-        <not>1</not>
       </source>
       <destination>
         <address>172.20.10.105</address>
@@ -460,7 +459,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1732325373.7821</time>
+        <time>1732325388.1857</time>
         <description>/firewall_rules_edit.php made changes</description>
       </updated>
       <created>
@@ -597,7 +596,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1732325373.862</time>
+    <time>1732325388.2658</time>
     <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
