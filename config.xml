@@ -443,7 +443,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <time>1732333716.5363</time>
         <description>/firewall_nat_edit.php made changes</description>
       </created>
-      <disabled>1</disabled>
     </rule>
   </nat>
   <filter>
@@ -585,7 +584,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <description>/firewall_nat_edit.php made changes</description>
       </created>
       <protocol>tcp/udp</protocol>
-      <disabled>1</disabled>
     </rule>
   </filter>
   <rrd>
@@ -643,7 +641,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <time>1732335200.5033</time>
+    <time>1732335204.699</time>
     <description>Firewall: NAT: Port Forward, toggle NAT rule</description>
   </revision>
   <OPNsense>
