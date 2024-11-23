@@ -515,6 +515,30 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <description>/firewall_rules_edit.php made changes</description>
       </created>
     </rule>
+    <rule uuid="79634445-73c4-4f80-82cb-8de1f3aedd8f">
+      <type>pass</type>
+      <interface>lan</interface>
+      <ipprotocol>inet</ipprotocol>
+      <statetype>keep state</statetype>
+      <direction>in</direction>
+      <quick>1</quick>
+      <source>
+        <network>wan</network>
+      </source>
+      <destination>
+        <any>1</any>
+      </destination>
+      <updated>
+        <username>zz_Jay@172.20.10.100</username>
+        <time>1732325568.8335</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </updated>
+      <created>
+        <username>zz_Jay@172.20.10.100</username>
+        <time>1732325568.8335</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </created>
+    </rule>
     <rule uuid="96207889-4e8e-40d7-8b01-54fdae993059">
       <type>pass</type>
       <interface>opt1</interface>
@@ -595,7 +619,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1732325480.0459</time>
+    <time>1732325568.9147</time>
     <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
