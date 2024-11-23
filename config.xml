@@ -414,6 +414,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </created>
     </rule>
     <rule>
+      <protocol>tcp/udp</protocol>
       <interface>wan</interface>
       <category/>
       <ipprotocol>inet</ipprotocol>
@@ -423,19 +424,17 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <poolopts/>
       <associated-rule-id>nat_6741509482e9a0.23116618</associated-rule-id>
       <target>172.20.10.105</target>
-      <local-port/>
+      <local-port>52764</local-port>
       <source>
         <address>Cloudflare</address>
         <not>1</not>
-        <port/>
       </source>
       <destination>
         <network>wanip</network>
-        <port/>
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.57</username>
-        <time>1732333833.4735</time>
+        <time>1732333888.2864</time>
         <description>/firewall_nat_edit.php made changes</description>
       </updated>
       <created>
@@ -568,14 +567,13 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <source>
         <address>Cloudflare</address>
         <not>1</not>
-        <port/>
       </source>
       <interface>wan</interface>
       <statetype>keep state</statetype>
       <ipprotocol>inet</ipprotocol>
       <destination>
         <address>172.20.10.105</address>
-        <port/>
+        <port>52764</port>
       </destination>
       <descr/>
       <category/>
@@ -584,6 +582,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <time>1732333716.5362</time>
         <description>/firewall_nat_edit.php made changes</description>
       </created>
+      <protocol>tcp/udp</protocol>
     </rule>
   </filter>
   <rrd>
@@ -641,8 +640,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <time>1732333837.2415</time>
-    <description>/firewall_nat.php made changes</description>
+    <time>1732333888.3681</time>
+    <description>/firewall_nat_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
