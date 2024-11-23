@@ -397,14 +397,14 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <local-port>52764</local-port>
       <source>
         <address>Cloudflare</address>
+        <not>1</not>
       </source>
       <destination>
         <network>wanip</network>
-        <not>1</not>
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1732325702.8835</time>
+        <time>1732325713.6011</time>
         <description>/firewall_nat_edit.php made changes</description>
       </updated>
       <created>
@@ -619,7 +619,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1732325702.964</time>
+    <time>1732325713.6821</time>
     <description>/firewall_nat_edit.php made changes</description>
   </revision>
   <OPNsense>
