@@ -621,9 +621,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/scripts/firmware/register.php made changes</description>
-    <time>1732327143.8318</time>
+    <username>zz_Jay@172.20.10.57</username>
+    <description>/api/nginx/settings/set made changes</description>
+    <time>1732327165.1653</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1410,7 +1410,7 @@ https://www.cloudflare.com/ips-v6/</content>
     </adguardhome>
     <Nginx version="1.34">
       <general>
-        <enabled>0</enabled>
+        <enabled>1</enabled>
         <ban_ttl>0</ban_ttl>
       </general>
       <webgui>
