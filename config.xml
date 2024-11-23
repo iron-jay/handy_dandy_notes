@@ -414,7 +414,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </created>
     </rule>
     <rule>
-      <protocol>tcp</protocol>
       <interface>wan</interface>
       <category/>
       <ipprotocol>inet</ipprotocol>
@@ -424,18 +423,19 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <poolopts/>
       <associated-rule-id>nat_6741509482e9a0.23116618</associated-rule-id>
       <target>172.20.10.105</target>
-      <local-port>52764</local-port>
+      <local-port/>
       <source>
         <address>Cloudflare</address>
         <not>1</not>
+        <port/>
       </source>
       <destination>
         <network>wanip</network>
-        <port>52764</port>
+        <port/>
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.57</username>
-        <time>1732333716.5363</time>
+        <time>1732333833.4735</time>
         <description>/firewall_nat_edit.php made changes</description>
       </updated>
       <created>
@@ -568,14 +568,14 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <source>
         <address>Cloudflare</address>
         <not>1</not>
+        <port/>
       </source>
       <interface>wan</interface>
       <statetype>keep state</statetype>
-      <protocol>tcp</protocol>
       <ipprotocol>inet</ipprotocol>
       <destination>
         <address>172.20.10.105</address>
-        <port>52764</port>
+        <port/>
       </destination>
       <descr/>
       <category/>
@@ -641,8 +641,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <time>1732333728.5354</time>
-    <description>/firewall_rules.php made changes</description>
+    <time>1732333833.5549</time>
+    <description>/firewall_nat_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
