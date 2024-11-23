@@ -272,7 +272,7 @@
     <firmware version="1.0.1">
       <mirror/>
       <flavour/>
-      <plugins>os-acme-client,os-adguardhome-maxit,os-caddy,os-ddclient,os-dmidecode,os-git-backup,os-nginx,os-sunnyvalley,os-theme-rebellion,os-theme-solarized-community,os-wol</plugins>
+      <plugins>os-acme-client,os-adguardhome-maxit,os-caddy,os-ddclient,os-dmidecode,os-git-backup,os-sunnyvalley,os-theme-rebellion,os-theme-solarized-community,os-wol</plugins>
       <type/>
       <subscription/>
       <reboot/>
@@ -621,9 +621,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>zz_Jay@172.20.10.57</username>
-    <description>/api/nginx/settings/set made changes</description>
-    <time>1732327165.1653</time>
+    <username>(system)</username>
+    <description>/usr/local/opnsense/scripts/firmware/register.php made changes</description>
+    <time>1732327244.3656</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
