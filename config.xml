@@ -469,6 +469,30 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <description>/firewall_rules_edit.php made changes</description>
       </created>
     </rule>
+    <rule uuid="2650313b-a0b1-4aea-a45b-4e52c1c53417">
+      <type>pass</type>
+      <interface>wan</interface>
+      <ipprotocol>inet</ipprotocol>
+      <statetype>keep state</statetype>
+      <direction>in</direction>
+      <quick>1</quick>
+      <source>
+        <any>1</any>
+      </source>
+      <destination>
+        <network>(self)</network>
+      </destination>
+      <updated>
+        <username>zz_Jay@172.20.10.100</username>
+        <time>1732326365.5456</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </updated>
+      <created>
+        <username>zz_Jay@172.20.10.100</username>
+        <time>1732326365.5456</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </created>
+    </rule>
     <rule uuid="c54221fe-e3d2-485e-8b0d-a22815f1f3f0">
       <type>pass</type>
       <ipprotocol>inet</ipprotocol>
@@ -620,9 +644,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/mvc/script/run_migrations.php made changes</description>
-    <time>1732326145.4424</time>
+    <username>zz_Jay@172.20.10.100</username>
+    <time>1732326365.626</time>
+    <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
