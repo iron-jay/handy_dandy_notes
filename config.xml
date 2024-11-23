@@ -443,6 +443,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <description>/firewall_rules_edit.php made changes</description>
       </created>
       <disabled>1</disabled>
+      <log>1</log>
     </rule>
     <rule uuid="2650313b-a0b1-4aea-a45b-4e52c1c53417">
       <type>pass</type>
@@ -624,7 +625,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <time>1732327578.8081</time>
+    <time>1732327627.9948</time>
     <description>/firewall_rules.php made changes</description>
   </revision>
   <OPNsense>
