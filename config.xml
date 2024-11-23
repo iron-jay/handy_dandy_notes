@@ -622,8 +622,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <description>/api/caddy/ReverseProxy/delReverseProxy/d63c1fc5-7fec-4fa4-89d7-8c9762a6242e made changes</description>
-    <time>1732330800.6866</time>
+    <description>/api/unbound/settings/setHostOverride/a7c3305d-af73-4872-b270-592fbf73a94f made changes</description>
+    <time>1732330832.8944</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1134,6 +1134,7 @@ https://www.cloudflare.com/ips-v6/</content>
         <numqueriesperthread/>
         <outgoingrange/>
         <jostletimeout/>
+        <discardtimeout/>
         <cachemaxttl/>
         <cachemaxnegativettl/>
         <cacheminttl/>
@@ -1345,8 +1346,8 @@ https://www.cloudflare.com/ips-v6/</content>
           <rr>A</rr>
           <mxprio/>
           <mx/>
-          <server>172.20.10.100</server>
-          <description>audiobookshelf (via caddy)</description>
+          <server>172.20.10.109</server>
+          <description>audiobookshelf (via npm)</description>
         </host>
         <host uuid="6d9bf9e4-ff3e-4e5d-9e7a-010eac0cad6e">
           <enabled>1</enabled>
