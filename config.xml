@@ -621,9 +621,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>zz_Jay@172.20.10.100</username>
-    <description>/api/caddy/general/set made changes</description>
-    <time>1732326969.6784</time>
+    <username>(system)</username>
+    <description>/usr/local/opnsense/mvc/script/run_migrations.php made changes</description>
+    <time>1732327142.0424</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1408,7 +1408,7 @@ https://www.cloudflare.com/ips-v6/</content>
         <primarydns>1</primarydns>
       </general>
     </adguardhome>
-    <Nginx version="1.33">
+    <Nginx version="1.34">
       <general>
         <enabled>0</enabled>
         <ban_ttl>0</ban_ttl>
@@ -1504,7 +1504,6 @@ https://www.cloudflare.com/ips-v6/</content>
         <proxy_buffering>1</proxy_buffering>
         <proxy_read_timeout/>
         <proxy_send_timeout/>
-        <http2_push_preload>0</http2_push_preload>
         <ip_acl/>
         <satisfy/>
         <proxy_max_temp_file_size/>
@@ -1530,6 +1529,7 @@ https://www.cloudflare.com/ips-v6/</content>
         <verify_client>off</verify_client>
         <access_log_format>main</access_log_format>
         <error_log_level>error</error_log_level>
+        <log_handshakes>1</log_handshakes>
         <enable_acme_support>0</enable_acme_support>
         <charset>utf-8</charset>
         <https_only>0</https_only>
