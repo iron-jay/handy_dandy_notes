@@ -650,8 +650,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/firewall/alias/setItem/3b34d6fa-f82d-4fdb-9938-1f2556780a6e made changes</description>
-    <time>1732323681.2225</time>
+    <description>/api/firewall/alias/set made changes</description>
+    <time>1732323684.0919</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
