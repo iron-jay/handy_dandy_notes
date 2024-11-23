@@ -392,36 +392,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <tag/>
       <tagged/>
       <poolopts/>
-      <associated-rule-id/>
-      <target>172.20.10.105</target>
-      <local-port>52764</local-port>
-      <source>
-        <address>Cloudflare</address>
-        <not>1</not>
-      </source>
-      <destination>
-        <network>wanip</network>
-      </destination>
-      <updated>
-        <username>zz_Jay@172.20.10.100</username>
-        <time>1732325713.6011</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </updated>
-      <created>
-        <username>zz_Jay@172.20.10.65</username>
-        <time>1724555430.3708</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </created>
-    </rule>
-    <rule>
-      <protocol>tcp</protocol>
-      <interface>wan</interface>
-      <category/>
-      <ipprotocol>inet</ipprotocol>
-      <descr/>
-      <tag/>
-      <tagged/>
-      <poolopts/>
       <associated-rule-id>nat_6741459e384888.91477092</associated-rule-id>
       <target>172.20.10.109</target>
       <local-port>webports</local-port>
@@ -647,7 +617,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <time>1732333461.9732</time>
+    <time>1732333668.1871</time>
     <description>/firewall_nat.php made changes</description>
   </revision>
   <OPNsense>
