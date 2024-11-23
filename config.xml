@@ -651,8 +651,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1732325291.5973</time>
-    <description>Firewall: NAT: Port Forward, toggle NAT rule</description>
+    <time>1732325294.5593</time>
+    <description>/firewall_nat.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
