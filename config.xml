@@ -397,6 +397,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <local-port>webports</local-port>
       <source>
         <address>Cloudflare</address>
+        <port>webports</port>
       </source>
       <destination>
         <network>wanip</network>
@@ -404,7 +405,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.57</username>
-        <time>1732333449.8484</time>
+        <time>1732334608.9638</time>
         <description>/firewall_nat_edit.php made changes</description>
       </updated>
       <created>
@@ -546,6 +547,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <associated-rule-id>nat_6741459e384888.91477092</associated-rule-id>
       <source>
         <address>Cloudflare</address>
+        <port>webports</port>
       </source>
       <interface>wan</interface>
       <statetype>keep state</statetype>
@@ -562,7 +564,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <time>1732330910.2306</time>
         <description>/firewall_nat_edit.php made changes</description>
       </created>
-      <log>1</log>
     </rule>
     <rule>
       <associated-rule-id>nat_6741509482e9a0.23116618</associated-rule-id>
@@ -642,8 +643,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <description>/api/firewall/alias/set made changes</description>
-    <time>1732334586.6975</time>
+    <time>1732334609.0454</time>
+    <description>/firewall_nat_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
