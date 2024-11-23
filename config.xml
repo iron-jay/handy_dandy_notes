@@ -622,8 +622,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <description>/api/caddy/ReverseProxy/setReverseProxy/d63c1fc5-7fec-4fa4-89d7-8c9762a6242e made changes</description>
-    <time>1732328326.4485</time>
+    <description>/api/caddy/ReverseProxy/delHandle/80e5bcf2-06c2-4dab-a239-850f1e99ac1d made changes</description>
+    <time>1732330790.42</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2800,29 +2800,6 @@ https://www.cloudflare.com/ips-v6/</content>
           <HttpTlsTrustedCaCerts/>
           <HttpTlsServerName/>
           <description>sonarr</description>
-        </handle>
-        <handle uuid="80e5bcf2-06c2-4dab-a239-850f1e99ac1d">
-          <enabled>1</enabled>
-          <reverse>d63c1fc5-7fec-4fa4-89d7-8c9762a6242e</reverse>
-          <subdomain/>
-          <HandleType>handle</HandleType>
-          <HandlePath/>
-          <accesslist/>
-          <header/>
-          <HandleDirective>reverse_proxy</HandleDirective>
-          <ToDomain>172.20.10.103</ToDomain>
-          <ToPort>13378</ToPort>
-          <ToPath/>
-          <PassiveHealthFailDuration/>
-          <ForwardAuth>0</ForwardAuth>
-          <HttpTls>0</HttpTls>
-          <HttpVersion/>
-          <HttpKeepalive/>
-          <HttpNtlm>0</HttpNtlm>
-          <HttpTlsInsecureSkipVerify>0</HttpTlsInsecureSkipVerify>
-          <HttpTlsTrustedCaCerts/>
-          <HttpTlsServerName/>
-          <description/>
         </handle>
         <handle uuid="ea6074a3-156a-4b40-8cad-bb592e7b0128">
           <enabled>1</enabled>
