@@ -648,8 +648,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <description>/api/unbound/settings/setHostOverride/8c6f7a6d-8238-47ba-be0e-0acb1793ebc8 made changes</description>
-    <time>1732333111.8062</time>
+    <description>/api/unbound/settings/setHostOverride/a8dc64e2-5818-45f0-8a83-51b05ae8a42a made changes</description>
+    <time>1732333171.1017</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1352,8 +1352,8 @@ https://www.cloudflare.com/ips-v6/</content>
           <rr>A</rr>
           <mxprio/>
           <mx/>
-          <server>172.20.10.100</server>
-          <description>dl1 qbittorrent (via caddy)</description>
+          <server>172.20.10.109</server>
+          <description>dl1 qbittorrent (via npm)</description>
         </host>
         <host uuid="8c6f7a6d-8238-47ba-be0e-0acb1793ebc8">
           <enabled>1</enabled>
