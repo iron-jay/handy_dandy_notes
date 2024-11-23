@@ -482,11 +482,10 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </source>
       <destination>
         <network>(self)</network>
-        <port>webports</port>
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1732325134.215</time>
+        <time>1732325210.3595</time>
         <description>/firewall_rules_edit.php made changes</description>
       </updated>
       <created>
@@ -651,7 +650,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1732325134.2953</time>
+    <time>1732325210.4397</time>
     <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
