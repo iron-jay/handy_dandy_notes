@@ -650,8 +650,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/firewall/alias/set made changes</description>
-    <time>1732323513.3421</time>
+    <description>/api/firewall/alias/setItem/3b34d6fa-f82d-4fdb-9938-1f2556780a6e made changes</description>
+    <time>1732323681.2225</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -861,8 +861,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
             <interface/>
             <counters>0</counters>
             <updatefreq>1</updatefreq>
-            <content>https://www.cloudflare.com/ips-v4
-https://www.cloudflare.com/ips-v6</content>
+            <content>https://www.cloudflare.com/ips-v4/
+https://www.cloudflare.com/ips-v6/</content>
             <categories/>
             <description/>
           </alias>
