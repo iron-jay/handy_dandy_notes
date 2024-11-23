@@ -442,6 +442,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <time>1725418952.6385</time>
         <description>/firewall_rules_edit.php made changes</description>
       </created>
+      <disabled>1</disabled>
     </rule>
     <rule uuid="2650313b-a0b1-4aea-a45b-4e52c1c53417">
       <type>pass</type>
@@ -622,8 +623,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.57</username>
-    <description>/api/caddy/ReverseProxy/setReverseProxy/b646cc64-46cc-4e85-8701-af6b023557bb made changes</description>
-    <time>1732327431.714</time>
+    <time>1732327463.2692</time>
+    <description>/firewall_rules.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
