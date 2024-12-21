@@ -348,12 +348,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <type>none</type>
       <virtual>1</virtual>
     </lo0>
-    <opt1>
-      <if>tailscale0</if>
-      <descr>tailscale</descr>
-      <enable>1</enable>
-      <spoofmac/>
-    </opt1>
   </interfaces>
   <dhcpd>
     <lan>
@@ -517,30 +511,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <description>/firewall_rules_edit.php made changes</description>
       </created>
     </rule>
-    <rule uuid="96207889-4e8e-40d7-8b01-54fdae993059">
-      <type>pass</type>
-      <interface>opt1</interface>
-      <ipprotocol>inet</ipprotocol>
-      <statetype>keep state</statetype>
-      <direction>in</direction>
-      <quick>1</quick>
-      <source>
-        <any>1</any>
-      </source>
-      <destination>
-        <any>1</any>
-      </destination>
-      <updated>
-        <username>zz_Jay@172.20.10.65</username>
-        <time>1724553908.8151</time>
-        <description>/firewall_rules_edit.php made changes</description>
-      </updated>
-      <created>
-        <username>zz_Jay@172.20.10.65</username>
-        <time>1724553908.8151</time>
-        <description>/firewall_rules_edit.php made changes</description>
-      </created>
-    </rule>
     <rule>
       <associated-rule-id>nat_6741459e384888.91477092</associated-rule-id>
       <source>
@@ -640,8 +610,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.70</username>
-    <time>1734824902.4145</time>
-    <description>/interfaces.php made changes</description>
+    <time>1734824914.7664</time>
+    <description>/interfaces_assign.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
