@@ -352,7 +352,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <if>tailscale0</if>
       <descr>tailscale</descr>
       <enable>1</enable>
-      <lock>1</lock>
       <spoofmac/>
     </opt1>
   </interfaces>
@@ -640,9 +639,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>zz_Jay@172.20.10.57</username>
-    <description>/api/unbound/settings/setHostOverride/a7c3305d-af73-4872-b270-592fbf73a94f made changes</description>
-    <time>1732353425.6366</time>
+    <username>zz_Jay@172.20.10.70</username>
+    <time>1734824902.4145</time>
+    <description>/interfaces.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
