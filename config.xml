@@ -611,7 +611,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>zz_Jay@172.20.10.70</username>
     <description>/api/tailscale/authentication/set made changes</description>
-    <time>1734825546.2314</time>
+    <time>1734825712.6599</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2353,7 +2353,7 @@ https://www.cloudflare.com/ips-v6/</content>
     <tailscale>
       <authentication version="0.0.0">
         <loginServer>https://controlplane.tailscale.com</loginServer>
-        <preAuthKey>tskey-auth-kyr45kfyAW11CNTRL-Nm7kZ1jhpBdzmgEBJ8bxAd6NF4qF5NCy</preAuthKey>
+        <preAuthKey>tskey-auth-kcYBRu8hKB11CNTRL-rANJYi5GvBWCZC4bcRToCWiy2PpGVvope</preAuthKey>
       </authentication>
     </tailscale>
   </OPNsense>
