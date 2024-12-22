@@ -610,8 +610,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.70</username>
-    <description>/api/tailscale/authentication/set made changes</description>
-    <time>1734825712.6599</time>
+    <description>/api/tailscale/settings/add_subnet/ made changes</description>
+    <time>1734825737.779</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2355,6 +2355,19 @@ https://www.cloudflare.com/ips-v6/</content>
         <loginServer>https://controlplane.tailscale.com</loginServer>
         <preAuthKey>tskey-auth-kcYBRu8hKB11CNTRL-rANJYi5GvBWCZC4bcRToCWiy2PpGVvope</preAuthKey>
       </authentication>
+      <settings version="0.0.0">
+        <enabled>0</enabled>
+        <listenPort>41641</listenPort>
+        <acceptDNS>1</acceptDNS>
+        <advertiseExitNode>0</advertiseExitNode>
+        <acceptSubnetRoutes>0</acceptSubnetRoutes>
+        <subnets>
+          <subnet4 uuid="523df911-5e0c-491e-95d7-eff12abcaadc">
+            <subnet>172.20.10.0/24</subnet>
+            <description>man lan</description>
+          </subnet4>
+        </subnets>
+      </settings>
     </tailscale>
   </OPNsense>
   <ifgroups version="1.0.0"/>
