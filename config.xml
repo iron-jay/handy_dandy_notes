@@ -349,8 +349,11 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <virtual>1</virtual>
     </lo0>
     <opt1>
-      <descr>tailscale</descr>
       <if>tailscale0</if>
+      <descr>tailscale</descr>
+      <enable>1</enable>
+      <lock>1</lock>
+      <spoofmac/>
     </opt1>
   </interfaces>
   <dhcpd>
@@ -614,8 +617,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.50</username>
-    <time>1734826041.6416</time>
-    <description>/interfaces_assign.php made changes</description>
+    <time>1734826061.2559</time>
+    <description>/interfaces.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
