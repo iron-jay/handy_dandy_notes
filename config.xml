@@ -446,6 +446,49 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     </rule>
   </nat>
   <filter>
+    <rule uuid="a6c08f95-d25c-47b0-b3fc-55e30d47a0cd">
+      <associated-rule-id>nat_6741459e384888.91477092</associated-rule-id>
+      <source>
+        <address>Cloudflare</address>
+      </source>
+      <interface>wan</interface>
+      <statetype>keep state</statetype>
+      <protocol>tcp</protocol>
+      <ipprotocol>inet</ipprotocol>
+      <destination>
+        <address>172.20.10.109</address>
+        <port>webports</port>
+      </destination>
+      <descr/>
+      <category/>
+      <created>
+        <username>zz_Jay@172.20.10.57</username>
+        <time>1732330910.2306</time>
+        <description>/firewall_nat_edit.php made changes</description>
+      </created>
+    </rule>
+    <rule uuid="340b014d-f6c3-42cb-9c1a-1b077da9450f">
+      <associated-rule-id>nat_6741509482e9a0.23116618</associated-rule-id>
+      <source>
+        <address>Cloudflare</address>
+        <not>1</not>
+      </source>
+      <interface>wan</interface>
+      <statetype>keep state</statetype>
+      <ipprotocol>inet</ipprotocol>
+      <destination>
+        <address>172.20.10.105</address>
+        <port>52764</port>
+      </destination>
+      <descr/>
+      <category/>
+      <created>
+        <username>zz_Jay@172.20.10.57</username>
+        <time>1732333716.5362</time>
+        <description>/firewall_nat_edit.php made changes</description>
+      </created>
+      <protocol>tcp/udp</protocol>
+    </rule>
     <rule uuid="c54221fe-e3d2-485e-8b0d-a22815f1f3f0">
       <type>pass</type>
       <ipprotocol>inet</ipprotocol>
@@ -518,48 +561,29 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <description>/firewall_rules_edit.php made changes</description>
       </created>
     </rule>
-    <rule>
-      <associated-rule-id>nat_6741459e384888.91477092</associated-rule-id>
-      <source>
-        <address>Cloudflare</address>
-      </source>
-      <interface>wan</interface>
-      <statetype>keep state</statetype>
-      <protocol>tcp</protocol>
+    <rule uuid="62da0d8a-f1cf-4043-acf6-908accaf39d5">
+      <type>pass</type>
+      <interface>opt1</interface>
       <ipprotocol>inet</ipprotocol>
-      <destination>
-        <address>172.20.10.109</address>
-        <port>webports</port>
-      </destination>
-      <descr/>
-      <category/>
-      <created>
-        <username>zz_Jay@172.20.10.57</username>
-        <time>1732330910.2306</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </created>
-    </rule>
-    <rule>
-      <associated-rule-id>nat_6741509482e9a0.23116618</associated-rule-id>
-      <source>
-        <address>Cloudflare</address>
-        <not>1</not>
-      </source>
-      <interface>wan</interface>
       <statetype>keep state</statetype>
-      <ipprotocol>inet</ipprotocol>
+      <direction>in</direction>
+      <quick>1</quick>
+      <source>
+        <any>1</any>
+      </source>
       <destination>
-        <address>172.20.10.105</address>
-        <port>52764</port>
+        <any>1</any>
       </destination>
-      <descr/>
-      <category/>
+      <updated>
+        <username>zz_Jay@172.20.10.50</username>
+        <time>1734826112.703</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </updated>
       <created>
-        <username>zz_Jay@172.20.10.57</username>
-        <time>1732333716.5362</time>
-        <description>/firewall_nat_edit.php made changes</description>
+        <username>zz_Jay@172.20.10.50</username>
+        <time>1734826112.703</time>
+        <description>/firewall_rules_edit.php made changes</description>
       </created>
-      <protocol>tcp/udp</protocol>
     </rule>
   </filter>
   <rrd>
@@ -617,8 +641,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.50</username>
-    <time>1734826061.2559</time>
-    <description>/interfaces.php made changes</description>
+    <time>1734826112.7822</time>
+    <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
