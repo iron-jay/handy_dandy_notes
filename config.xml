@@ -238,6 +238,7 @@
       <interfaces/>
       <compression/>
       <disablehttpredirect>1</disablehttpredirect>
+      <althostnames>opnsense opnsense.miffythewonderdog.com</althostnames>
     </webgui>
     <disablenatreflection>yes</disablenatreflection>
     <usevirtualterminal>1</usevirtualterminal>
@@ -266,6 +267,7 @@
       <keysig/>
       <enabled>enabled</enabled>
       <passwordauth>1</passwordauth>
+      <rekeylimit/>
     </ssh>
     <rrdbackup>-1</rrdbackup>
     <netflowbackup>-1</netflowbackup>
@@ -640,9 +642,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>zz_Jay@172.20.10.50</username>
-    <time>1734826112.7822</time>
-    <description>/firewall_rules_edit.php made changes</description>
+    <username>zz_Jay@172.20.10.100</username>
+    <time>1735190870.1385</time>
+    <description>/system_advanced_admin.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
