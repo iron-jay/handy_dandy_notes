@@ -544,6 +544,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <ipprotocol>inet</ipprotocol>
       <statetype>keep state</statetype>
       <direction>in</direction>
+      <disabled>1</disabled>
       <quick>1</quick>
       <source>
         <network>wan</network>
@@ -553,7 +554,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1735191584.9305</time>
+        <time>1735192120.5546</time>
         <description>/firewall_rules_edit.php made changes</description>
       </updated>
       <created>
@@ -642,7 +643,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1735191585.0101</time>
+    <time>1735192120.6351</time>
     <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
