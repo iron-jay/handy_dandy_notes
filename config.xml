@@ -549,11 +549,11 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <network>wan</network>
       </source>
       <destination>
-        <any>1</any>
+        <address>172.20.10.109</address>
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1732325568.8335</time>
+        <time>1735191584.9305</time>
         <description>/firewall_rules_edit.php made changes</description>
       </updated>
       <created>
@@ -642,8 +642,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1735190929.1413</time>
-    <description>/system_advanced_admin.php made changes</description>
+    <time>1735191585.0101</time>
+    <description>/firewall_rules_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
