@@ -425,6 +425,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <tagged/>
       <poolopts/>
       <associated-rule-id>nat_6741509482e9a0.23116618</associated-rule-id>
+      <disabled>1</disabled>
       <target>172.20.10.105</target>
       <local-port>52764</local-port>
       <source>
@@ -436,8 +437,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <port>52764</port>
       </destination>
       <updated>
-        <username>zz_Jay@172.20.10.57</username>
-        <time>1732334323.8219</time>
+        <username>zz_Jay@172.20.10.100</username>
+        <time>1735193872.993</time>
         <description>/firewall_nat_edit.php made changes</description>
       </updated>
       <created>
@@ -491,6 +492,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <description>/firewall_nat_edit.php made changes</description>
       </created>
       <protocol>tcp/udp</protocol>
+      <disabled>1</disabled>
     </rule>
     <rule uuid="c54221fe-e3d2-485e-8b0d-a22815f1f3f0">
       <type>pass</type>
@@ -620,8 +622,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1735193582.7116</time>
-    <description>/firewall_nat.php made changes</description>
+    <time>1735193873.0735</time>
+    <description>/firewall_nat_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
