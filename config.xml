@@ -414,6 +414,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <time>1732330910.2306</time>
         <description>/firewall_nat_edit.php made changes</description>
       </created>
+      <disabled>1</disabled>
     </rule>
     <rule>
       <protocol>tcp/udp</protocol>
@@ -470,6 +471,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <description>/firewall_nat_edit.php made changes</description>
       </created>
       <log>1</log>
+      <disabled>1</disabled>
     </rule>
     <rule uuid="340b014d-f6c3-42cb-9c1a-1b077da9450f">
       <associated-rule-id>nat_6741509482e9a0.23116618</associated-rule-id>
@@ -622,8 +624,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1735199405.9247</time>
-    <description>/firewall_nat.php made changes</description>
+    <time>1735209479.859</time>
+    <description>Firewall: NAT: Port Forward, toggle NAT rule</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
