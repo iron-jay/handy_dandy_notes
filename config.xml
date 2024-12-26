@@ -396,16 +396,17 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <associated-rule-id>nat_6741459e384888.91477092</associated-rule-id>
       <log>1</log>
       <target>172.20.10.109</target>
-      <local-port>80</local-port>
+      <local-port>webports</local-port>
       <source>
         <any>1</any>
       </source>
       <destination>
         <network>wanip</network>
+        <port>webports</port>
       </destination>
       <updated>
         <username>zz_Jay@172.20.10.100</username>
-        <time>1735199357.6768</time>
+        <time>1735199397.9791</time>
         <description>/firewall_nat_edit.php made changes</description>
       </updated>
       <created>
@@ -489,7 +490,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <ipprotocol>inet</ipprotocol>
       <destination>
         <address>172.20.10.109</address>
-        <port>80</port>
+        <port>webports</port>
       </destination>
       <descr/>
       <category/>
@@ -673,8 +674,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1735199371.0216</time>
-    <description>/firewall_nat.php made changes</description>
+    <time>1735199398.0585</time>
+    <description>/firewall_nat_edit.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
