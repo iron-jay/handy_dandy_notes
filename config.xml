@@ -494,30 +494,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <protocol>tcp/udp</protocol>
       <disabled>1</disabled>
     </rule>
-    <rule uuid="feb91794-a054-469d-b252-274822e93adb">
-      <type>pass</type>
-      <interface>wan</interface>
-      <ipprotocol>inet</ipprotocol>
-      <statetype>keep state</statetype>
-      <direction>in</direction>
-      <quick>1</quick>
-      <source>
-        <network>opt1</network>
-      </source>
-      <destination>
-        <address>192.168.100.10</address>
-      </destination>
-      <updated>
-        <username>zz_Jay@172.20.10.100</username>
-        <time>1735193973.2262</time>
-        <description>/firewall_rules_edit.php made changes</description>
-      </updated>
-      <created>
-        <username>zz_Jay@172.20.10.100</username>
-        <time>1735193973.2262</time>
-        <description>/firewall_rules_edit.php made changes</description>
-      </created>
-    </rule>
     <rule uuid="c54221fe-e3d2-485e-8b0d-a22815f1f3f0">
       <type>pass</type>
       <ipprotocol>inet</ipprotocol>
@@ -646,8 +622,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1735193973.3069</time>
-    <description>/firewall_rules_edit.php made changes</description>
+    <time>1735194016.3392</time>
+    <description>/firewall_rules.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
