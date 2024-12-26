@@ -416,36 +416,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       </created>
     </rule>
     <rule>
-      <protocol>tcp</protocol>
-      <interface>wan</interface>
-      <category/>
-      <ipprotocol>inet</ipprotocol>
-      <descr/>
-      <tag/>
-      <tagged/>
-      <poolopts/>
-      <associated-rule-id>nat_676d0a887bfff0.43598735</associated-rule-id>
-      <log>1</log>
-      <target>172.20.10.109</target>
-      <local-port>443</local-port>
-      <source>
-        <any>1</any>
-      </source>
-      <destination>
-        <network>wanip</network>
-      </destination>
-      <updated>
-        <username>zz_Jay@172.20.10.100</username>
-        <time>1735199368.5079</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </updated>
-      <created>
-        <username>zz_Jay@172.20.10.100</username>
-        <time>1735199368.5079</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </created>
-    </rule>
-    <rule>
       <protocol>tcp/udp</protocol>
       <interface>wan</interface>
       <category/>
@@ -596,28 +566,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
         <description>/firewall_rules_edit.php made changes</description>
       </created>
     </rule>
-    <rule>
-      <associated-rule-id>nat_676d0a887bfff0.43598735</associated-rule-id>
-      <source>
-        <any>1</any>
-      </source>
-      <interface>wan</interface>
-      <statetype>keep state</statetype>
-      <protocol>tcp</protocol>
-      <ipprotocol>inet</ipprotocol>
-      <destination>
-        <address>172.20.10.109</address>
-        <port>443</port>
-      </destination>
-      <log>1</log>
-      <descr/>
-      <category/>
-      <created>
-        <username>zz_Jay@172.20.10.100</username>
-        <time>1735199368.5079</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </created>
-    </rule>
   </filter>
   <rrd>
     <enable/>
@@ -674,8 +622,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1735199398.0585</time>
-    <description>/firewall_nat_edit.php made changes</description>
+    <time>1735199403.5135</time>
+    <description>/firewall_nat.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
