@@ -238,6 +238,7 @@
       <interfaces/>
       <compression/>
       <disablehttpredirect>1</disablehttpredirect>
+      <althostnames>npm.miffythewonderdog.com</althostnames>
     </webgui>
     <disablenatreflection>yes</disablenatreflection>
     <usevirtualterminal>1</usevirtualterminal>
@@ -569,8 +570,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <description>/api/unbound/settings/setHostOverride/c8d27874-fae5-4e36-8d71-e2a9e0add9bb made changes</description>
-    <time>1735290804.8151</time>
+    <time>1735291114.3263</time>
+    <description>/system_advanced_admin.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
