@@ -238,7 +238,7 @@
       <interfaces/>
       <compression/>
       <disablehttpredirect>1</disablehttpredirect>
-      <althostnames>npm.miffythewonderdog.com 172.20.10.109 ubuntu.miffythewonderdog.com</althostnames>
+      <nodnsrebindcheck>1</nodnsrebindcheck>
     </webgui>
     <disablenatreflection>yes</disablenatreflection>
     <usevirtualterminal>1</usevirtualterminal>
@@ -570,7 +570,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1735291159.1868</time>
+    <time>1735291187.8362</time>
     <description>/system_advanced_admin.php made changes</description>
   </revision>
   <OPNsense>
