@@ -385,38 +385,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <mode>automatic</mode>
     </outbound>
     <rule>
-      <protocol>tcp</protocol>
-      <interface>wan</interface>
-      <category/>
-      <ipprotocol>inet</ipprotocol>
-      <descr/>
-      <tag/>
-      <tagged/>
-      <poolopts/>
-      <associated-rule-id>nat_6741459e384888.91477092</associated-rule-id>
-      <log>1</log>
-      <target>172.20.10.109</target>
-      <local-port>webports</local-port>
-      <source>
-        <any>1</any>
-      </source>
-      <destination>
-        <network>wanip</network>
-        <port>webports</port>
-      </destination>
-      <updated>
-        <username>zz_Jay@172.20.10.100</username>
-        <time>1735199397.9791</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </updated>
-      <created>
-        <username>zz_Jay@172.20.10.57</username>
-        <time>1732330910.2306</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </created>
-      <disabled>1</disabled>
-    </rule>
-    <rule>
       <protocol>tcp/udp</protocol>
       <interface>wan</interface>
       <category/>
@@ -450,29 +418,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     </rule>
   </nat>
   <filter>
-    <rule uuid="a6c08f95-d25c-47b0-b3fc-55e30d47a0cd">
-      <associated-rule-id>nat_6741459e384888.91477092</associated-rule-id>
-      <source>
-        <any>1</any>
-      </source>
-      <interface>wan</interface>
-      <statetype>keep state</statetype>
-      <protocol>tcp</protocol>
-      <ipprotocol>inet</ipprotocol>
-      <destination>
-        <address>172.20.10.109</address>
-        <port>webports</port>
-      </destination>
-      <descr/>
-      <category/>
-      <created>
-        <username>zz_Jay@172.20.10.57</username>
-        <time>1732330910.2306</time>
-        <description>/firewall_nat_edit.php made changes</description>
-      </created>
-      <log>1</log>
-      <disabled>1</disabled>
-    </rule>
     <rule uuid="340b014d-f6c3-42cb-9c1a-1b077da9450f">
       <associated-rule-id>nat_6741509482e9a0.23116618</associated-rule-id>
       <source>
@@ -624,7 +569,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.100</username>
-    <time>1735209482.7914</time>
+    <time>1735290547.2109</time>
     <description>/firewall_nat.php made changes</description>
   </revision>
   <OPNsense>
