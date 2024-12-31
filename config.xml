@@ -617,8 +617,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.77</username>
-    <time>1735609288.5445</time>
-    <description>/interfaces_assign.php made changes</description>
+    <description>/api/routing/settings/setGateway/4e3c187b-5166-4fa8-8de8-ffc43e5ad902 made changes</description>
+    <time>1735609319.6575</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -871,7 +871,7 @@ https://www.cloudflare.com/ips-v6/</content>
     </Interfaces>
     <Gateways version="1.0.0">
       <gateway_item uuid="4e3c187b-5166-4fa8-8de8-ffc43e5ad902">
-        <disabled>0</disabled>
+        <disabled>1</disabled>
         <name>WAN_GW</name>
         <descr>Interface WAN Gateway</descr>
         <interface>wan</interface>
@@ -880,9 +880,9 @@ https://www.cloudflare.com/ips-v6/</content>
         <defaultgw>1</defaultgw>
         <fargw>0</fargw>
         <monitor_disable>1</monitor_disable>
-        <monitor_noroute/>
+        <monitor_noroute>0</monitor_noroute>
         <monitor/>
-        <force_down/>
+        <force_down>0</force_down>
         <priority>255</priority>
         <weight>1</weight>
         <latencylow/>
