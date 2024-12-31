@@ -279,7 +279,7 @@
     <firmware version="1.0.1">
       <mirror/>
       <flavour/>
-      <plugins>os-adguardhome-maxit,os-dmidecode,os-git-backup,os-sensei-updater,os-sunnyvalley,os-tailscale,os-theme-rebellion,os-theme-solarized-community,os-wol</plugins>
+      <plugins>os-adguardhome-maxit,os-dmidecode,os-git-backup,os-sensei,os-sensei-updater,os-sunnyvalley,os-tailscale,os-theme-rebellion,os-theme-solarized-community,os-wol</plugins>
       <type/>
       <subscription/>
       <reboot/>
@@ -622,8 +622,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>(system)</username>
-    <description>/usr/local/opnsense/mvc/app/library/OPNsense/Zenarmor/CLI.php made changes</description>
-    <time>1735609968.7424</time>
+    <description>/usr/local/opnsense/scripts/firmware/register.php made changes</description>
+    <time>1735609969.2309</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
