@@ -404,6 +404,10 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
       <lock>1</lock>
       <spoofmac/>
     </opt1>
+    <opt2>
+      <descr>WAN2</descr>
+      <if>em0</if>
+    </opt2>
   </interfaces>
   <dhcpd>
     <lan>
@@ -617,8 +621,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.77</username>
-    <time>1735609081.0955</time>
-    <description>/interfaces.php made changes</description>
+    <time>1735609115.8669</time>
+    <description>/interfaces_assign.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
