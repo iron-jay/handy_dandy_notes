@@ -407,8 +407,6 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <opt2>
       <if>em0</if>
       <descr>WAN2</descr>
-      <enable>1</enable>
-      <lock>1</lock>
       <spoofmac/>
       <blockpriv>1</blockpriv>
       <blockbogons>1</blockbogons>
@@ -676,8 +674,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.77</username>
-    <time>1735609159.952</time>
-    <description>/interfaces.php made changes</description>
+    <time>1735609278.2129</time>
+    <description>Interface WAN2(opt2) is now disabled.</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
