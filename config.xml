@@ -622,8 +622,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>(system)</username>
-    <description>/usr/local/opnsense/mvc/script/run_migrations.php made changes</description>
-    <time>1735610056.3353</time>
+    <description>/usr/local/etc/rc.filter_configure made changes</description>
+    <time>1735610058.1377</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -850,6 +850,18 @@ https://www.cloudflare.com/ips-v6/</content>
 443</content>
             <categories/>
             <description/>
+          </alias>
+          <alias uuid="7db4f8b6-eda9-42b3-9851-0a1bbcb98b0c">
+            <enabled>1</enabled>
+            <name>crowdsec_blacklists</name>
+            <type>external</type>
+            <proto>IPv4</proto>
+            <interface/>
+            <counters/>
+            <updatefreq/>
+            <content/>
+            <categories/>
+            <description>CrowdSec (IPv4)</description>
           </alias>
         </aliases>
       </Alias>
