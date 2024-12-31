@@ -623,7 +623,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/etc/rc.filter_configure made changes</description>
-    <time>1735610058.1377</time>
+    <time>1735610058.1454</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -862,6 +862,18 @@ https://www.cloudflare.com/ips-v6/</content>
             <content/>
             <categories/>
             <description>CrowdSec (IPv4)</description>
+          </alias>
+          <alias uuid="b28c5d0f-a37c-44b7-bf20-10f300211b9d">
+            <enabled>1</enabled>
+            <name>crowdsec6_blacklists</name>
+            <type>external</type>
+            <proto>IPv6</proto>
+            <interface/>
+            <counters/>
+            <updatefreq/>
+            <content/>
+            <categories/>
+            <description>CrowdSec (IPv6)</description>
           </alias>
         </aliases>
       </Alias>
