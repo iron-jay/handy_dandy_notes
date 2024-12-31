@@ -618,7 +618,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/opnsense/mvc/app/library/OPNsense/Zenarmor/CLI.php made changes</description>
-    <time>1735609963.5734</time>
+    <time>1735609963.6901</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2425,7 +2425,7 @@ https://www.cloudflare.com/ips-v6/</content>
           <endDate/>
         </support>
         <clientemail/>
-        <customerid/>
+        <customerid>0000000000</customerid>
         <sendcategory>true</sendcategory>
         <bigquery>
           <ProjectID/>
