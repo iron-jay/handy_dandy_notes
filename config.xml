@@ -623,7 +623,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/opnsense/mvc/app/library/OPNsense/Zenarmor/CLI.php made changes</description>
-    <time>1735609966.0928</time>
+    <time>1735609966.2212</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2545,7 +2545,7 @@ https://www.cloudflare.com/ips-v6/</content>
       </intrusiondetection>
       <streamReportConfig>
         <enabled>false</enabled>
-        <server/>
+        <server>127.0.0.1</server>
         <port>514</port>
         <protocol>UDP</protocol>
         <indexes/>
