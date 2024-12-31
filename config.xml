@@ -617,8 +617,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.77</username>
-    <description>/api/routing/settings/setGateway/WAN_DHCP6 made changes</description>
-    <time>1735609433.7673</time>
+    <description>/api/routing/settings/setGateway/536cdbdd-39db-48a2-b166-c6ad91e7e338 made changes</description>
+    <time>1735609500.7604</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -895,7 +895,7 @@ https://www.cloudflare.com/ips-v6/</content>
         <data_length/>
       </gateway_item>
       <gateway_item uuid="536cdbdd-39db-48a2-b166-c6ad91e7e338">
-        <disabled>1</disabled>
+        <disabled>0</disabled>
         <name>WAN_DHCP6</name>
         <descr>Interface WAN_DHCP6 Gateway</descr>
         <interface>wan</interface>
