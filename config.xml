@@ -622,8 +622,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.77</username>
-    <description>/api/zenarmor/installer/install_database made changes</description>
-    <time>1735623197.0282</time>
+    <description>/api/interfaces/vip_settings/addItem/ made changes</description>
+    <time>1735623504.4424</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2658,7 +2658,22 @@ https://www.cloudflare.com/ips-v6/</content>
     </vlan>
   </vlans>
   <virtualip version="1.0.0">
-    <vip/>
+    <vip uuid="6870e1dd-37cc-4dcb-a252-40d7eb798ce1">
+      <interface>wan</interface>
+      <mode>ipalias</mode>
+      <subnet>192.168.100.11</subnet>
+      <subnet_bits>24</subnet_bits>
+      <gateway/>
+      <noexpand>0</noexpand>
+      <nobind>0</nobind>
+      <password/>
+      <vhid/>
+      <advbase>1</advbase>
+      <advskew>0</advskew>
+      <peer/>
+      <peer6/>
+      <descr>router gui</descr>
+    </vip>
   </virtualip>
   <laggs version="1.0.0">
     <lagg/>
