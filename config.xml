@@ -623,7 +623,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/opnsense/mvc/app/library/OPNsense/Zenarmor/CLI.php made changes</description>
-    <time>1735609967.1545</time>
+    <time>1735609968.7424</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -925,7 +925,21 @@ https://www.cloudflare.com/ips-v6/</content>
       </gateway_item>
     </Gateways>
     <cron version="1.0.4">
-      <jobs/>
+      <jobs>
+        <job uuid="3eaf72eb-8bd6-4bc2-9fc5-52a2064c0164">
+          <origin>Zenarmor</origin>
+          <enabled>1</enabled>
+          <minutes>*</minutes>
+          <hours>*</hours>
+          <days>*</days>
+          <months>*</months>
+          <weekdays>*</weekdays>
+          <who>root</who>
+          <command>zenarmor periodicals</command>
+          <parameters/>
+          <description>Zenarmor periodicals</description>
+        </job>
+      </jobs>
     </cron>
     <Swanctl version="1.0.0">
       <Connections/>
