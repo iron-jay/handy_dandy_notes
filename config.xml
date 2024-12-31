@@ -676,7 +676,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>zz_Jay@172.20.10.77</username>
     <description>/api/zenarmor/installer/complete made changes</description>
-    <time>1735624099.8207</time>
+    <time>1735624099.9515</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2539,7 +2539,7 @@ https://www.cloudflare.com/ips-v6/</content>
           <Version>561600</Version>
           <FullVersion>5.6.16</FullVersion>
           <Remote>false</Remote>
-          <Prefix/>
+          <Prefix>zenarmor_0000000000_eb22186b-c25f-4ed2-9049-2f59abd1198c_</Prefix>
           <ClusterUUID>8RKYwv1KQtK5VL1IHRwDPQ</ClusterUUID>
           <retireAfter>7</retireAfter>
           <dbpath>/usr/local/datastore/elasticsearch</dbpath>
