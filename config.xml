@@ -435,7 +435,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </snmpd>
   <nat>
     <outbound>
-      <mode>automatic</mode>
+      <mode>hybrid</mode>
+      <rule/>
     </outbound>
     <rule>
       <protocol>tcp/udp</protocol>
@@ -622,8 +623,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.77</username>
-    <description>/api/interfaces/vip_settings/addItem/ made changes</description>
-    <time>1735623504.4424</time>
+    <time>1735623635.6044</time>
+    <description>/firewall_nat_out.php made changes</description>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
