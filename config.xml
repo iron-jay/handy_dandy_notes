@@ -621,9 +621,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/scripts/firmware/register.php made changes</description>
-    <time>1735610369.2412</time>
+    <username>zz_Jay@172.20.10.77</username>
+    <description>/api/elasticsearch/general/set made changes</description>
+    <time>1735610413.9263</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2639,7 +2639,7 @@ https://www.cloudflare.com/ips-v6/</content>
     </crowdsec>
     <elasticsearch>
       <general version="0.0.1">
-        <enabled>0</enabled>
+        <enabled>1</enabled>
       </general>
     </elasticsearch>
   </OPNsense>
