@@ -618,7 +618,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/opnsense/mvc/app/library/OPNsense/Zenarmor/CLI.php made changes</description>
-    <time>1735609963.8103</time>
+    <time>1735609964.1616</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2396,14 +2396,14 @@ https://www.cloudflare.com/ips-v6/</content>
         <redirectBaseUrl/>
       </sso>
       <general>
-        <installTimestamp/>
-        <heartbeatTimer>49 * * * *</heartbeatTimer>
+        <installTimestamp>1735609964</installTimestamp>
+        <heartbeatTimer>27 1,9,18 * * *</heartbeatTimer>
         <coreFileEnable>false</coreFileEnable>
         <showWanIface>false</showWanIface>
         <flavor>100</flavor>
         <healthCheck>true</healthCheck>
         <healthShare>true</healthShare>
-        <healthTimer>*/5</healthTimer>
+        <healthTimer>3,13,23,33,43,53 * * * *</healthTimer>
         <heartbeatMonit>true</heartbeatMonit>
         <heartbeatData>true</heartbeatData>
         <hwbypass>false</hwbypass>
