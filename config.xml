@@ -675,8 +675,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.77</username>
-    <time>1735623840.2368</time>
-    <description>/firewall_rules_edit.php made changes</description>
+    <description>/api/zenarmor/installer/complete made changes</description>
+    <time>1735624099.426</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2581,7 +2581,7 @@ https://www.cloudflare.com/ips-v6/</content>
       </anonymize>
       <onboot>
         <eastpect>YES</eastpect>
-        <elasticsearch>NO</elasticsearch>
+        <elasticsearch>YES</elasticsearch>
         <mongod>NO</mongod>
         <senpai>YES</senpai>
       </onboot>
