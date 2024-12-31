@@ -621,9 +621,9 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
     <column_count>2</column_count>
   </widgets>
   <revision>
-    <username>(system)</username>
-    <description>/usr/local/opnsense/scripts/firmware/register.php made changes</description>
-    <time>1735610605.0206</time>
+    <username>zz_Jay@172.20.10.77</username>
+    <description>/api/zenarmor/installer/install_database made changes</description>
+    <time>1735623197.0282</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2478,17 +2478,17 @@ https://www.cloudflare.com/ips-v6/</content>
           <MongoStreamURI/>
         </bigquery>
         <database>
-          <Type>ES</Type>
-          <Host>http://127.0.0.1</Host>
-          <Port>9200</Port>
+          <Type/>
+          <Host/>
+          <Port/>
           <User/>
           <Pass/>
-          <Version>56800</Version>
+          <Version/>
           <FullVersion/>
-          <Remote>false</Remote>
-          <Prefix>zenarmor_0000000000_eb22186b-c25f-4ed2-9049-2f59abd1198c_</Prefix>
+          <Remote/>
+          <Prefix/>
           <ClusterUUID/>
-          <retireAfter>7</retireAfter>
+          <retireAfter>2</retireAfter>
           <dbpath>/usr/local/datastore/elasticsearch</dbpath>
         </database>
         <swapRate>60</swapRate>
