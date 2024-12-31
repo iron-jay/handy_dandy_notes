@@ -617,8 +617,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>zz_Jay@172.20.10.77</username>
-    <time>1735609529.8248</time>
-    <description>/interfaces.php made changes</description>
+    <description>/api/dyndns/accounts/del_item/1137fa60-edd0-4bfc-a0ec-1ac0e07551c2 made changes</description>
+    <time>1735609608.2798</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1405,26 +1405,7 @@ https://www.cloudflare.com/ips-v6/</content>
         <daemon_delay>300</daemon_delay>
         <backend>opnsense</backend>
       </general>
-      <accounts>
-        <account uuid="1137fa60-edd0-4bfc-a0ec-1ac0e07551c2">
-          <enabled>1</enabled>
-          <service>dns-o-matic</service>
-          <protocol/>
-          <server/>
-          <username>jay-1135@live.com.au</username>
-          <password>kiPchNnnYy1o!</password>
-          <resourceId/>
-          <hostnames>shelf,tunes,flix</hostnames>
-          <wildcard>0</wildcard>
-          <zone/>
-          <checkip>web_cloudflare</checkip>
-          <checkip_timeout>10</checkip_timeout>
-          <force_ssl>1</force_ssl>
-          <ttl>300</ttl>
-          <interface>wan</interface>
-          <description/>
-        </account>
-      </accounts>
+      <accounts/>
     </DynDNS>
     <adguardhome>
       <general version="0.0.1">
