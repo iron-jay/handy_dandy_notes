@@ -618,7 +618,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/opnsense/mvc/app/library/OPNsense/Zenarmor/CLI.php made changes</description>
-    <time>1735609957.9592</time>
+    <time>1735609963.5734</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2446,7 +2446,7 @@ https://www.cloudflare.com/ips-v6/</content>
           <Prefix/>
           <ClusterUUID/>
           <retireAfter>7</retireAfter>
-          <dbpath>/usr/local/datastore/sqlite</dbpath>
+          <dbpath>/usr/local/datastore/elasticsearch</dbpath>
         </database>
         <swapRate>60</swapRate>
         <swapRateEnabled>true</swapRateEnabled>
