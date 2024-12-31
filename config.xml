@@ -190,6 +190,11 @@
       <tunable>net.local.dgram.maxdgram</tunable>
       <value>default</value>
     </item>
+    <item>
+      <tunable>dev.netmap.buf_num</tunable>
+      <value>1000000</value>
+      <descr>Automatically added by Zenarmor</descr>
+    </item>
   </sysctl>
   <system>
     <optimization>normal</optimization>
@@ -618,7 +623,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/opnsense/mvc/app/library/OPNsense/Zenarmor/CLI.php made changes</description>
-    <time>1735609964.3258</time>
+    <time>1735609965.7786</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
