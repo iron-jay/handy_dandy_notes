@@ -622,8 +622,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>(system)</username>
-    <description>/usr/local/opnsense/scripts/firmware/register.php made changes</description>
-    <time>1735609969.2309</time>
+    <description>/usr/local/opnsense/mvc/script/run_migrations.php made changes</description>
+    <time>1735610056.3353</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2600,6 +2600,19 @@ https://www.cloudflare.com/ips-v6/</content>
         <webcategoriesType/>
       </rules>
     </Zenarmor>
+    <crowdsec>
+      <general version="1.0.8">
+        <agent_enabled>1</agent_enabled>
+        <lapi_enabled>1</lapi_enabled>
+        <firewall_bouncer_enabled>1</firewall_bouncer_enabled>
+        <lapi_manual_configuration>0</lapi_manual_configuration>
+        <lapi_listen_address>127.0.0.1</lapi_listen_address>
+        <lapi_listen_port>8080</lapi_listen_port>
+        <rules_log>0</rules_log>
+        <rules_tag/>
+        <crowdsec_firewall_verbose>0</crowdsec_firewall_verbose>
+      </general>
+    </crowdsec>
   </OPNsense>
   <ifgroups version="1.0.0"/>
   <openvpn/>
