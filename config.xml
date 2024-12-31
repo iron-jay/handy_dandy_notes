@@ -618,7 +618,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>zz_Jay@172.20.10.77</username>
     <description>/api/dyndns/settings/set made changes</description>
-    <time>1735609610.5699</time>
+    <time>1735609616.1196</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -1399,7 +1399,7 @@ https://www.cloudflare.com/ips-v6/</content>
     <DHCRelay version="1.0.1"/>
     <DynDNS version="1.5.1">
       <general>
-        <enabled>1</enabled>
+        <enabled>0</enabled>
         <verbose>0</verbose>
         <allowipv6>0</allowipv6>
         <daemon_delay>300</daemon_delay>
