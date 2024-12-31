@@ -618,7 +618,7 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   <revision>
     <username>(system)</username>
     <description>/usr/local/opnsense/mvc/app/library/OPNsense/Zenarmor/CLI.php made changes</description>
-    <time>1735609963.6901</time>
+    <time>1735609963.8103</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2443,7 +2443,7 @@ https://www.cloudflare.com/ips-v6/</content>
           <Version>56800</Version>
           <FullVersion/>
           <Remote>false</Remote>
-          <Prefix/>
+          <Prefix>zenarmor_0000000000_eb22186b-c25f-4ed2-9049-2f59abd1198c_</Prefix>
           <ClusterUUID/>
           <retireAfter>7</retireAfter>
           <dbpath>/usr/local/datastore/elasticsearch</dbpath>
