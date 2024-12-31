@@ -622,8 +622,8 @@ iNDvGSFBYIorpCzCw0tuAAAAGGpheS50cnVzY290dEBvdXRsb29rLmNvbQECAwQF&#xD;
   </widgets>
   <revision>
     <username>(system)</username>
-    <description>/usr/local/opnsense/scripts/firmware/register.php made changes</description>
-    <time>1735610063.3793</time>
+    <description>/usr/local/opnsense/mvc/script/run_migrations.php made changes</description>
+    <time>1735610367.641</time>
   </revision>
   <OPNsense>
     <monit version="1.0.13">
@@ -2637,6 +2637,11 @@ https://www.cloudflare.com/ips-v6/</content>
         <crowdsec_firewall_verbose>0</crowdsec_firewall_verbose>
       </general>
     </crowdsec>
+    <elasticsearch>
+      <general version="0.0.1">
+        <enabled>0</enabled>
+      </general>
+    </elasticsearch>
   </OPNsense>
   <ifgroups version="1.0.0"/>
   <openvpn/>
