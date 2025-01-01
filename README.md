@@ -9,3 +9,6 @@ https://www.dell.com/support/kbdoc/en-us/000179566/how-to-disable-sleep-and-conf
 
 Hyper-V to Proxmox<br>
 https://evanlovescloud.com/migrating-to-proxmox
+
+Install Omada Controller in LXC<br>
+https://www.reddit.com/r/HomeNetworking/comments/qvxh47/omada_controller_on_proxmox_lxc_ubuntu_2004/
