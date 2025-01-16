@@ -12,3 +12,6 @@ https://evanlovescloud.com/migrating-to-proxmox
 
 Install Omada Controller in LXC<br>
 https://www.reddit.com/r/HomeNetworking/comments/qvxh47/omada_controller_on_proxmox_lxc_ubuntu_2004/
+
+Sonos on a different VLAN
+https://www.reddit.com/r/OPNsenseFirewall/comments/10fsgcq/what_udp_broadcast_ports_am_i_missing_for_sonos/
