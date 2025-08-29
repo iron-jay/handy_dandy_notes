@@ -1,0 +1,346 @@
+#Find asset in DHCP Scope
+$dhcp = (Get-DhcpServerInDC | where DnsName -NotLike 'b*').DnsName
+ 
+foreach ($server in $dhcp) {
+    Write-Host $server
+    (Get-DhcpServerv4Scope -ComputerName $server).ScopeId | ? IPAddressToString -like "10.126.4.0"
+    } 
+
+==================================================================================================================
+
+#Transfer Drivers between Boot Images
+$from = 
+$to = 
+ 
+
+$boot = Get-CMBootImage -ID $to
+ 
+(Get-CMBootImage -Id $from).ReferencedDrivers | ForEach-Object {
+	Write-Host "Copying $($_.Id) to $($to)"
+     Set-CMDriver -Id $_.Id -AddBootImagePackage $boot -UpdateDistributionPointsforBootImagePackage $false
+
+    }
+
+==================================================================================================================
+
+#Change Distribution Priority on all Packages in a Folder:
+$site = "TMP"
+$primary = server.com
+get-wmiobject sms_driverpackage -namespace root\sms\site_$site -computer $primary -filter "ObjectPath = '/Folder1/Folder2'" | foreach {
+    $_.Priority = 1
+    $_.Put()
+}
+
+==================================================================================================================
+
+#Get size of task sequence
+$TaskSequenceName = "TS Name"
+$SiteCode = "TMP"
+ 
+$TSID = Get-WmiObject -Namespace ROOT\sms\Site_$SiteCode -Query "Select PackageID from SMS_PackageStatusDetailSummarizer where Name = '$TaskSequenceName'" |
+    Select -ExpandProperty PackageID
+ 
+$PKGs = Get-WmiObject -Namespace ROOT\sms\Site_$SiteCode -Query "Select * from SMS_TaskSequencePackageReference where PackageID = '$TSID'" | 
+    Select @{N='PackageName';E={$_.ObjectName}},@{N='Size (MB)';E={$($_.SourceSize / 1KB).ToString(".00")}} | Sort PackageName
+ 
+$Stats = $PKGs | Measure-Object "Size (MB)" -sum
+$PKGs | Out-GridView -Title "Packages in ""$TaskSequenceName""   |   Total Packages: $($Stats.Count)   |   Total Size of Packages: $(($Stats.Sum / 1KB).ToString(".00")) GB" 
+
+
+==================================================================================================================
+
+Function RunApp ($Command, $Argument)
+{
+    $Return = (Start-Process -FilePath $Command -ArgumentList $Argument -Wait -PassThru -NoNewWindow).ExitCode
+
+    If (!($Return -eq 0 -or $Return -eq 3010))
+    {
+        Logging -Error -msg "Step Failed"
+        Logging -Error -msg "Exit Code: $Return"
+        Logging -Error -msg "$Error[0].Exception.Message.ToString()"
+        [environment]::ExitCode = $Return
+	[environment]::Exit($Return)
+    }
+    Else
+    {
+        Logging -Success -msg "Step Complete"
+    }
+}
+
+
+$App = "cool.exe"
+$Arguments = "some_arguments" 
+RunApp $App $Arguments
+
+==================================================================================================================
+
+$App = "thing"
+
+Function Logging ([switch]$Err, [switch]$Warn, [switch]$Success, $msg){
+    $LogFolderPath = "$env:temp\$App"
+    If (!(Test-Path "LogPath")){
+        New-Item $LogFolderPath -Force -ItemType Directory
+        }
+
+
+    if ($Err) {
+        $prefix = "ERROR"
+    } elseif ($Warn) {
+        $prefix = "WARNING"
+    } elseif ($Success) {
+        $prefix = "SUCCESS"
+    } else {
+        $prefix = "INFO"
+    }
+
+    $Log = "$LogFolderPath\$App $(Get-Date -Format yyyy-MM-dd).log"
+
+    If (!(Test-Path $Log)){
+        Add-Content -Path $Log -Value "$(Get-Date -Format "hh:mm:ss") - $App Log Created"
+        }
+
+    Add-Content -Path $Log -Value "$(Get-Date -Format "hh:mm:ss") - $prefix - $msg"
+    }
+
+Logging -msg "an info message"
+Logging -Error -msg "an error message"
+Logging -Warn -msg "a warning message"
+Logging -Success -msg "a success message"
+
+==================================================================================================================
+
+#Install Drivers from Folder:
+Get-ChildItem -Recurse -Filter "*.inf" | ForEach-Object { PNPUtil.exe /add-driver $_.FullName /install }
+
+==================================================================================================================
+
+#Read TS variables in WinPE
+$tsenv = New-Object -COMObject Microsoft.SMS.TSEnvironment
+ 
+Foreach ($i in $TSEnv.GetVariables()) {“$i” + ‘ = ‘ + $TSEnv.Value(“$i”) | Out-File FilePath X:\Windows\Temp\SMSTSlog\TSVar.log –append} 
+
+==================================================================================================================
+
+#report generate with multiple rows
+$blank= @()
+$things = @()
+ 
+Foreach ($thing in $things){
+    #Do some stuff
+    
+    $report = New-Object psobject
+    $report | Add-Member -MemberType NoteProperty -Name "Stuff 1" -Value $stuff1
+    $report | Add-Member -MemberType NoteProperty -Name "Stuff 2" -Value $stuff2
+    $report | Add-Member -MemberType NoteProperty -Name "Stuff 3" -Value $stuff3
+ 
+    $blank += $report
+ 
+    }
+ 
+$blank | Export-Csv "$PSScriptRoot\report.csv" -Force
+
+==================================================================================================================
+
+SCCM: Failed to Stage WinPE – 0x8007000F – www.get-cmd.com
+
+• Press F8
+• Diskpart
+• Select disk 0
+• Clean
+• Convert gpt
+• Create partition efi size=300
+• Assign letter=k (or any available letter you want)
+• Format quick fs=FAT32
+• Create partition msr size=128
+• Create partition primary
+• Assign letter=c (at this step if the C letter is not available, check if you have USB key mounted)
+• Format quick fs=NTFS
+• Exit
+
+==================================================================================================================
+
+#MCM Client Installer
+
+Function ConsoleLog
+{
+    param ([string]$Message)
+    $Time = Get-Date -Format G
+    Write-host "$Time - $Message"
+}
+Function RunApp ($Command, $Argument)
+{
+    $Return = (Start-Process -FilePath $Command -ArgumentList $Argument -Wait -PassThru).ExitCode
+    If (!($Return.ExitCode -eq 0 -or $Return.ExitCode -eq 3010))
+    {
+        ConsoleLog "Failure"
+        ConsoleLog "Exit Code: $Return.ExitCode"
+        ConsoleLog "$Error[0].Exception.Message.ToString()"
+    }
+}
+
+
+Import-Module BitsTransfer
+Write-Host " 
+ _____ ______   _______   ________  _____ ______           ________  ___       ___  _______   ________   _________   
+|\   _ \  _   \|\  ___ \ |\   ____\|\   _ \  _   \        |\   ____\|\  \     |\  \|\  ___ \ |\   ___  \|\___   ___\ 
+\ \  \\\__\ \  \ \   __/|\ \  \___|\ \  \\\__\ \  \       \ \  \___|\ \  \    \ \  \ \   __/|\ \  \\ \  \|___ \  \_| 
+ \ \  \\|__| \  \ \  \_|/_\ \  \    \ \  \\|__| \  \       \ \  \    \ \  \    \ \  \ \  \_|/_\ \  \\ \  \   \ \  \  
+  \ \  \    \ \  \ \  \_|\ \ \  \____\ \  \    \ \  \       \ \  \____\ \  \____\ \  \ \  \_|\ \ \  \\ \  \   \ \  \ 
+   \ \__\    \ \__\ \_______\ \_______\ \__\    \ \__\       \ \_______\ \_______\ \__\ \_______\ \__\\ \__\   \ \__\
+    \|__|     \|__|\|_______|\|_______|\|__|     \|__|        \|_______|\|_______|\|__|\|_______|\|__| \|__|    \|__|
+                                                                                                                     
+ ________  _______   ___  ________   ________  _________  ________  ___       ___       _______   ________     
+|\   __  \|\  ___ \ |\  \|\   ___  \|\   ____\|\___   ___\\   __  \|\  \     |\  \     |\  ___ \ |\   __  \    
+\ \  \|\  \ \   __/|\ \  \ \  \\ \  \ \  \___|\|___ \  \_\ \  \|\  \ \  \    \ \  \    \ \   __/|\ \  \|\  \   
+ \ \   _  _\ \  \_|/_\ \  \ \  \\ \  \ \_____  \   \ \  \ \ \   __  \ \  \    \ \  \    \ \  \_|/_\ \   _  _\  
+  \ \  \\  \\ \  \_|\ \ \  \ \  \\ \  \|____|\  \   \ \  \ \ \  \ \  \ \  \____\ \  \____\ \  \_|\ \ \  \\  \| 
+   \ \__\\ _\\ \_______\ \__\ \__\\ \__\____\_\  \   \ \__\ \ \__\ \__\ \_______\ \_______\ \_______\ \__\\ _\ 
+    \|__|\|__|\|_______|\|__|\|__| \|__|\_________\   \|__|  \|__|\|__|\|_______|\|_______|\|_______|\|__|\|__|"
+Write-Host ""
+ConsoleLog "Uninstalling Client"
+$App = "C:\Windows\ccmsetup\CCMSetup.exe"
+$CommandLine = "/uninstall"
+RunApp $App $CommandLine
+ConsoleLog "Complete"
+ 
+Write-Host ""
+ConsoleLog "Getting Domain Info"
+$domain = (get-ciminstance win32_computersystem).domain
+if($domain -eq "domain1"){
+    $server = "primary1"
+    $site = "site1"}
+if($domain -eq "domain2"){
+    $server = "primary2"
+    $site = "site2"}
+if($domain -eq "domain3"){
+    $server = "primary3"
+    $site = "site3"}
+Write-Host ""
+ 
+ConsoleLog "Domain is $domain"
+ConsoleLog "Primary is $server"
+ConsoleLog "Site Code is $site"
+Write-Host ""
+ 
+ConsoleLog "Copying client from primary to local storage."
+try{
+    Start-BitsTransfer -Source "<path to install files>" -Destination "C:\Windows\CCMSetup" -TransferType Download -Description "MECM Client" -DisplayName "MECM Client"
+    ConsoleLog "Complete"
+    }
+catch{
+    ConsoleLog "Failed"
+    ConsoleLog "$Error[0].Exception.Message.ToString()"
+    }
+ 
+Write-Host ""
+ConsoleLog "Installing Client"
+$App = "C:\Windows\ccmsetup\CCMSetup.exe"
+$CommandLine = "/mp:$server SMSSITECODE=$site /forceinstall"
+RunApp $App $CommandLine
+$on = get-process -Name "ccmsetup" -ErrorAction SilentlyContinue
+while ($on -ne $null){
+    Start-Sleep -Seconds 5
+    $on = get-process -Name "ccmsetup" -ErrorAction SilentlyContinue}
+ConsoleLog "Complete"
+Write-Host ""
+ConsoleLog "Re-install complete."
+
+==================================================================================================================
+
+#When mounted WIM is borked
+Start-Process "$DISMPath\DISM.exe" -ArgumentList "/cleanup-wim"
+
+==================================================================================================================
+
+ #Commands to Manually Make Boot Image:
+ 
+ 
+$PSLocation = "C:\WinPE_amd64_PS" 
+$wimLocal = "$PSLocation\media\sources\boot.wim"
+$wimExport = "$PSLocation\media\sources\Boot_Win11x64_24H2.wim"
+$mountPoint = "$PSLocation\mount"
+$DISMPath = "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\DISM\"
+$ocPath = "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs"
+$driverPath = "C:\Boot\Driver"
+ 
+function Copy-PE {
+  $env = "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat" 
+  cmd.exe /c """$env"" && copype amd64 $PSLocation"
+}
+ 
+function Make-ISO {
+  $env = "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat" 
+  cmd.exe /c """$env"" && MakeWinPEMedia /ISO $PSLocation $PSLocation\WinPE_amd64.iso"
+}
+ 
+Remove-item "C:\WinPE_amd64_PS" -Recurse 
+ 
+Copy-PE 
+ 
+Mount-WindowsImage -Path $mountpoint -ImagePath $wimLocal -Index 1 -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\winpe-wmi.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\en-us\winpe-wmi_en-us.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\WinPE-NetFX.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\en-us\WinPE-NetFX_en-us.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\WinPE-HTA.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\en-us\WinPE-HTA_en-us.cab" -Path $mountPoint -Verbose
+   
+Add-WindowsPackage -PackagePath "$($ocPath)\WinPE-Scripting.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\en-us\winpe-scripting_en-us.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\winpe-wds-tools.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\en-us\WinPE-WDS-Tools_en-us.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\WinPE-SecureStartup.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\en-us\WinPE-SecureStartup_en-us.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\WinPE-PowerShell.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\en-us\WinPE-PowerShell_en-us.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\WinPE-StorageWMI.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\en-us\WinPE-StorageWMI_en-us.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\WinPE-DismCmdlets.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\en-us\WinPE-DismCmdlets_en-us.cab" -Path $mountPoint -Verbose
+
+Add-WindowsPackage -PackagePath "$($ocPath)\WinPE-Dot3Svc.cab" -Path $mountPoint -Verbose
+ 
+Add-WindowsPackage -PackagePath "$($ocPath)\en-us\WinPE-Dot3Svc_en-us.cab" -Path $mountPoint -Verbose
+
+
+
+ 
+ 
+Add-WindowsDriver -Path $mountPoint -Driver $driverPath -Recurse
+ 
+Copy-Item -Path "C:\Boot\Build" -Destination $mountPoint -Recurse -Force
+ 
+#Add-WindowsPackage -PackagePath "C:\Boot\Updates\windows11.0-kb5032202-x64.msu" -Path $mountPoint -Verbose
+ 
+ 
+Start-Process "$DISMPath\DISM.exe" -ArgumentList " /Image:$mountPoint /Cleanup-image /StartComponentCleanup /Resetbase /Defer" -Wait -LoadUserProfile -NoNewWindow
+ 
+Start-Process "$DISMPath\DISM.exe" -ArgumentList " /Image:$mountPoint /Cleanup-image /StartComponentCleanup /Resetbase" -Wait -LoadUserProfile -NoNewWindow
+ 
+ 
+Dismount-WindowsImage -Path $mountPoint -Save -Verbose
+ 
+ 
+Export-WindowsImage -SourceImagePath $wimLocal -SourceIndex 1 -DestinationImagePath $wimExport -CompressionType max -Verbose
+ 
+#Make-ISO 
+
+==================================================================================================================
+ 
