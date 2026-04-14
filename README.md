@@ -4,14 +4,20 @@ https://github.com/tamimology/nbn-opnsense
 Access Router WebGUI after Bridging Mode<br>
 https://forum.opnsense.org/index.php?topic=36936.0
 
-Disable Sleep when lid is closed - Linx/Dell Laptop<br>
+Disable Sleep when lid is closed - Linux/Dell Laptop<br>
 https://www.dell.com/support/kbdoc/en-us/000179566/how-to-disable-sleep-and-configure-lid-power-settings-for-ubuntu-or-red-hat-enterprise-linux-7
 
-Hyper-V to Proxmox<br>
-https://evanlovescloud.com/migrating-to-proxmox
+MECM Java Inventory
+https://www.systemcenterdudes.com/sccm-java-inventory-and-metering/
 
-Install Omada Controller in LXC<br>
-https://www.reddit.com/r/HomeNetworking/comments/qvxh47/omada_controller_on_proxmox_lxc_ubuntu_2004/
+Intune Hardware Inventory
+https://asherjebbink.medium.com/custom-hardware-inventory-with-intune-ce1be780de26
 
-Sonos on a different VLAN
-https://www.reddit.com/r/OPNsenseFirewall/comments/10fsgcq/what_udp_broadcast_ports_am_i_missing_for_sonos/
+Force Apply Intune Policy
+https://asherjebbink.medium.com/force-intune-to-reapply-configuration-profiles-on-windows-devices-7ae25328824b
+
+Winget for Intune and MECM
+https://asherjebbink.medium.com/winget-for-intune-and-sccm-361b88ca0eb
+
+AVD Scaling
+https://learn.microsoft.com/en-us/azure/virtual-desktop/set-up-scaling-script
