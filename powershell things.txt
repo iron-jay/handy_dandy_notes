@@ -117,12 +117,11 @@ Function ExtractIcon {
     	[string]$folder
     	)
     [System.Reflection.Assembly]::LoadWithPartialName('System.Drawing')  | Out-Null
-    md $folder -ea 0 | Out-Null
     dir $folder *.exe -ea 0 -rec |
       ForEach-Object { 
         $baseName = [System.IO.Path]::GetFileNameWithoutExtension($_.FullName)
         Write-Progress "Extracting Icon" $baseName
-        [System.Drawing.Icon]::ExtractAssociatedIcon($_.FullName).ToBitmap().Save("$folder\$BaseName.ico")
+        [System.Drawing.Icon]::ExtractAssociatedIcon($_.FullName).ToBitmap().Save("$folder\$BaseName.jpg")
     }
 }
 ExtractIcon -folder "C:\Path"
