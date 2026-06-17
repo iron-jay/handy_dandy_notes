@@ -1,0 +1,66 @@
+# Detection Script: User Application Hardening - Remove Features
+# ASD Blueprint for Secure Cloud - Intune Remediation Detection
+# Checks that PowerShell v2, .NET Framework 3.5 (and below), and Internet Explorer 11
+# have been removed/disabled as required by ASD Windows hardening guidance.
+# Note: IE11 check is only relevant on Windows 10.
+
+$compliant = $true
+$results   = @()
+$osVersion = (Get-CimInstance Win32_OperatingSystem).Version
+$isBuild   = [System.Version]$osVersion
+
+# --- Check 1: PowerShell v2 feature disabled ---
+$psV2 = Get-WindowsOptionalFeature -Online -FeatureName "MicrosoftWindowsPowerShellV2Root" -ErrorAction SilentlyContinue
+if ($null -eq $psV2) {
+    # Try alternate method for Windows Server
+    $psV2 = Get-WindowsFeature -Name "PowerShell-V2" -ErrorAction SilentlyContinue
+    if ($null -eq $psV2) {
+        $results += "INFO: PowerShell v2 feature not found (may already be absent)."
+    } elseif ($psV2.InstallState -ne "Removed" -and $psV2.InstallState -ne "Available") {
+        $compliant = $false
+        $results += "NON-COMPLIANT: PowerShell v2 is installed (State: $($psV2.InstallState))."
+    } else {
+        $results += "COMPLIANT: PowerShell v2 not installed."
+    }
+} elseif ($psV2.State -eq "Enabled") {
+    $compliant = $false
+    $results += "NON-COMPLIANT: PowerShell v2 is Enabled (State: $($psV2.State))."
+} else {
+    $results += "COMPLIANT: PowerShell v2 is Disabled/Not present (State: $($psV2.State))."
+}
+
+# --- Check 2: .NET Framework 3.5 feature disabled ---
+$dotNet35 = Get-WindowsOptionalFeature -Online -FeatureName "NetFx3" -ErrorAction SilentlyContinue
+if ($null -eq $dotNet35) {
+    $results += "INFO: .NET Framework 3.5 feature not found (may already be absent)."
+} elseif ($dotNet35.State -eq "Enabled") {
+    $compliant = $false
+    $results += "NON-COMPLIANT: .NET Framework 3.5 is Enabled (State: $($dotNet35.State))."
+} else {
+    $results += "COMPLIANT: .NET Framework 3.5 is Disabled/Not present (State: $($dotNet35.State))."
+}
+
+# --- Check 3: Internet Explorer 11 (Windows 10 only, build < 22000) ---
+if ($isBuild -lt [System.Version]"10.0.22000") {
+    $ie11 = Get-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -ErrorAction SilentlyContinue
+    if ($null -eq $ie11) {
+        $results += "INFO: Internet Explorer 11 feature not found."
+    } elseif ($ie11.State -eq "Enabled") {
+        $compliant = $false
+        $results += "NON-COMPLIANT: Internet Explorer 11 is Enabled (State: $($ie11.State))."
+    } else {
+        $results += "COMPLIANT: Internet Explorer 11 is Disabled/Not present (State: $($ie11.State))."
+    }
+} else {
+    $results += "INFO: Windows 11 detected — IE11 check skipped (already removed by OS)."
+}
+
+$results | ForEach-Object { Write-Host $_ }
+
+if ($compliant) {
+    Write-Host "OVERALL: COMPLIANT"
+    exit 0
+} else {
+    Write-Host "OVERALL: NON-COMPLIANT"
+    exit 1
+}
