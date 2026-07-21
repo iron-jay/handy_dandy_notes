@@ -1,0 +1,127 @@
+#Find asset in DHCP Scope
+$dhcp = (Get-DhcpServerInDC | where DnsName -NotLike 'b*').DnsName
+ 
+foreach ($server in $dhcp) {
+    Write-Host $server
+    (Get-DhcpServerv4Scope -ComputerName $server).ScopeId | ? IPAddressToString -like "10.126.4.0"
+    } 
+
+==================================================================================================================
+
+#Transfer Drivers between Boot Images
+$from = 
+$to = 
+ 
+
+$boot = Get-CMBootImage -ID $to
+ 
+(Get-CMBootImage -Id $from).ReferencedDrivers | ForEach-Object {
+	Write-Host "Copying $($_.Id) to $($to)"
+     Set-CMDriver -Id $_.Id -AddBootImagePackage $boot -UpdateDistributionPointsforBootImagePackage $false
+
+    }
+
+==================================================================================================================
+
+#Change Distribution Priority on all Packages in a Folder:
+$site = "TMP"
+$primary = server.com
+get-wmiobject sms_driverpackage -namespace root\sms\site_$site -computer $primary -filter "ObjectPath = '/Folder1/Folder2'" | foreach {
+    $_.Priority = 1
+    $_.Put()
+}
+
+==================================================================================================================
+
+#Get size of task sequence
+$TaskSequenceName = "TS Name"
+$SiteCode = "TMP"
+ 
+$TSID = Get-WmiObject -Namespace ROOT\sms\Site_$SiteCode -Query "Select PackageID from SMS_PackageStatusDetailSummarizer where Name = '$TaskSequenceName'" |
+    Select -ExpandProperty PackageID
+ 
+$PKGs = Get-WmiObject -Namespace ROOT\sms\Site_$SiteCode -Query "Select * from SMS_TaskSequencePackageReference where PackageID = '$TSID'" | 
+    Select @{N='PackageName';E={$_.ObjectName}},@{N='Size (MB)';E={$($_.SourceSize / 1KB).ToString(".00")}} | Sort PackageName
+ 
+$Stats = $PKGs | Measure-Object "Size (MB)" -sum
+$PKGs | Out-GridView -Title "Packages in ""$TaskSequenceName""   |   Total Packages: $($Stats.Count)   |   Total Size of Packages: $(($Stats.Sum / 1KB).ToString(".00")) GB" 
+
+==================================================================================================================
+
+
+#Install Drivers from Folder:
+Get-ChildItem -Recurse -Filter "*.inf" | ForEach-Object { PNPUtil.exe /add-driver $_.FullName /install }
+
+==================================================================================================================
+
+#Read TS variables in WinPE
+$tsenv = New-Object -COMObject Microsoft.SMS.TSEnvironment
+ 
+Foreach ($i in $TSEnv.GetVariables()) {“$i” + ‘ = ‘ + $TSEnv.Value(“$i”) | Out-File FilePath X:\Windows\Temp\SMSTSlog\TSVar.log –append} 
+
+==================================================================================================================
+
+#report generate with multiple rows
+$blank= @()
+$things = @()
+ 
+Foreach ($thing in $things){
+    #Do some stuff
+    
+    $report = New-Object psobject
+    $report | Add-Member -MemberType NoteProperty -Name "Stuff 1" -Value $stuff1
+    $report | Add-Member -MemberType NoteProperty -Name "Stuff 2" -Value $stuff2
+    $report | Add-Member -MemberType NoteProperty -Name "Stuff 3" -Value $stuff3
+ 
+    $blank += $report
+ 
+    }
+ 
+$blank | Export-Csv "$PSScriptRoot\report.csv" -Force
+
+==================================================================================================================
+
+SCCM: Failed to Stage WinPE – 0x8007000F – www.get-cmd.com
+
+• Press F8
+• Diskpart
+• Select disk 0
+• Clean
+• Convert gpt
+• Create partition efi size=300
+• Assign letter=k (or any available letter you want)
+• Format quick fs=FAT32
+• Create partition msr size=128
+• Create partition primary
+• Assign letter=c (at this step if the C letter is not available, check if you have USB key mounted)
+• Format quick fs=NTFS
+• Exit
+
+==================================================================================================================
+
+#When mounted WIM is borked
+Start-Process "$DISMPath\DISM.exe" -ArgumentList "/cleanup-wim"
+
+==================================================================================================================
+
+#Fixing Stuck TS: 
+gwmi -Namespace root\ccm\SoftMgmtAgent -Class CCM_TSExecutionRequest -Filter "State = 'Completed' And CompletionState = 'Failure'" 
+
+$c=(gwmi -Namespace root\ccm\SoftMgmtAgent -Class CCM_TSExecutionRequest -Filter "State = 'Completed' And CompletionState = 'Failure'"); if ($c) {$c.Delete(); Restart-Service ccmexec -force} 
+
+=================================================================================================================
+#extract image from exe
+Function ExtractIcon {
+    Param ( 
+    	[Parameter(Mandatory=$true)]
+    	[string]$folder
+    	)
+    [System.Reflection.Assembly]::LoadWithPartialName('System.Drawing')  | Out-Null
+    dir $folder *.exe -ea 0 -rec |
+      ForEach-Object { 
+        $baseName = [System.IO.Path]::GetFileNameWithoutExtension($_.FullName)
+        Write-Progress "Extracting Icon" $baseName
+        [System.Drawing.Icon]::ExtractAssociatedIcon($_.FullName).ToBitmap().Save("$folder\$BaseName.jpg")
+    }
+}
+ExtractIcon -folder "C:\Path"
