@@ -1,39 +1,10 @@
-
-Claude finished the response
-write a powershell script to scrape the security log in the windows event viewer for filtering platform connection and filtering platform packet drop categories, then list distinct executables
-
-
-Created a file, edited a file
-Created a file, edited a file
-Made it compatible with Windows PowerShell 5.1 (dropped the ?? operator, which needs PS7+). Script is ready.
-
-
-Read a file
-Read a file
-Run it elevated (Get-WinEvent on the Security log needs admin). It pulls WFP event IDs 5031/5150-5159 (Filtering Platform Connection) and 5152/5153 (Filtering Platform Packet Drop), resolves the \device\harddiskvolumeN\ paths to drive letters, and prints distinct executables with counts — overall and per category. Params: -StartTime, -MaxEvents, -CsvPath for full export.
-
-
-D:\Users\Jay\AppData\Roaming\Claude\local-agent-mode-sessions\282ab370-658b-428d-a07f-37105f6f6b51\2caed57e-8794-4ffc-b6c9-df4eb59e38b4\local_c0a80cce-f84d-4998-9930-e634127ba256\outputs\Get-WFPExecutables.ps1
- 
-it needs to show the time of the most recent instance of an exe, so I can find it in the event viewer
-
-
-Edited 2 files, read a file
-Edited 2 files, read a file
-Both tables now include LastSeen (timestamp), LastEventId, and LastRecordId for each executable's most recent occurrence — the record ID lets you jump straight to that event in Event Viewer (Find → Event ID, or filter by record number in the XML view).
-
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses. Give us feedback
 #Requires -RunAsAdministrator
 <#
 .SYNOPSIS
     Scans the Security event log for Windows Filtering Platform (WFP)
     "Filtering Platform Connection" and "Filtering Platform Packet Drop"
     events and lists the distinct executables involved.
- 
+
 .DESCRIPTION
     Queries these WFP event IDs from the Security log:
       Filtering Platform Connection : 5031, 5150, 5151, 5154, 5155, 5156, 5157, 5158, 5159
@@ -41,35 +12,35 @@ Claude is AI and can make mistakes. Please double-check responses. Give us feedb
     Pulls the "Application Name" field out of each event's XML, converts the
     \device\harddiskvolumeN\... path to a drive letter, and reports distinct
     executables with hit counts (overall and broken out by category).
- 
+
 .PARAMETER StartTime
     Only include events on/after this time. Default: 24 hours ago.
- 
+
 .PARAMETER MaxEvents
     Cap on number of events pulled from the log (performance safety valve).
     Default: 50000.
- 
+
 .PARAMETER CsvPath
     If supplied, also export the full per-event detail to this CSV path.
- 
+
 .EXAMPLE
     .\Get-WFPExecutables.ps1
- 
+
 .EXAMPLE
     .\Get-WFPExecutables.ps1 -StartTime (Get-Date).AddDays(-7) -CsvPath C:\Temp\wfp.csv
 #>
- 
+
 [CmdletBinding()]
 param(
     [datetime]$StartTime = (Get-Date).AddHours(-24),
     [int]$MaxEvents = 50000,
     [string]$CsvPath
 )
- 
+
 $connectionIds = 5031, 5150, 5151, 5154, 5155, 5156, 5157, 5158, 5159
 $packetDropIds = 5152, 5153
 $allIds        = $connectionIds + $packetDropIds
- 
+
 # Map volume device paths (\device\harddiskvolumeN\) to drive letters
 $volumeMap = @{}
 Get-CimInstance Win32_Volume | ForEach-Object {
@@ -77,7 +48,7 @@ Get-CimInstance Win32_Volume | ForEach-Object {
         $volumeMap[$Matches[0].ToLower()] = $_.DriveLetter
     }
 }
- 
+
 function Convert-DevicePath {
     param([string]$Path)
     if (-not $Path) { return $Path }
@@ -90,9 +61,9 @@ function Convert-DevicePath {
     }
     return $Path
 }
- 
+
 Write-Host "Querying Security log (WFP events, since $StartTime)..." -ForegroundColor Cyan
- 
+
 try {
     $events = Get-WinEvent -FilterHashtable @{
         LogName   = 'Security'
@@ -107,20 +78,20 @@ catch [Exception] {
     }
     throw
 }
- 
+
 Write-Host "Retrieved $($events.Count) events. Parsing..." -ForegroundColor Cyan
- 
+
 $results = foreach ($evt in $events) {
     $xml = [xml]$evt.ToXml()
     $data = @{}
     foreach ($node in $xml.Event.EventData.Data) {
         $data[$node.Name] = $node.'#text'
     }
- 
+
     $appRaw = $data['Application']
     if (-not $appRaw) { $appRaw = $data['ApplicationName'] }
     $app = Convert-DevicePath $appRaw
- 
+
     [pscustomobject]@{
         TimeCreated = $evt.TimeCreated
         RecordId    = $evt.RecordId
@@ -135,12 +106,12 @@ $results = foreach ($evt in $events) {
         Protocol    = $data['Protocol']
     }
 }
- 
+
 if ($CsvPath) {
     $results | Export-Csv -Path $CsvPath -NoTypeInformation
     Write-Host "Full detail exported to $CsvPath" -ForegroundColor Green
 }
- 
+
 Write-Host "`n=== Distinct executables (all categories) ===" -ForegroundColor Cyan
 $results |
     Where-Object { $_.Executable } |
@@ -157,7 +128,7 @@ $results |
     } |
     Sort-Object LastSeen -Descending |
     Format-Table -AutoSize
- 
+
 Write-Host "`n=== Distinct executables by category ===" -ForegroundColor Cyan
 $results |
     Where-Object { $_.Executable } |
@@ -175,6 +146,3 @@ $results |
     } |
     Sort-Object Category, LastSeen -Descending |
     Format-Table -AutoSize
- 
-
-
