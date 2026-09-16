@@ -215,12 +215,12 @@ function Get-EstateFromGraph {
 
     $estate = @()
     foreach ($p in $policies) {
-        $settings = @(Get-GraphPaged -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$($p.id)')/settings")
+        $settings = Get-GraphPaged -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$($p.id)')/settings"
 
         $targets = @()
         if ($IncludeAssignments) {
             try {
-                $assignments = @(Get-GraphPaged -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$($p.id)')/assignments")
+                $assignments = Get-GraphPaged -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$($p.id)')/assignments"
                 foreach ($a in $assignments) {
                     $t = $a.target
                     $odata = if (Test-Key $t '@odata.type') { $t.'@odata.type' } else { '' }
@@ -323,7 +323,7 @@ if ($Mode -eq 'Export') {
         Write-Host "Export needs -OursPrefix or -OursFilter (use '*' for everything)." -ForegroundColor Red
         return
     }
-    $estate = @(Get-EstateFromGraph -Filter $OursFilter -Prefix $OursPrefix -Label 'Export' -IncludeAssignments:$IncludeAssignments)
+    $estate = Get-EstateFromGraph -Filter $OursFilter -Prefix $OursPrefix -Label 'Export' -IncludeAssignments:$IncludeAssignments
     foreach ($p in $estate) {
         $safe = ($p.name -replace '[\\/:*?"<>|]', '_')
         $p | ConvertTo-Json -Depth 40 | Set-Content -Path (Join-Path $OutputPath "$safe.json") -Encoding utf8
