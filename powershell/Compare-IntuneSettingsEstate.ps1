@@ -19,6 +19,13 @@
       summary.html          the matrix, colour-coded, with drag-resizable columns
 
 .EXAMPLE
+    # Define the two estates explicitly in a CSV
+    .\Compare-IntuneSettingsEstate.ps1 -Mode Template -OutputPath .\merge
+    #   fill the Estate column in .\merge\policy-list.csv, then:
+    .\Compare-IntuneSettingsEstate.ps1 -PolicyListCsv .\merge\policy-list.csv `
+        -OursLabel GUF -TheirsLabel DOR -IncludeAssignments -OutputPath .\merge
+
+.EXAMPLE
     # Both estates in one tenant, matched on literal name prefixes
     Connect-MgGraph -Scopes DeviceManagementConfiguration.Read.All, Group.Read.All
     .\Compare-IntuneSettingsEstate.ps1 -OursPrefix 'guf' -OursLabel GUF `
@@ -39,7 +46,7 @@
 
 [CmdletBinding()]
 param(
-    [ValidateSet('Export', 'Compare')]
+    [ValidateSet('Export', 'Compare', 'Template')]
     [string]$Mode = 'Compare',
 
     # literal prefix match (recommended - no wildcard parsing)
@@ -49,6 +56,9 @@ param(
     # wildcard match, PowerShell -like syntax
     [string]$OursFilter,
     [string]$TheirsFilter,
+
+    # CSV listing exactly which policies belong to each estate
+    [string]$PolicyListCsv,
 
     # folders of exported JSON, for cross-tenant comparison
     [string]$OursPath,
@@ -192,24 +202,122 @@ function ConvertTo-FlatSetting {
     return $out
 }
 
+<#
+    Reads the policy list CSV. Required columns: Estate, and PolicyName or PolicyId.
+    Estate values are matched against -OursLabel / -TheirsLabel, or the literal words
+    Ours / Theirs. Blank Estate rows are ignored, so you can leave a template row
+    unassigned rather than deleting it.
+#>
+function Get-PolicyList {
+    param([Parameter(Mandatory)][string]$Path)
+
+    $rows = @(Import-Csv -Path $Path)
+    if ($rows.Count -eq 0) {
+        Write-Host "Policy list '$Path' is empty." -ForegroundColor Red
+        return $null
+    }
+
+    $columns = @($rows[0].PSObject.Properties.Name)
+    if ($columns -notcontains 'Estate') {
+        Write-Host "Policy list '$Path' has no Estate column." -ForegroundColor Red
+        return $null
+    }
+    $hasName = $columns -contains 'PolicyName'
+    $hasId = $columns -contains 'PolicyId'
+    if (-not ($hasName -or $hasId)) {
+        Write-Host "Policy list '$Path' needs a PolicyName or PolicyId column." -ForegroundColor Red
+        return $null
+    }
+
+    $result = @{
+        OursNames   = [System.Collections.Generic.List[string]]::new()
+        OursIds     = [System.Collections.Generic.List[string]]::new()
+        TheirsNames = [System.Collections.Generic.List[string]]::new()
+        TheirsIds   = [System.Collections.Generic.List[string]]::new()
+    }
+
+    $skipped = 0
+    foreach ($row in $rows) {
+        $estate = ([string]$row.Estate).Trim()
+        if (-not $estate) { continue }
+
+        $name = if ($hasName) { ([string]$row.PolicyName).Trim() } else { '' }
+        $id = if ($hasId) { ([string]$row.PolicyId).Trim() } else { '' }
+        if (-not $name -and -not $id) { continue }
+
+        if ($estate -ieq $OursLabel -or $estate -ieq 'Ours') {
+            if ($id) { $result.OursIds.Add($id) } else { $result.OursNames.Add($name) }
+        }
+        elseif ($estate -ieq $TheirsLabel -or $estate -ieq 'Theirs') {
+            if ($id) { $result.TheirsIds.Add($id) } else { $result.TheirsNames.Add($name) }
+        }
+        else {
+            Write-Warning "Unrecognised Estate value '$estate' - expected '$OursLabel', '$TheirsLabel', Ours or Theirs."
+            $skipped++
+        }
+    }
+
+    $oursTotal = $result.OursNames.Count + $result.OursIds.Count
+    $theirsTotal = $result.TheirsNames.Count + $result.TheirsIds.Count
+    Write-Host "Policy list: $oursTotal ${OursLabel}, $theirsTotal ${TheirsLabel}$(if ($skipped) { ", $skipped skipped" })" -ForegroundColor Cyan
+
+    if ($oursTotal -eq 0 -or $theirsTotal -eq 0) {
+        Write-Host 'Both estates need at least one policy in the list.' -ForegroundColor Red
+        return $null
+    }
+    return $result
+}
+
 function Get-EstateFromGraph {
     param(
         [string]$Filter,
         [string]$Prefix,
+        [string[]]$Names,
+        [string[]]$Ids,
         [Parameter(Mandatory)][string]$Label,
         [switch]$IncludeAssignments
     )
 
-    $criteria = if ($Prefix) { "names starting '$Prefix'" } else { "names like '$Filter'" }
     Write-Host "[$Label] reading policies from tenant..." -ForegroundColor Cyan
     $policies = Get-GraphPaged -Uri 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies?$select=id,name,description,platforms,technologies,templateReference'
 
-    if ($Prefix) {
+    $idCount = if ($Ids) { $Ids.Count } else { 0 }
+    $nameCount = if ($Names) { $Names.Count } else { 0 }
+
+    if ($idCount -gt 0 -or $nameCount -gt 0) {
+        # a CSV may identify some policies by id and others by name - honour both
+        $wantedIds = @{}
+        foreach ($i in $Ids) { $wantedIds[$i.Trim()] = $true }
+        $wantedNames = @{}
+        foreach ($n in $Names) { $wantedNames[$n.Trim().ToLowerInvariant()] = $true }
+
+        $policies = @($policies | Where-Object {
+                $wantedIds.ContainsKey([string]$_.id) -or
+                $wantedNames.ContainsKey(([string]$_.name).Trim().ToLowerInvariant())
+            })
+
+        $foundIds = @{}
+        $foundNames = @{}
+        foreach ($p in $policies) {
+            $foundIds[[string]$p.id] = $true
+            $foundNames[([string]$p.name).Trim().ToLowerInvariant()] = $true
+        }
+        foreach ($i in $Ids) {
+            if (-not $foundIds.ContainsKey($i.Trim())) { Write-Warning "[$Label] no policy with id '$i' - check the list." }
+        }
+        foreach ($n in $Names) {
+            if (-not $foundNames.ContainsKey($n.Trim().ToLowerInvariant())) { Write-Warning "[$Label] no policy named '$n' - check the list." }
+        }
+        $criteria = "$($idCount + $nameCount) entries from the list"
+    }
+    elseif ($Prefix) {
         # literal match: -like would read [ ] as a character class
         $policies = @($policies | Where-Object { $_.name.StartsWith($Prefix, [StringComparison]::OrdinalIgnoreCase) })
+        $criteria = "names starting '$Prefix'"
     }
     else {
         $policies = @($policies | Where-Object { $_.name -like $Filter })
+        $criteria = "names like '$Filter'"
     }
     Write-Host "[$Label] $($policies.Count) policies matched $criteria"
 
@@ -318,6 +426,24 @@ if ($OursLabel -eq $TheirsLabel) {
 }
 if (-not (Test-Path $OutputPath)) { New-Item -ItemType Directory -Path $OutputPath -Force | Out-Null }
 
+if ($Mode -eq 'Template') {
+    Write-Host 'Reading policy list...' -ForegroundColor Cyan
+    $all = Get-GraphPaged -Uri 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies?$select=id,name,platforms'
+    $template = foreach ($p in ($all | Sort-Object { $_.name })) {
+        [pscustomobject][ordered]@{
+            Estate     = ''
+            PolicyName = $p.name
+            PolicyId   = $p.id
+            Platforms  = if (Test-Key $p 'platforms') { $p.platforms } else { '' }
+        }
+    }
+    $csvPath = Join-Path $OutputPath 'policy-list.csv'
+    $template | Export-Csv -Path $csvPath -NoTypeInformation -Encoding utf8
+    Write-Host "`n$(@($template).Count) policies written to $csvPath" -ForegroundColor Green
+    Write-Host "Fill the Estate column with $OursLabel or $TheirsLabel, delete or blank the rest, then re-run with -PolicyListCsv." 
+    return
+}
+
 if ($Mode -eq 'Export') {
     if (-not ($OursFilter -or $OursPrefix)) {
         Write-Host "Export needs -OursPrefix or -OursFilter (use '*' for everything)." -ForegroundColor Red
@@ -333,14 +459,29 @@ if ($Mode -eq 'Export') {
 }
 
 # --- load both estates
-if ($OursPath) { $oursEstate = Get-EstateFromDisk -Path $OursPath -Label $OursLabel }
+$policyList = $null
+if ($PolicyListCsv) {
+    if (-not (Test-Path $PolicyListCsv)) {
+        Write-Host "Policy list not found: $PolicyListCsv" -ForegroundColor Red
+        return
+    }
+    $policyList = Get-PolicyList -Path $PolicyListCsv
+    if (-not $policyList) { return }
+}
+
+if ($policyList) {
+    $oursEstate = Get-EstateFromGraph -Names $policyList.OursNames -Ids $policyList.OursIds -Label $OursLabel -IncludeAssignments:$IncludeAssignments
+    $theirsEstate = Get-EstateFromGraph -Names $policyList.TheirsNames -Ids $policyList.TheirsIds -Label $TheirsLabel -IncludeAssignments:$IncludeAssignments
+}
+elseif ($OursPath) { $oursEstate = Get-EstateFromDisk -Path $OursPath -Label $OursLabel }
 elseif ($OursFilter -or $OursPrefix) { $oursEstate = Get-EstateFromGraph -Filter $OursFilter -Prefix $OursPrefix -Label $OursLabel -IncludeAssignments:$IncludeAssignments }
 else {
     Write-Host 'No source for the first estate. Specify -OursPrefix, -OursFilter or -OursPath.' -ForegroundColor Red
     return
 }
 
-if ($TheirsPath) { $theirsEstate = Get-EstateFromDisk -Path $TheirsPath -Label $TheirsLabel }
+if ($policyList) { }   # both estates already loaded from the CSV
+elseif ($TheirsPath) { $theirsEstate = Get-EstateFromDisk -Path $TheirsPath -Label $TheirsLabel }
 elseif ($TheirsFilter -or $TheirsPrefix) { $theirsEstate = Get-EstateFromGraph -Filter $TheirsFilter -Prefix $TheirsPrefix -Label $TheirsLabel -IncludeAssignments:$IncludeAssignments }
 else {
     Write-Host 'No source for the second estate. Specify -TheirsPrefix, -TheirsFilter or -TheirsPath.' -ForegroundColor Red
