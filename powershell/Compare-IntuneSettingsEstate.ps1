@@ -65,6 +65,7 @@ param(
     [string]$TheirsPath,
 
     [switch]$IncludeAssignments,
+    [switch]$FriendlyNames,
 
     [string]$OutputPath = '.\intune-merge',
     [string]$OursLabel = 'Ours',
@@ -202,6 +203,65 @@ function ConvertTo-FlatSetting {
     return $out
 }
 
+# --- settings catalog definition registry -----------------------------------
+# Populated from $expand=settingDefinitions. Maps settingDefinitionId to its
+# display name, and for choice settings to its option display names.
+$script:DefMap = @{}
+
+function Register-SettingDefinitions {
+    param($Definitions)
+    foreach ($d in $Definitions) {
+        if (-not (Test-Key $d 'id')) { continue }
+        $id = [string]$d.id
+        if ($script:DefMap.ContainsKey($id)) { continue }
+
+        $display = if ((Test-Key $d 'displayName') -and $d.displayName) { [string]$d.displayName }
+        elseif ((Test-Key $d 'name') -and $d.name) { [string]$d.name }
+        else { $id }
+
+        $options = @{}
+        if (Test-Key $d 'options') {
+            foreach ($o in $d.options) {
+                $itemId = if (Test-Key $o 'itemId') { [string]$o.itemId } else { '' }
+                $oName = if ((Test-Key $o 'displayName') -and $o.displayName) { [string]$o.displayName }
+                elseif (Test-Key $o 'name') { [string]$o.name }
+                else { $itemId }
+                if ($itemId) { $options[$itemId] = $oName }
+            }
+        }
+        $script:DefMap[$id] = @{ DisplayName = $display; Options = $options }
+    }
+}
+
+function Split-SettingSegment {
+    param([string]$Segment)
+    if ($Segment -match '^(.*)\[(\d+)\]$') {
+        return @{ Id = $Matches[1]; Index = "[$($Matches[2])]" }
+    }
+    return @{ Id = $Segment; Index = '' }
+}
+
+function ConvertTo-FriendlyPath {
+    param([string]$Path)
+    $parts = foreach ($segment in ($Path -split '/')) {
+        $bits = Split-SettingSegment -Segment $segment
+        $name = if ($script:DefMap.ContainsKey($bits.Id)) { $script:DefMap[$bits.Id].DisplayName } else { $bits.Id }
+        "$name$($bits.Index)"
+    }
+    return ($parts -join ' > ')
+}
+
+function ConvertTo-FriendlyValue {
+    param([string]$Path, [string]$Value)
+    if (-not $Value) { return $Value }
+    $segments = @($Path -split '/')
+    $bits = Split-SettingSegment -Segment $segments[-1]
+    if (-not $script:DefMap.ContainsKey($bits.Id)) { return $Value }
+    $options = $script:DefMap[$bits.Id].Options
+    if ($options -and $options.ContainsKey($Value)) { return $options[$Value] }
+    return $Value
+}
+
 <#
     Reads the policy list CSV. Required columns: Estate, and PolicyName or PolicyId.
     Estate values are matched against -OursLabel / -TheirsLabel, or the literal words
@@ -275,7 +335,8 @@ function Get-EstateFromGraph {
         [string[]]$Names,
         [string[]]$Ids,
         [Parameter(Mandatory)][string]$Label,
-        [switch]$IncludeAssignments
+        [switch]$IncludeAssignments,
+        [switch]$FriendlyNames
     )
 
     Write-Host "[$Label] reading policies from tenant..." -ForegroundColor Cyan
@@ -323,7 +384,9 @@ function Get-EstateFromGraph {
 
     $estate = @()
     foreach ($p in $policies) {
-        $settings = Get-GraphPaged -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$($p.id)')/settings"
+        $settingsUri = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$($p.id)')/settings"
+        if ($FriendlyNames) { $settingsUri += "?`$expand=settingDefinitions" }
+        $settings = Get-GraphPaged -Uri $settingsUri
 
         $targets = @()
         if ($IncludeAssignments) {
@@ -394,6 +457,7 @@ function ConvertTo-EstateIndex {
             continue
         }
         foreach ($setting in $policy.settings) {
+            if (Test-Key $setting 'settingDefinitions') { Register-SettingDefinitions $setting.settingDefinitions }
             $instance = if (Test-Key $setting 'settingInstance') { $setting.settingInstance } else { $setting }
             foreach ($row in (ConvertTo-FlatSetting -Instance $instance)) {
                 if (-not $index.ContainsKey($row.Path)) {
@@ -407,9 +471,13 @@ function ConvertTo-EstateIndex {
 }
 
 function Format-Cell {
-    param($Entries)
+    param($Entries, [string]$Path, [switch]$Friendly)
     if (-not $Entries) { return '' }
-    return (($Entries | ForEach-Object { $_.Value } | Select-Object -Unique) -join ' || ')
+    $vals = @($Entries | ForEach-Object { $_.Value } | Select-Object -Unique)
+    if ($Friendly -and $Path) {
+        $vals = @($vals | ForEach-Object { ConvertTo-FriendlyValue -Path $Path -Value $_ })
+    }
+    return ($vals -join ' || ')
 }
 
 function Format-Sources {
@@ -449,7 +517,7 @@ if ($Mode -eq 'Export') {
         Write-Host "Export needs -OursPrefix or -OursFilter (use '*' for everything)." -ForegroundColor Red
         return
     }
-    $estate = Get-EstateFromGraph -Filter $OursFilter -Prefix $OursPrefix -Label 'Export' -IncludeAssignments:$IncludeAssignments
+    $estate = Get-EstateFromGraph -Filter $OursFilter -Prefix $OursPrefix -Label 'Export' -IncludeAssignments:$IncludeAssignments -FriendlyNames:$FriendlyNames
     foreach ($p in $estate) {
         $safe = ($p.name -replace '[\\/:*?"<>|]', '_')
         $p | ConvertTo-Json -Depth 40 | Set-Content -Path (Join-Path $OutputPath "$safe.json") -Encoding utf8
@@ -470,11 +538,11 @@ if ($PolicyListCsv) {
 }
 
 if ($policyList) {
-    $oursEstate = Get-EstateFromGraph -Names $policyList.OursNames -Ids $policyList.OursIds -Label $OursLabel -IncludeAssignments:$IncludeAssignments
-    $theirsEstate = Get-EstateFromGraph -Names $policyList.TheirsNames -Ids $policyList.TheirsIds -Label $TheirsLabel -IncludeAssignments:$IncludeAssignments
+    $oursEstate = Get-EstateFromGraph -Names $policyList.OursNames -Ids $policyList.OursIds -Label $OursLabel -IncludeAssignments:$IncludeAssignments -FriendlyNames:$FriendlyNames
+    $theirsEstate = Get-EstateFromGraph -Names $policyList.TheirsNames -Ids $policyList.TheirsIds -Label $TheirsLabel -IncludeAssignments:$IncludeAssignments -FriendlyNames:$FriendlyNames
 }
 elseif ($OursPath) { $oursEstate = Get-EstateFromDisk -Path $OursPath -Label $OursLabel }
-elseif ($OursFilter -or $OursPrefix) { $oursEstate = Get-EstateFromGraph -Filter $OursFilter -Prefix $OursPrefix -Label $OursLabel -IncludeAssignments:$IncludeAssignments }
+elseif ($OursFilter -or $OursPrefix) { $oursEstate = Get-EstateFromGraph -Filter $OursFilter -Prefix $OursPrefix -Label $OursLabel -IncludeAssignments:$IncludeAssignments -FriendlyNames:$FriendlyNames }
 else {
     Write-Host 'No source for the first estate. Specify -OursPrefix, -OursFilter or -OursPath.' -ForegroundColor Red
     return
@@ -482,7 +550,7 @@ else {
 
 if ($policyList) { }   # both estates already loaded from the CSV
 elseif ($TheirsPath) { $theirsEstate = Get-EstateFromDisk -Path $TheirsPath -Label $TheirsLabel }
-elseif ($TheirsFilter -or $TheirsPrefix) { $theirsEstate = Get-EstateFromGraph -Filter $TheirsFilter -Prefix $TheirsPrefix -Label $TheirsLabel -IncludeAssignments:$IncludeAssignments }
+elseif ($TheirsFilter -or $TheirsPrefix) { $theirsEstate = Get-EstateFromGraph -Filter $TheirsFilter -Prefix $TheirsPrefix -Label $TheirsLabel -IncludeAssignments:$IncludeAssignments -FriendlyNames:$FriendlyNames }
 else {
     Write-Host 'No source for the second estate. Specify -TheirsPrefix, -TheirsFilter or -TheirsPath.' -ForegroundColor Red
     return
@@ -520,7 +588,7 @@ foreach ($path in $allPaths) {
                 Estate      = $OursLabel
                 Setting     = $path
                 Policies    = (Format-Sources $o)
-                Values      = (Format-Cell $o)
+                Values      = (Format-Cell -Entries $o -Path $path -Friendly:$FriendlyNames)
                 Conflicting = ($oVals.Count -gt 1)
             })
     }
@@ -530,7 +598,7 @@ foreach ($path in $allPaths) {
                 Estate      = $TheirsLabel
                 Setting     = $path
                 Policies    = (Format-Sources $t)
-                Values      = (Format-Cell $t)
+                Values      = (Format-Cell -Entries $t -Path $path -Friendly:$FriendlyNames)
                 Conflicting = ($tVals.Count -gt 1)
             })
     }
@@ -553,18 +621,18 @@ foreach ($path in $allPaths) {
         }
     }
 
-    $matrix.Add([pscustomobject][ordered]@{
-            Setting               = $path
-            Verdict               = $verdict
-            "$OursLabel value"    = (Format-Cell $o)
-            "$OursLabel policy"   = (Format-Sources $o)
-            "$TheirsLabel value"  = (Format-Cell $t)
-            "$TheirsLabel policy" = (Format-Sources $t)
-            Notes                 = ($notes -join '; ')
-            'Shared targets'      = $sharedTargets
-            'Merge decision'      = ''
-            'Target policy'       = ''
-        })
+    $rowData = [ordered]@{ Setting = $path }
+    if ($FriendlyNames) { $rowData['Setting name'] = ConvertTo-FriendlyPath -Path $path }
+    $rowData['Verdict'] = $verdict
+    $rowData["$OursLabel value"] = (Format-Cell -Entries $o -Path $path -Friendly:$FriendlyNames)
+    $rowData["$OursLabel policy"] = (Format-Sources $o)
+    $rowData["$TheirsLabel value"] = (Format-Cell -Entries $t -Path $path -Friendly:$FriendlyNames)
+    $rowData["$TheirsLabel policy"] = (Format-Sources $t)
+    $rowData['Notes'] = ($notes -join '; ')
+    $rowData['Shared targets'] = $sharedTargets
+    $rowData['Merge decision'] = ''
+    $rowData['Target policy'] = ''
+    $matrix.Add([pscustomobject]$rowData)
 }
 
 # --- policy overlap: which of their policies map onto which of ours
@@ -634,6 +702,7 @@ tr:nth-child(even){background:#f5f8fc}
 .v-ours{background:#fff8e1}
 .v-theirs{background:#e7f0fb}
 .k{font-weight:600}
+.id{color:#6b7a94;font-size:10px;font-family:Consolas,monospace;font-weight:400}
 .summary td{font-size:14px}
 </style>
 '@
@@ -668,7 +737,12 @@ $rows = foreach ($r in $matrix) {
         'LIVE conflict' { 'v-live' }
         default { if ($r.Verdict -like "Only $OursLabel*") { 'v-ours' } else { 'v-theirs' } }
     }
-    $cSetting = Get-HtmlSafe $r.Setting
+    if ($FriendlyNames) {
+        $cSetting = (Get-HtmlSafe $r.'Setting name') + "<br><span class='id'>" + (Get-HtmlSafe $r.Setting) + '</span>'
+    }
+    else {
+        $cSetting = Get-HtmlSafe $r.Setting
+    }
     $cOurVal = Get-HtmlSafe $r.($OursLabel + ' value')
     $cOurPol = Get-HtmlSafe $r.($OursLabel + ' policy')
     $cThrVal = Get-HtmlSafe $r.($TheirsLabel + ' value')
