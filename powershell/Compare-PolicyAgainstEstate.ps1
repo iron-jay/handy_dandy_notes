@@ -1,56 +1,63 @@
 <#
 .SYNOPSIS
-    Takes one policy, lists every setting it defines, and reports for each whether any
-    policy in the other estate also sets it - and to what value.
+    Takes a CSV list of source policies and compares each one, setting by setting,
+    against a CSV-defined target estate.
 
 .DESCRIPTION
-    The estate-wide matrix tells you the overall shape of a merge. This is the view you
-    want when working through it one profile at a time: "here is what GUF-Windows-Baseline
-    sets, and here is where each of those settings already lives on the DOR side."
+    The per-policy drill-down answers "where does this one policy's content live on the
+    other side". This runs that same comparison across a whole list - feed it your [DOR]
+    policies and your guf policies and it walks every DOR policy in turn.
 
-    Each setting is classified:
-      Match           set in the other estate with the same value
-      Differs         set in the other estate with a different value
-      Split           set in more than one policy in the other estate
-      Not in <estate> nothing in the other estate sets it
+    The target estate is read once and indexed, then reused for every source policy, so
+    the cost is one pass over each estate regardless of how many comparisons you run.
 
-.PARAMETER PolicyName
-    The source policy. Exact name, or a fragment - if several match you get the list.
+    Each setting in each source policy is classified:
+      Match            set in the target estate with the same value
+      Differs          set in the target estate with a different value
+      Split            set in more than one target policy, all agreeing with the source
+      Split - differs  set in more than one target policy, and they disagree
+      Not in <target>  nothing in the target estate sets it
 
-.PARAMETER TheirsPrefix
-    Literal name prefix for the estate to check against. Default '[dor]'.
-    Literal, so square brackets are safe.
+    Outputs, written to -OutputPath:
+      rollup.csv            one row per source policy: counts and coverage %
+      all-settings.csv      every setting from every source policy, with its verdict
+      per-policy\<name>.csv the same rows split by source policy
 
-.PARAMETER TheirsFilter
-    Wildcard alternative to -TheirsPrefix, PowerShell -like syntax.
+.PARAMETER SourceListCsv
+    CSV of the policies to walk through (the [DOR] side). Needs a PolicyName or PolicyId
+    column; a single-column file is treated as names.
 
-.PARAMETER DifferencesOnly
-    Console output shows only Differs, Split and Not-in rows. The CSV is always complete.
+.PARAMETER TargetListCsv
+    CSV of the estate to compare against (the guf side). Same format.
 
-.PARAMETER OutputPath
-    Optional. Folder to write a CSV of the full result.
+.PARAMETER Detailed
+    Print every setting to the console as it goes. Off by default - with a long source
+    list the console output is unreadable and the CSVs are the real deliverable.
 
 .EXAMPLE
     Connect-MgGraph -Scopes DeviceManagementConfiguration.Read.All
-    .\Compare-PolicyAgainstEstate.ps1 -PolicyName 'guf-win11-security-baseline'
-
-.EXAMPLE
-    .\Compare-PolicyAgainstEstate.ps1 -PolicyName 'guf-bitlocker' -DifferencesOnly -OutputPath .\merge
+    .\Compare-PolicySetAgainstEstate.ps1 -SourceListCsv .\dor.csv -TargetListCsv .\guf.csv `
+        -SourceLabel DOR -TargetLabel GUF -FriendlyNames -OutputPath .\merge
 
 .NOTES
     PowerShell 7+, Microsoft.Graph.Authentication. Read-only.
     Activate your Intune role in PIM first or the policy list returns empty.
+    Both CSVs can be produced by running the estate script with -Mode Template and
+    splitting the result, or written by hand with a single PolicyName column.
 #>
 
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory)][string]$PolicyName,
-    [string]$TheirsPrefix = '[dor]',
-    [string]$TheirsFilter,
-    [string]$TheirsLabel = 'DOR',
-    [switch]$DifferencesOnly,
+    [Parameter(Mandatory)][string]$SourceListCsv,
+    [Parameter(Mandatory)][string]$TargetListCsv,
+
+    [string]$SourceLabel = 'DOR',
+    [string]$TargetLabel = 'GUF',
+
     [switch]$FriendlyNames,
-    [string]$OutputPath
+    [switch]$Detailed,
+
+    [string]$OutputPath = '.\merge'
 )
 
 Set-StrictMode -Version Latest
@@ -86,6 +93,63 @@ function Get-SettingValue {
     if ($type -match 'Secret') { return '<secret:redacted>' }
     if (Test-Key $SettingValue 'value') { return [string]$SettingValue.value }
     return ''
+}
+
+# --- settings catalog definition registry -----------------------------------
+$script:DefMap = @{}
+
+function Register-SettingDefinitions {
+    param($Definitions)
+    foreach ($d in $Definitions) {
+        if (-not (Test-Key $d 'id')) { continue }
+        $id = [string]$d.id
+        if ($script:DefMap.ContainsKey($id)) { continue }
+
+        $display = if ((Test-Key $d 'displayName') -and $d.displayName) { [string]$d.displayName }
+        elseif ((Test-Key $d 'name') -and $d.name) { [string]$d.name }
+        else { $id }
+
+        $options = @{}
+        if (Test-Key $d 'options') {
+            foreach ($o in $d.options) {
+                $itemId = if (Test-Key $o 'itemId') { [string]$o.itemId } else { '' }
+                $oName = if ((Test-Key $o 'displayName') -and $o.displayName) { [string]$o.displayName }
+                elseif (Test-Key $o 'name') { [string]$o.name }
+                else { $itemId }
+                if ($itemId) { $options[$itemId] = $oName }
+            }
+        }
+        $script:DefMap[$id] = @{ DisplayName = $display; Options = $options }
+    }
+}
+
+function Split-SettingSegment {
+    param([string]$Segment)
+    if ($Segment -match '^(.*)\[(\d+)\]$') {
+        return @{ Id = $Matches[1]; Index = "[$($Matches[2])]" }
+    }
+    return @{ Id = $Segment; Index = '' }
+}
+
+function ConvertTo-FriendlyPath {
+    param([string]$Path)
+    $parts = foreach ($segment in ($Path -split '/')) {
+        $bits = Split-SettingSegment -Segment $segment
+        $name = if ($script:DefMap.ContainsKey($bits.Id)) { $script:DefMap[$bits.Id].DisplayName } else { $bits.Id }
+        "$name$($bits.Index)"
+    }
+    return ($parts -join ' > ')
+}
+
+function ConvertTo-FriendlyValue {
+    param([string]$Path, [string]$Value)
+    if (-not $Value) { return $Value }
+    $segments = @($Path -split '/')
+    $bits = Split-SettingSegment -Segment $segments[-1]
+    if (-not $script:DefMap.ContainsKey($bits.Id)) { return $Value }
+    $options = $script:DefMap[$bits.Id].Options
+    if ($options -and $options.ContainsKey($Value)) { return $options[$Value] }
+    return $Value
 }
 
 function ConvertTo-FlatSetting {
@@ -151,65 +215,6 @@ function ConvertTo-FlatSetting {
     return $out
 }
 
-# --- settings catalog definition registry -----------------------------------
-# Populated from $expand=settingDefinitions. Maps settingDefinitionId to its
-# display name, and for choice settings to its option display names.
-$script:DefMap = @{}
-
-function Register-SettingDefinitions {
-    param($Definitions)
-    foreach ($d in $Definitions) {
-        if (-not (Test-Key $d 'id')) { continue }
-        $id = [string]$d.id
-        if ($script:DefMap.ContainsKey($id)) { continue }
-
-        $display = if ((Test-Key $d 'displayName') -and $d.displayName) { [string]$d.displayName }
-        elseif ((Test-Key $d 'name') -and $d.name) { [string]$d.name }
-        else { $id }
-
-        $options = @{}
-        if (Test-Key $d 'options') {
-            foreach ($o in $d.options) {
-                $itemId = if (Test-Key $o 'itemId') { [string]$o.itemId } else { '' }
-                $oName = if ((Test-Key $o 'displayName') -and $o.displayName) { [string]$o.displayName }
-                elseif (Test-Key $o 'name') { [string]$o.name }
-                else { $itemId }
-                if ($itemId) { $options[$itemId] = $oName }
-            }
-        }
-        $script:DefMap[$id] = @{ DisplayName = $display; Options = $options }
-    }
-}
-
-function Split-SettingSegment {
-    param([string]$Segment)
-    if ($Segment -match '^(.*)\[(\d+)\]$') {
-        return @{ Id = $Matches[1]; Index = "[$($Matches[2])]" }
-    }
-    return @{ Id = $Segment; Index = '' }
-}
-
-function ConvertTo-FriendlyPath {
-    param([string]$Path)
-    $parts = foreach ($segment in ($Path -split '/')) {
-        $bits = Split-SettingSegment -Segment $segment
-        $name = if ($script:DefMap.ContainsKey($bits.Id)) { $script:DefMap[$bits.Id].DisplayName } else { $bits.Id }
-        "$name$($bits.Index)"
-    }
-    return ($parts -join ' > ')
-}
-
-function ConvertTo-FriendlyValue {
-    param([string]$Path, [string]$Value)
-    if (-not $Value) { return $Value }
-    $segments = @($Path -split '/')
-    $bits = Split-SettingSegment -Segment $segments[-1]
-    if (-not $script:DefMap.ContainsKey($bits.Id)) { return $Value }
-    $options = $script:DefMap[$bits.Id].Options
-    if ($options -and $options.ContainsKey($Value)) { return $options[$Value] }
-    return $Value
-}
-
 function Get-PolicySettings {
     param([Parameter(Mandatory)]$Policy, [switch]$FriendlyNames)
     $uri = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$($Policy.id)')/settings"
@@ -224,139 +229,200 @@ function Get-PolicySettings {
     return , $flat
 }
 
+<#
+    Reads a policy list CSV. Uses PolicyId where present, else PolicyName. A file with a
+    single column of any name is treated as a list of policy names, so a hand-written
+    one-column CSV works without ceremony.
+#>
+function Get-PolicyNameList {
+    param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$Label)
+
+    if (-not (Test-Path $Path)) {
+        Write-Host "[$Label] list not found: $Path" -ForegroundColor Red
+        return $null
+    }
+    $rows = @(Import-Csv -Path $Path)
+    if ($rows.Count -eq 0) {
+        Write-Host "[$Label] list is empty: $Path" -ForegroundColor Red
+        return $null
+    }
+
+    $columns = @($rows[0].PSObject.Properties.Name)
+    $nameCol = if ($columns -contains 'PolicyName') { 'PolicyName' }
+    elseif ($columns.Count -eq 1) { $columns[0] }
+    else { $null }
+    $idCol = if ($columns -contains 'PolicyId') { 'PolicyId' } else { $null }
+
+    if (-not $nameCol -and -not $idCol) {
+        Write-Host "[$Label] $Path needs a PolicyName or PolicyId column." -ForegroundColor Red
+        return $null
+    }
+
+    $names = [System.Collections.Generic.List[string]]::new()
+    $ids = [System.Collections.Generic.List[string]]::new()
+    foreach ($row in $rows) {
+        $id = if ($idCol) { ([string]$row.$idCol).Trim() } else { '' }
+        $name = if ($nameCol) { ([string]$row.$nameCol).Trim() } else { '' }
+        if ($id) { $ids.Add($id) }
+        elseif ($name) { $names.Add($name) }
+    }
+    if ($names.Count -eq 0 -and $ids.Count -eq 0) {
+        Write-Host "[$Label] no usable rows in $Path." -ForegroundColor Red
+        return $null
+    }
+    return @{ Names = $names; Ids = $ids }
+}
+
+<# Resolves a name/id list against the tenant's policies, warning on anything missing. #>
+function Resolve-Policies {
+    param($AllPolicies, $List, [Parameter(Mandatory)][string]$Label)
+
+    $wantedIds = @{}
+    foreach ($i in $List.Ids) { $wantedIds[$i] = $true }
+    $wantedNames = @{}
+    foreach ($n in $List.Names) { $wantedNames[$n.ToLowerInvariant()] = $true }
+
+    $matched = @($AllPolicies | Where-Object {
+            $wantedIds.ContainsKey([string]$_.id) -or
+            $wantedNames.ContainsKey(([string]$_.name).Trim().ToLowerInvariant())
+        })
+
+    $foundIds = @{}
+    $foundNames = @{}
+    foreach ($p in $matched) {
+        $foundIds[[string]$p.id] = $true
+        $foundNames[([string]$p.name).Trim().ToLowerInvariant()] = $true
+    }
+    foreach ($i in $List.Ids) {
+        if (-not $foundIds.ContainsKey($i)) { Write-Warning "[$Label] no policy with id '$i'." }
+    }
+    foreach ($n in $List.Names) {
+        if (-not $foundNames.ContainsKey($n.ToLowerInvariant())) { Write-Warning "[$Label] no policy named '$n'." }
+    }
+    return , $matched
+}
+
 # ------------------------------------------------------------------- main ---
+
+$sourceList = Get-PolicyNameList -Path $SourceListCsv -Label $SourceLabel
+if (-not $sourceList) { return }
+$targetList = Get-PolicyNameList -Path $TargetListCsv -Label $TargetLabel
+if (-not $targetList) { return }
 
 Write-Host 'Reading policy list...' -ForegroundColor Cyan
 $allPolicies = Get-GraphPaged -Uri 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies?$select=id,name,platforms'
 
-# --- resolve the source policy
-$exact = @($allPolicies | Where-Object { $_.name -eq $PolicyName })
-$source = if ($exact.Count -eq 1) { $exact[0] } else {
-    $partial = @($allPolicies | Where-Object { $_.name -like "*$PolicyName*" })
-    if ($partial.Count -eq 1) { $partial[0] }
-    elseif ($partial.Count -eq 0) { $null }
-    else {
-        Write-Host "`n'$PolicyName' matched $($partial.Count) policies - be more specific:" -ForegroundColor Yellow
-        $partial | ForEach-Object { Write-Host "  $($_.name)" }
-        return
-    }
-}
-if (-not $source) {
-    Write-Host "`nNo policy matched '$PolicyName'." -ForegroundColor Red
+$sourcePolicies = Resolve-Policies -AllPolicies $allPolicies -List $sourceList -Label $SourceLabel
+$targetPolicies = Resolve-Policies -AllPolicies $allPolicies -List $targetList -Label $TargetLabel
+
+Write-Host "${SourceLabel}: $($sourcePolicies.Count) policies to walk"
+Write-Host "${TargetLabel}: $($targetPolicies.Count) policies to compare against"
+if ($sourcePolicies.Count -eq 0 -or $targetPolicies.Count -eq 0) {
+    Write-Host "`nBoth sides need at least one policy." -ForegroundColor Red
     return
 }
 
-# --- resolve the comparison estate
-if ($TheirsFilter) {
-    $theirs = @($allPolicies | Where-Object { $_.name -like $TheirsFilter })
-    $criteria = "names like '$TheirsFilter'"
-}
-else {
-    # literal: -like would read [ ] as a character class
-    $theirs = @($allPolicies | Where-Object { $_.name.StartsWith($TheirsPrefix, [StringComparison]::OrdinalIgnoreCase) })
-    $criteria = "names starting '$TheirsPrefix'"
-}
-$theirs = @($theirs | Where-Object { $_.id -ne $source.id })
-
-Write-Host "Source   : $($source.name)" -ForegroundColor White
-Write-Host "Compared : $($theirs.Count) ${TheirsLabel} policies ($criteria)"
-if ($theirs.Count -eq 0) {
-    Write-Host "`nNothing to compare against." -ForegroundColor Red
-    return
-}
-
-# --- flatten the source
-$sourceFlat = Get-PolicySettings -Policy $source -FriendlyNames:$FriendlyNames
-Write-Host "`n$($source.name) defines $($sourceFlat.Count) settings." -ForegroundColor Cyan
-
-# --- index the other estate
-$theirsIndex = @{}
-foreach ($p in $theirs) {
-    Write-Host "  reading $($p.name)..."
+# --- index the target estate once, then reuse it for every source policy
+Write-Host "`nIndexing ${TargetLabel}..." -ForegroundColor Cyan
+$targetIndex = @{}
+foreach ($p in $targetPolicies) {
+    Write-Host "  $($p.name)"
     foreach ($row in (Get-PolicySettings -Policy $p -FriendlyNames:$FriendlyNames)) {
-        if (-not $theirsIndex.ContainsKey($row.Path)) {
-            $theirsIndex[$row.Path] = [System.Collections.Generic.List[object]]::new()
+        if (-not $targetIndex.ContainsKey($row.Path)) {
+            $targetIndex[$row.Path] = [System.Collections.Generic.List[object]]::new()
         }
-        $theirsIndex[$row.Path].Add([pscustomobject]@{ Policy = $p.name; Value = $row.Value })
+        $targetIndex[$row.Path].Add([pscustomobject]@{ Policy = $p.name; Value = $row.Value })
     }
 }
+Write-Host "  $($targetIndex.Count) distinct settings indexed"
 
-# --- classify each source setting
-$report = [System.Collections.Generic.List[object]]::new()
-foreach ($row in ($sourceFlat | Sort-Object Path)) {
-    $hits = if ($theirsIndex.ContainsKey($row.Path)) { $theirsIndex[$row.Path] } else { $null }
-    $hitVals = @(if ($hits) { $hits | ForEach-Object { $_.Value } | Select-Object -Unique | Sort-Object })
+$notInLabel = "Not in ${TargetLabel}"
 
-    $status =
-    if (-not $hits -or $hitVals.Count -eq 0) { "Not in ${TheirsLabel}" }
-    elseif ($hits.Count -gt 1) {
-        # a split is only benign if every copy agrees with the source
-        if ($hitVals.Count -gt 1 -or $hitVals[0] -ne $row.Value) { 'Split - differs' } else { 'Split' }
+# --- walk the source policies
+$allRows = [System.Collections.Generic.List[object]]::new()
+$rollup = [System.Collections.Generic.List[object]]::new()
+
+$perPolicyDir = Join-Path $OutputPath 'per-policy'
+if (-not (Test-Path $perPolicyDir)) { New-Item -ItemType Directory -Path $perPolicyDir -Force | Out-Null }
+
+Write-Host "`nComparing ${SourceLabel} policies..." -ForegroundColor Cyan
+foreach ($sp in ($sourcePolicies | Sort-Object { $_.name })) {
+
+    $sourceFlat = Get-PolicySettings -Policy $sp -FriendlyNames:$FriendlyNames
+    $policyRows = [System.Collections.Generic.List[object]]::new()
+
+    foreach ($row in ($sourceFlat | Sort-Object Path)) {
+        $hits = if ($targetIndex.ContainsKey($row.Path)) { $targetIndex[$row.Path] } else { $null }
+        $hitVals = @(if ($hits) { $hits | ForEach-Object { $_.Value } | Select-Object -Unique | Sort-Object })
+
+        $status =
+        if (-not $hits -or $hitVals.Count -eq 0) { $notInLabel }
+        elseif ($hits.Count -gt 1) {
+            if ($hitVals.Count -gt 1 -or $hitVals[0] -ne $row.Value) { 'Split - differs' } else { 'Split' }
+        }
+        elseif ($hitVals[0] -eq $row.Value) { 'Match' }
+        else { 'Differs' }
+
+        $showVals = if ($FriendlyNames) { @($hitVals | ForEach-Object { ConvertTo-FriendlyValue -Path $row.Path -Value $_ }) } else { $hitVals }
+        $showSource = if ($FriendlyNames) { ConvertTo-FriendlyValue -Path $row.Path -Value $row.Value } else { $row.Value }
+
+        $rowData = [ordered]@{ "$SourceLabel policy" = $sp.name; Setting = $row.Path }
+        if ($FriendlyNames) { $rowData['Setting name'] = ConvertTo-FriendlyPath -Path $row.Path }
+        $rowData["$SourceLabel value"] = $showSource
+        $rowData['Status'] = $status
+        $rowData["$TargetLabel value"] = ($showVals -join ' || ')
+        $rowData["$TargetLabel policy"] = if ($hits) { (($hits | ForEach-Object { $_.Policy } | Select-Object -Unique) -join '; ') } else { '' }
+        $rowData['Merge decision'] = ''
+
+        $obj = [pscustomobject]$rowData
+        $policyRows.Add($obj)
+        $allRows.Add($obj)
     }
-    elseif ($hitVals[0] -eq $row.Value) { 'Match' }
-    else { 'Differs' }
 
-    $showVals = if ($FriendlyNames) { @($hitVals | ForEach-Object { ConvertTo-FriendlyValue -Path $row.Path -Value $_ }) } else { $hitVals }
-    $showSource = if ($FriendlyNames) { ConvertTo-FriendlyValue -Path $row.Path -Value $row.Value } else { $row.Value }
+    $total = $policyRows.Count
+    $match = @($policyRows | Where-Object Status -eq 'Match').Count
+    $differs = @($policyRows | Where-Object Status -eq 'Differs').Count
+    $split = @($policyRows | Where-Object { $_.Status -like 'Split*' }).Count
+    $missing = @($policyRows | Where-Object Status -eq $notInLabel).Count
+    $covered = $total - $missing
+    $coverage = if ($total -gt 0) { [math]::Round(100 * $covered / $total, 1) } else { 0 }
 
-    $rowData = [ordered]@{ Setting = $row.Path }
-    if ($FriendlyNames) { $rowData['Setting name'] = ConvertTo-FriendlyPath -Path $row.Path }
-    $rowData['Source value'] = $showSource
-    $rowData['Status'] = $status
-    $rowData["$TheirsLabel value"] = ($showVals -join ' || ')
-    $rowData["$TheirsLabel policy"] = if ($hits) { (($hits | ForEach-Object { $_.Policy } | Select-Object -Unique) -join '; ') } else { '' }
-    $report.Add([pscustomobject]$rowData)
-}
+    $rollup.Add([pscustomobject][ordered]@{
+            "$SourceLabel policy"  = $sp.name
+            Settings               = $total
+            Match                  = $match
+            Differs                = $differs
+            Split                  = $split
+            "$notInLabel"          = $missing
+            'Coverage %'           = $coverage
+        })
 
-# --- console output
-$order = @('Differs', 'Split - differs', 'Split', "Not in ${TheirsLabel}", 'Match')
-$colour = @{
-    'Differs'              = 'Red'
-    'Split - differs'      = 'Red'
-    'Split'                = 'Yellow'
-    "Not in ${TheirsLabel}" = 'Cyan'
-    'Match'                = 'Green'
-}
+    $colour = if ($differs -gt 0) { 'Red' } elseif ($missing -eq $total) { 'Cyan' } else { 'Green' }
+    Write-Host ("  {0,-45} {1,4} settings  {2,3}% covered  {3} differ" -f $sp.name, $total, $coverage, $differs) -ForegroundColor $colour
 
-foreach ($status in $order) {
-    $group = @($report | Where-Object Status -eq $status)
-    if ($group.Count -eq 0) { continue }
-    if ($DifferencesOnly -and $status -eq 'Match') { continue }
-
-    Write-Host "`n$status ($($group.Count))" -ForegroundColor $colour[$status]
-    Write-Host ('-' * 60)
-    foreach ($r in $group) {
-        $theirValue = $r.($TheirsLabel + ' value')
-        $theirPolicy = $r.($TheirsLabel + ' policy')
-        if ($FriendlyNames) {
-            Write-Host "  $($r.'Setting name')"
-            Write-Host "      id: $($r.Setting)" -ForegroundColor DarkGray
-        }
-        else {
-            Write-Host "  $($r.Setting)"
-        }
-        Write-Host "      source: $($r.'Source value')"
-        if ($status -ne "Not in ${TheirsLabel}") {
-            Write-Host "      ${TheirsLabel}: $theirValue  [$theirPolicy]"
+    if ($Detailed) {
+        foreach ($r in ($policyRows | Where-Object { $_.Status -ne 'Match' })) {
+            $label = if ($FriendlyNames) { $r.'Setting name' } else { $r.Setting }
+            Write-Host "      [$($r.Status)] $label"
         }
     }
+
+    $safe = ($sp.name -replace '[\\/:*?"<>|\[\]]', '_')
+    $policyRows | Export-Csv -Path (Join-Path $perPolicyDir "$safe.csv") -NoTypeInformation -Encoding utf8
 }
 
-# --- summary
-$matched = @($report | Where-Object { $_.Status -ne "Not in ${TheirsLabel}" }).Count
-$differing = @($report | Where-Object { $_.Status -in @('Differs', 'Split - differs') }).Count
-$unique = @($report | Where-Object Status -eq "Not in ${TheirsLabel}").Count
+# --- outputs
+$allRows | Export-Csv -Path (Join-Path $OutputPath 'all-settings.csv') -NoTypeInformation -Encoding utf8
+$rollup | Sort-Object 'Coverage %' | Export-Csv -Path (Join-Path $OutputPath 'rollup.csv') -NoTypeInformation -Encoding utf8
 
-Write-Host "`n$('=' * 60)"
-Write-Host "$($source.name)" -ForegroundColor White
-Write-Host "  $($report.Count) settings defined"
-Write-Host "  $matched also set somewhere in ${TheirsLabel}, of which $differing disagree"
-Write-Host "  $unique not set anywhere in ${TheirsLabel}"
+Write-Host "`n$('=' * 70)"
+$rollup | Sort-Object 'Coverage %' | Format-Table -AutoSize
 
-if ($OutputPath) {
-    if (-not (Test-Path $OutputPath)) { New-Item -ItemType Directory -Path $OutputPath -Force | Out-Null }
-    $safe = ($source.name -replace '[\\/:*?"<>|\[\]]', '_')
-    $csv = Join-Path $OutputPath "$safe-vs-${TheirsLabel}.csv"
-    $report | Export-Csv -Path $csv -NoTypeInformation -Encoding utf8
-    Write-Host "`nCSV: $csv" -ForegroundColor Green
-}
+$totalSettings = $allRows.Count
+$totalDiffers = @($allRows | Where-Object { $_.Status -in @('Differs', 'Split - differs') }).Count
+$totalMissing = @($allRows | Where-Object Status -eq $notInLabel).Count
+
+Write-Host "$totalSettings settings across $($sourcePolicies.Count) ${SourceLabel} policies"
+Write-Host "  $totalDiffers disagree with ${TargetLabel}"
+Write-Host "  $totalMissing not set anywhere in ${TargetLabel}"
+Write-Host "`nWritten to $OutputPath" -ForegroundColor Green
