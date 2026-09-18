@@ -49,6 +49,7 @@ param(
     [string]$TheirsFilter,
     [string]$TheirsLabel = 'DOR',
     [switch]$DifferencesOnly,
+    [switch]$FriendlyNames,
     [string]$OutputPath
 )
 
@@ -150,11 +151,73 @@ function ConvertTo-FlatSetting {
     return $out
 }
 
+# --- settings catalog definition registry -----------------------------------
+# Populated from $expand=settingDefinitions. Maps settingDefinitionId to its
+# display name, and for choice settings to its option display names.
+$script:DefMap = @{}
+
+function Register-SettingDefinitions {
+    param($Definitions)
+    foreach ($d in $Definitions) {
+        if (-not (Test-Key $d 'id')) { continue }
+        $id = [string]$d.id
+        if ($script:DefMap.ContainsKey($id)) { continue }
+
+        $display = if ((Test-Key $d 'displayName') -and $d.displayName) { [string]$d.displayName }
+        elseif ((Test-Key $d 'name') -and $d.name) { [string]$d.name }
+        else { $id }
+
+        $options = @{}
+        if (Test-Key $d 'options') {
+            foreach ($o in $d.options) {
+                $itemId = if (Test-Key $o 'itemId') { [string]$o.itemId } else { '' }
+                $oName = if ((Test-Key $o 'displayName') -and $o.displayName) { [string]$o.displayName }
+                elseif (Test-Key $o 'name') { [string]$o.name }
+                else { $itemId }
+                if ($itemId) { $options[$itemId] = $oName }
+            }
+        }
+        $script:DefMap[$id] = @{ DisplayName = $display; Options = $options }
+    }
+}
+
+function Split-SettingSegment {
+    param([string]$Segment)
+    if ($Segment -match '^(.*)\[(\d+)\]$') {
+        return @{ Id = $Matches[1]; Index = "[$($Matches[2])]" }
+    }
+    return @{ Id = $Segment; Index = '' }
+}
+
+function ConvertTo-FriendlyPath {
+    param([string]$Path)
+    $parts = foreach ($segment in ($Path -split '/')) {
+        $bits = Split-SettingSegment -Segment $segment
+        $name = if ($script:DefMap.ContainsKey($bits.Id)) { $script:DefMap[$bits.Id].DisplayName } else { $bits.Id }
+        "$name$($bits.Index)"
+    }
+    return ($parts -join ' > ')
+}
+
+function ConvertTo-FriendlyValue {
+    param([string]$Path, [string]$Value)
+    if (-not $Value) { return $Value }
+    $segments = @($Path -split '/')
+    $bits = Split-SettingSegment -Segment $segments[-1]
+    if (-not $script:DefMap.ContainsKey($bits.Id)) { return $Value }
+    $options = $script:DefMap[$bits.Id].Options
+    if ($options -and $options.ContainsKey($Value)) { return $options[$Value] }
+    return $Value
+}
+
 function Get-PolicySettings {
-    param([Parameter(Mandatory)]$Policy)
-    $settings = Get-GraphPaged -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$($Policy.id)')/settings"
+    param([Parameter(Mandatory)]$Policy, [switch]$FriendlyNames)
+    $uri = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$($Policy.id)')/settings"
+    if ($FriendlyNames) { $uri += "?`$expand=settingDefinitions" }
+    $settings = Get-GraphPaged -Uri $uri
     $flat = [System.Collections.Generic.List[object]]::new()
     foreach ($setting in $settings) {
+        if (Test-Key $setting 'settingDefinitions') { Register-SettingDefinitions $setting.settingDefinitions }
         $instance = if (Test-Key $setting 'settingInstance') { $setting.settingInstance } else { $setting }
         foreach ($row in (ConvertTo-FlatSetting -Instance $instance)) { $flat.Add($row) }
     }
@@ -203,14 +266,14 @@ if ($theirs.Count -eq 0) {
 }
 
 # --- flatten the source
-$sourceFlat = Get-PolicySettings -Policy $source
+$sourceFlat = Get-PolicySettings -Policy $source -FriendlyNames:$FriendlyNames
 Write-Host "`n$($source.name) defines $($sourceFlat.Count) settings." -ForegroundColor Cyan
 
 # --- index the other estate
 $theirsIndex = @{}
 foreach ($p in $theirs) {
     Write-Host "  reading $($p.name)..."
-    foreach ($row in (Get-PolicySettings -Policy $p)) {
+    foreach ($row in (Get-PolicySettings -Policy $p -FriendlyNames:$FriendlyNames)) {
         if (-not $theirsIndex.ContainsKey($row.Path)) {
             $theirsIndex[$row.Path] = [System.Collections.Generic.List[object]]::new()
         }
@@ -233,13 +296,16 @@ foreach ($row in ($sourceFlat | Sort-Object Path)) {
     elseif ($hitVals[0] -eq $row.Value) { 'Match' }
     else { 'Differs' }
 
-    $report.Add([pscustomobject][ordered]@{
-            Setting                 = $row.Path
-            'Source value'          = $row.Value
-            Status                  = $status
-            "${TheirsLabel} value"  = ($hitVals -join ' || ')
-            "${TheirsLabel} policy" = if ($hits) { (($hits | ForEach-Object { $_.Policy } | Select-Object -Unique) -join '; ') } else { '' }
-        })
+    $showVals = if ($FriendlyNames) { @($hitVals | ForEach-Object { ConvertTo-FriendlyValue -Path $row.Path -Value $_ }) } else { $hitVals }
+    $showSource = if ($FriendlyNames) { ConvertTo-FriendlyValue -Path $row.Path -Value $row.Value } else { $row.Value }
+
+    $rowData = [ordered]@{ Setting = $row.Path }
+    if ($FriendlyNames) { $rowData['Setting name'] = ConvertTo-FriendlyPath -Path $row.Path }
+    $rowData['Source value'] = $showSource
+    $rowData['Status'] = $status
+    $rowData["$TheirsLabel value"] = ($showVals -join ' || ')
+    $rowData["$TheirsLabel policy"] = if ($hits) { (($hits | ForEach-Object { $_.Policy } | Select-Object -Unique) -join '; ') } else { '' }
+    $report.Add([pscustomobject]$rowData)
 }
 
 # --- console output
@@ -262,7 +328,13 @@ foreach ($status in $order) {
     foreach ($r in $group) {
         $theirValue = $r.($TheirsLabel + ' value')
         $theirPolicy = $r.($TheirsLabel + ' policy')
-        Write-Host "  $($r.Setting)"
+        if ($FriendlyNames) {
+            Write-Host "  $($r.'Setting name')"
+            Write-Host "      id: $($r.Setting)" -ForegroundColor DarkGray
+        }
+        else {
+            Write-Host "  $($r.Setting)"
+        }
         Write-Host "      source: $($r.'Source value')"
         if ($status -ne "Not in ${TheirsLabel}") {
             Write-Host "      ${TheirsLabel}: $theirValue  [$theirPolicy]"
